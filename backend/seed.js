@@ -42,25 +42,6 @@ const seed = async () => {
       );
     }
 
-    await database.query("truncate artwork");
-
-    for (let i = 0; i < 10; i += 1) {
-      queries.push(
-        database.query(
-          "insert into artwork(title, artist_id, picture, description, user_id, general_gallery, reported, location_id) values (?,?,?,?,?,?,?,?)",
-          [
-            faker.lorem.words(3),
-            faker.random.uuid(),
-            faker.image.urlLoremFlickr({ category: "trees" }),
-            faker.lorem.sentence(),
-            faker.number.int({ min: 1, max: 100 }),
-            faker.datatype.boolean(),
-            faker.datatype.boolean(),
-            faker.number.int({ min: 1, max: 100 }),
-          ]
-        )
-      );
-    }
     /* ************************************************************************* */
 
     // Wait for all the insertion queries to complete
