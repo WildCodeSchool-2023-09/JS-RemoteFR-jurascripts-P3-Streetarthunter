@@ -38,8 +38,8 @@ CREATE TABLE artworks (
   general_gallery BOOLEAN NOT NULL,
   reported BOOLEAN NOT NULL,
   location_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (artist_id) REFERENCES artists(id) ON UPDATE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (location_id) REFERENCES locations(id) ON UPDATE CASCADE
 );
 
