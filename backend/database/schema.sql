@@ -38,9 +38,9 @@ CREATE TABLE artworks (
   general_gallery BOOLEAN NOT NULL,
   reported BOOLEAN NOT NULL,
   location_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (artist_id) REFERENCES artists(id),
-  FOREIGN KEY (location_id) REFERENCES locations(id)
+  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
+  FOREIGN KEY (artist_id) REFERENCES artists(id) ON UPDATE CASCADE,
+  FOREIGN KEY (location_id) REFERENCES locations(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE badges (
@@ -55,8 +55,8 @@ CREATE TABLE user_badges (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   badge_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (badge_id) REFERENCES badges(id)
+  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
+  FOREIGN KEY (badge_id) REFERENCES badges(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE capture (
@@ -64,8 +64,8 @@ CREATE TABLE capture (
   user_id INT NOT NULL,
   artwork_id INT NOT NULL,
   capture VARCHAR(255) NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (artwork_id) REFERENCES artworks(id)
+  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
+  FOREIGN KEY (artwork_id) REFERENCES artworks(id) ON UPDATE CASCADE
 );
 
 

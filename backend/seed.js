@@ -20,7 +20,13 @@ const seed = async () => {
     // Generating Seed Data
 
     // Optional: Truncate tables (remove existing data)
-    await database.query("truncate users");
+    await database.query("delete from user_badges");
+    await database.query("delete from capture");
+    await database.query("delete from artworks");
+    await database.query("delete from locations");
+    await database.query("delete from artists");
+    await database.query("delete from users");
+    await database.query("delete from badges");
 
     // Insert fake data into the 'users' table
     for (let i = 0; i < 10; i += 1) {
