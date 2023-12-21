@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS capture;
 DROP TABLE IF EXISTS user_badges;
 DROP TABLE IF EXISTS badges;
 DROP TABLE IF EXISTS artworks;
