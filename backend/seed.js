@@ -21,6 +21,7 @@ const seed = async () => {
 
     // Optional: Truncate tables (remove existing data)
 
+    await database.query("delete from capture");
     await database.query("delete from user_badges");
     await database.query("delete from badges");
     await database.query("delete from artworks");
