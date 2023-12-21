@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS capture;
+DROP TABLE IF EXISTS user_badges;
+DROP TABLE IF EXISTS badges;
+DROP TABLE IF EXISTS artworks;
+DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS users;
+
 create table users (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   firstname VARCHAR(80) NOT NULL,
@@ -31,15 +39,15 @@ create table locations (
 CREATE TABLE artworks (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   title VARCHAR(255),
-  artist_id INT NOT NULL,
   picture VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
+  artist_id INT NOT NULL,
   user_id INT NOT NULL,
   general_gallery BOOLEAN NOT NULL,
   reported BOOLEAN NOT NULL,
   location_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (artist_id) REFERENCES artists(id) ON UPDATE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (location_id) REFERENCES locations(id) ON UPDATE CASCADE
 );
 
