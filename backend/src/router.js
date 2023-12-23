@@ -19,12 +19,15 @@ router.get("/users", userControllers.browse);
 router.get("/items/:id", itemControllers.read);
 router.get("/users/:id", userControllers.read);
 
+// Route to edit a specific item by ID
+router.put("/users/:id", userControllers.edit);
+
 // Route to add a new item
 router.post("/items", itemControllers.add);
 router.post("/users", validateUser, userControllers.add);
 
-// Route to destroy a specific item, ueser, etc.
-
+// Route to destroy a specific item, user, etc.
+router.delete("/users/:id", userControllers.destroy);
 /* ************************************************************************* */
 
 module.exports = router;

@@ -26,20 +26,17 @@ const validateUser = (req, res, next) => {
     is_administrator,
   } = req.body;
 
-  const { error } = userSchema.validate(
-    {
-      firstname,
-      lastname,
-      pseudo,
-      email,
-      password,
-      avatar,
-      ranking,
-      points,
-      is_administrator,
-    }
-    // { abortEarly: false }
-  );
+  const { error } = userSchema.validate({
+    firstname,
+    lastname,
+    pseudo,
+    email,
+    password,
+    avatar,
+    ranking,
+    points,
+    is_administrator,
+  });
 
   if (error) {
     res.status(422).json({ validationErrors: error.details });
