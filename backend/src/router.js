@@ -2,32 +2,43 @@ const express = require("express");
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
+const artworksControllers = require("./controllers/artworksControllers");
+const { validateArtwork } = require("./services/validateArtwork");
 
-// Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
 
-// Route to get a list of items
-router.get("/items", itemControllers.browse);
+
+// Route to get a list of users
 router.get("/users", userControllers.browse);
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
+// Route to get a specific user by ID
 router.get("/users/:id", userControllers.read);
 
-// Route to edit a specific item by ID
-router.put("/users/:id", userControllers.edit);
-
-// Route to add a new item
-router.post("/items", itemControllers.add);
+// Route to add a new user
 router.post("/users", validateUser, userControllers.add);
 
-// Route to destroy a specific item, user, etc.
+// Route to update an existing user by ID
+router.put("/users/:id", userControllers.edit);
+
+// Route to delete an user by ID
 router.delete("/users/:id", userControllers.destroy);
-/* ************************************************************************* */
+
+
+
+// Route to get a list of artworks
+router.get("/artworks", artworksControllers.browse);
+
+// Route to get a specific artwork by ID
+router.get("/artworks/:id", artworksControllers.read);
+
+// Route to add a new artwork
+router.post("/artworks", validateArtwork, artworksControllers.add);
+
+// Route to update an existing artwork by ID
+router.put("/artworks/:id", validateArtwork, artworksControllers.edit);
+
+// Route to delete an artwork by ID
+router.delete("/artworks/:id", artworksControllers.destroy);
 
 module.exports = router;
