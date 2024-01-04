@@ -1,0 +1,193 @@
+// COLORS VARIABLES
+
+// Deep-purple : only for the main background and texts on lighter colors (ex: buttons)
+$deep-purple: #271932;
+
+// Extra-light-yellow : texts and bouttons
+$extra-light-yellow: #fefecc;
+
+// Yellow, cyan and red : the logo, h1, footer and buttons (border and fill on-hoover)
+$yellow: #faff00;
+$cyan: #37ffcf;
+$red: #ff1469;
+
+// Light colors: h2 and buttons fill
+$light-yellow: #f1f370;
+$light-cyan: #9beeda;
+$light-red: #ff8bb5;
+
+// TEXTS
+%h1 {
+  font-family: "Knewave";
+  font-weight: 100;
+  font-size: calc(2rem - 0.8vw);
+}
+h1 {
+  @extend %h1;
+  color: $yellow;
+}
+%h2 {
+  font-size: calc(2rem - 0.8vw);
+  font-weight: 800;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+}
+h2 {
+  @extend %h2;
+  color: $yellow;
+}
+%h3 {
+  font-size: calc(1.5rem - 0.7vw);
+  font-weight: 500;
+  margin-top: 1vh;
+  margin-bottom: 4vh;
+}
+h3 {
+  @extend %h3;
+  color: $yellow;
+}
+%p {
+  font-size: calc(1rem - 0.6vw);
+  font-weight: 400;
+}
+p {
+  @extend %p;
+}
+
+.small-text {
+  font-size: calc(0.9rem - 0.5vw);
+  font-weight: 300;
+}
+
+// BUTTONS PLACEHOLDERS
+%buttons {
+  font-size: calc(0.8rem + 0.2vw);
+  font-weight: 800;
+  border-radius: 3px;
+  padding: 8px 16px;
+  border-style: solid;
+  border-width: 0.2rem;
+  border-radius: 0.5rem;
+  color: $deep-purple;
+}
+.button-yellow {
+  @extend %buttons;
+  background-color: $light-yellow;
+  border-color: $yellow;
+  &:hover {
+    background-color: $yellow;
+  }
+}
+.button-red {
+  @extend %buttons;
+  background-color: $light-red;
+  border-color: $red;
+  &:hover {
+    background-color: $red;
+  }
+}
+.button-cyan {
+  @extend %buttons;
+  background-color: $light-cyan;
+  border-color: $cyan;
+  &:hover {
+    background-color: $cyan;
+  }
+}
+// MIXINS
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// BASICS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $deep-purple;
+  color: $extra-light-yellow;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  // padding: 2rem;
+  text-align: center;
+  font-family: "Roboto";
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  @include flex-center;
+}
+
+@media screen and (min-width: 360px) and (max-width: 768px) {
+  h1 {
+    font-size: calc(2rem + 2vh);
+  }
+  h2 {
+    font-size: calc(2.8rem - 2vw);
+  }
+  h3 {
+    font-size: calc(2rem - 1.5vw);
+  }
+  p {
+    font-size: calc(1rem - 0.4vw);
+  }
+  .small-text {
+    font-size: calc(1rem - 0.6vw);
+    font-weight: 300;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  h1 {
+    font-size: calc(2rem + 3vh);
+  }
+  h2 {
+    font-size: calc(3.3rem - 2vw);
+  }
+  h3 {
+    font-size: calc(2.8rem - 2.5vw);
+  }
+  p {
+    font-size: calc(2rem - 1.5vw);
+  }
+  .small-text {
+    font-size: calc(1.3rem - 0.6vw);
+    font-weight: 300;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: calc(2rem + 4vw);
+  }
+  h2 {
+    font-size: calc(4rem - 2vw);
+  }
+  h3 {
+    font-size: calc(2.5rem - 1vw);
+  }
+  p {
+    font-size: calc(2.5rem - 1.5vw);
+  }
+  .small-text {
+    font-size: calc(1.4rem - 0.6vw);
+    font-weight: 300;
+  }
+}

@@ -18,6 +18,7 @@ create table users (
   points INT,
   is_administrator BOOLEAN NOT NULL
 );
+
 create table artists (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,
