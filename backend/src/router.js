@@ -2,11 +2,14 @@ const express = require("express");
 
 const router = express.Router();
 
-const artworksControllers = require("./controllers/artworksControllers");
+const artworksControllers = require("./controllers/artworkControllers");
 const { validateArtwork } = require("./services/validateArtwork");
 
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
+
+const artistControllers = require("./controllers/artistControllers");
+const { validateArtist } = require("./services/validateArtist");
 
 const locationControllers = require("./controllers/locationControllers");
 const { validateLocation } = require("./services/validateLocation");
@@ -40,6 +43,21 @@ router.put("/artworks/:id", validateArtwork, artworksControllers.edit);
 
 // Route to delete an artwork by ID
 router.delete("/artworks/:id", artworksControllers.destroy);
+
+// Route to get a list of artists
+router.get("/artists", artistControllers.browse);
+
+// Route to get a specific artist by ID
+router.get("/artists/:id", artistControllers.read);
+
+// Route to add a new artist
+router.post("/artists", validateArtist, artistControllers.add);
+
+// Route to update an existing artist by ID
+router.put("/artists/:id", validateArtist, artistControllers.edit);
+
+// Route to delete an artist by ID
+router.delete("/artists/:id", artistControllers.destroy);
 
 // Route to get a list of locations
 router.get("/locations", locationControllers.browse);
