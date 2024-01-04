@@ -3,19 +3,19 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ItemManager = require("./models/ItemManager");
+
 const LocationManager = require("./models/LocationManager");
+const ArtworkManager = require("./models/ArtworksManager");
 
 const managers = [
-  ItemManager,
-  // Add other managers here
   LocationManager,
+  ArtworkManager, // Add other managers here
 ];
 
 // Create an empty object to hold data managers for different tables
 const tables = {};
 
-// Register each manager as data access point for its table
+// Register each manager as a data access point for its table
 managers.forEach((ManagerClass) => {
   const manager = new ManagerClass();
 

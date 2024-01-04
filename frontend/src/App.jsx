@@ -1,41 +1,29 @@
-import Counter from "./components/Counter";
-import logo from "./assets/logo.svg";
-
-import "./App.css";
+import "./styles/commons.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React !</p>
-
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <header className="App-header">
+      <h1>Street Art Hunter</h1>
+      <h2>Le site des chasseurs d'art urbain !</h2>
+      <h3>En cours de développement...</h3>
+      <p>
+        Passionnés de street-art, patientez encore quelques semaines pour jouer
+        au seul jeu qui vous permettra de combiner art, compétition et
+        orientation !
+      </p>
+      <br />
+      <p className="small-text">Un site CreaScript</p>
+      <br />
+      <button type="button" className="button-yellow">
+        3
+      </button>
+      <button type="button" className="button-cyan">
+        2
+      </button>
+      <button type="button" className="button-red">
+        1
+      </button>
+    </header>
   );
 }
 
