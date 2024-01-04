@@ -3,9 +3,12 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
+
+const LocationManager = require("./models/LocationManager");
 const ArtworkManager = require("./models/ArtworksManager");
 
 const managers = [
+  LocationManager,
   ArtworkManager, // Add other managers here
 ];
 
