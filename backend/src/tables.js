@@ -6,10 +6,12 @@
 
 const UserManager = require("./models/UserManager");
 const ArtworkManager = require("./models/ArtworksManager");
+const LocationManager = require("./models/LocationManager");
 
 const managers = [
   UserManager,
-  ArtworkManager, // Add other managers here
+  ArtworkManager,
+  LocationManager, // Add other managers here
 ];
 
 // Create an empty object to hold data managers for different tables
