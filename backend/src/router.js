@@ -8,7 +8,6 @@ const { validateArtwork } = require("./services/validateArtwork");
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
 
-
 // Route to get a list of users
 router.get("/users", userControllers.browse);
 
@@ -23,8 +22,6 @@ router.put("/users/:id", userControllers.edit);
 
 // Route to delete an user by ID
 router.delete("/users/:id", userControllers.destroy);
-
-
 
 // Route to get a list of artworks
 router.get("/artworks", artworksControllers.browse);
