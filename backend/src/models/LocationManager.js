@@ -47,9 +47,9 @@ class LocationManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing item
 
-  async update(location, id) {
+  async update(id, location) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET city = ?, country = ?, post_code = ?, street = ?, street_number = ?, latitude = ?, longitude = ? WHERE id = ?`,
+      `update ${this.table} set city = ?, country = ?, post_code = ?, street = ?, street_number = ?, latitude = ?, longitude = ? where id = ?`,
       [
         location.city,
         location.country,

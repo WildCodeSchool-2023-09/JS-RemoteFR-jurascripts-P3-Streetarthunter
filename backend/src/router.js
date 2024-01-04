@@ -9,6 +9,7 @@ const router = express.Router();
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
 const locationControllers = require("./controllers/locationControllers");
+const { validateLocation } = require("./services/validateLocation");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -20,9 +21,9 @@ router.get("/locations/:id", locationControllers.read);
 
 // Route to add a new item
 router.post("/items", itemControllers.add);
-router.post("/locations", locationControllers.add);
+router.post("/locations", validateLocation, locationControllers.add);
 
-router.put("/locations/:id", locationControllers.edit);
+router.put("/locations/:id", validateLocation, locationControllers.edit);
 
 router.delete("/locations/:id", locationControllers.destroy);
 
