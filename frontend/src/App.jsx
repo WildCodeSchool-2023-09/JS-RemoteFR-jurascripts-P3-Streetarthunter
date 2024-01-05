@@ -1,3 +1,5 @@
+import Register from "./components/Register";
+
 import "./styles/commons.scss";
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
       <button type="button" className="button-red">
         1
       </button>
+      <Register />
     </header>
   );
 }
