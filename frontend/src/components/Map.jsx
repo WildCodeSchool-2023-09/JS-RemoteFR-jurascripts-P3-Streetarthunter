@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet.locatecontrol"; // Import plugin
+import "leaflet.locatecontrol/dist/L.Control.Locate.min.css"; // Import styles
 import "./Map.scss";
 
 function Map() {
-  const ZOOM_LEVEL = 9;
+  const ZOOM_LEVEL = 11;
   const mapRef = useRef();
 
   return (
