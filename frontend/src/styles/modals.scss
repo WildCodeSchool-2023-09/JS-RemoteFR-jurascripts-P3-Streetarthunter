@@ -1,0 +1,72 @@
+@import "./commons.scss";
+
+.backdrop {
+  background-color: $deep-purple;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal {
+  position: fixed;
+  top: 12vh;
+  left: calc(8vw + 2%);
+  right: calc(8vw + 2%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px 15px 40px 15px;
+  background-color: $deep-purple;
+  border-radius: 0.5rem;
+  z-index: 11;
+  overflow: hidden;
+
+  p {
+    margin-bottom: 5vh;
+  }
+  header {
+    div {
+      display: flex;
+      flex-direction: column;
+      .img-modal {
+        display: flex;
+        justify-content: flex-end;
+      }
+      img {
+        cursor: pointer;
+        width: calc(60px - 4vh);
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  input {
+    font-style: oblique;
+    padding: 4px 8px;
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-color: $extra-light-yellow;
+  }
+}
+.footer-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 30px;
+  .checkbox-RGPD {
+    margin-bottom: 2vh;
+  }
+}

@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import "./styles/commons.scss";
+import Map from "./components/Map";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           1
         </button>
       </header>
+      <Map />
     </>
   );
 }

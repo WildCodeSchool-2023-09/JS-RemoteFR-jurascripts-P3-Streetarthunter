@@ -3,10 +3,19 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ArtworkManager = require("./models/ArtworksManager");
+
+const UserManager = require("./models/UserManager");
+const ArtworkManager = require("./models/ArtworkManager");
+const LocationManager = require("./models/LocationManager");
+const ArtistsManager = require("./models/ArtistManager");
+const CaptureManager = require("./models/CaptureManager");
 
 const managers = [
-  ArtworkManager, // Add other managers here
+  UserManager,
+  ArtworkManager,
+  LocationManager,
+  ArtistsManager,
+  CaptureManager, // Add other managers here
 ];
 
 // Create an empty object to hold data managers for different tables

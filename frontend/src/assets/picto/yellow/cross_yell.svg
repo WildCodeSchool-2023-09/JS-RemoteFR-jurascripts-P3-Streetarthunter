@@ -1,0 +1,21 @@
+    <svg
+      width="84"
+      height="85"
+      viewBox="0 0 84 85"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="84" height="85" rx="15" fill="#FEFECC" />
+      <path
+        d="M20 21L64.6907 64.0673"
+        stroke="#271932"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+      <path
+        d="M65 21L19.2279 63.7936"
+        stroke="#271932"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+    </svg>
