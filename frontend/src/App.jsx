@@ -1,11 +1,12 @@
+import NavBar from "./components/NavBar";
 import "./styles/commons.scss";
 import Map from "./components/Map";
 
 function App() {
   return (
     <>
+      <NavBar />
       <header className="App-header">
-        <h1>Street Art Hunter</h1>
         <h2>Le site des chasseurs d'art urbain !</h2>
         <h3>En cours de développement...</h3>
         <p>

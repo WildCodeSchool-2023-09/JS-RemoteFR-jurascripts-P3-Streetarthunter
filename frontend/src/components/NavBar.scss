@@ -1,0 +1,30 @@
+@import "../styles/commons.scss";
+
+.navbar {
+  border-top: 3px solid $yellow;
+  border-bottom: 3px solid $yellow;
+  background-color: $deep-purple;
+  padding: 15px;
+  color: white;
+  font-family: "Roboto";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    .nav-item {
+      margin-right: 15px;
+      .nav-link {
+        @include flex-center;
+        text-decoration: none;
+        color: white;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
