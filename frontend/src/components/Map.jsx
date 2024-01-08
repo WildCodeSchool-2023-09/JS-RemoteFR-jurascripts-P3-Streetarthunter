@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { useRef, useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.locatecontrol"; // Import plugin
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css"; // Import styles
-import L from "leaflet"; // Import L from leaflet to start using the plugin
+import * as L from "leaflet";
 import { useMediaQuery } from "@react-hook/media-query";
 import "./Map.scss";
 
@@ -11,7 +11,25 @@ function Map() {
   const ZOOM_LEVEL = 11;
   const mapRef = useRef();
   const isMobile = useMediaQuery("only screen and (max-width: 600px)");
-  L.control.locate().addTo();
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const blueIcon = new L.Icon({
+    iconUrl:
+      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
+    shadowUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+      console.info(position);
+    });
+  }, []);
+
+  const coordsUser = { latitude, longitude };
+  console.info(coordsUser);
 
   return (
     <div>
@@ -27,6 +45,11 @@ function Map() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
+            <Marker position={coordsUser} icon={blueIcon}>
+              <Popup>
+                <p>Vous êtes ici</p>
+              </Popup>
+            </Marker>
           </MapContainer>
           <h1>NavBar</h1>
         </>
