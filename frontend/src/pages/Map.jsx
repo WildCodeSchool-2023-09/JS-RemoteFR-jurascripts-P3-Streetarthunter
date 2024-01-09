@@ -83,7 +83,7 @@ function Map() {
               />
             </MapContainer>
           )}
-          <h2>Ajouter une oeuvre</h2>
+          <h2 className="add-h2">Ajouter une oeuvre</h2>
           <p>Logo de Téléchargement</p>
           <p>Télécharger ma photo</p>
           <form className="content">
