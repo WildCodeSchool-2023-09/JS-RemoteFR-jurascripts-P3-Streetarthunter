@@ -12,13 +12,13 @@ class UserManager extends AbstractManager {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "users" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstName, lastName, pseudo, email, password, avatar, ranking, points, is_administrator) values (?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (firstName, lastName, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) values (?,?,?,?,?,?,?,?,?)`,
       [
         user.firstname,
         user.lastname,
         user.pseudo,
         user.email,
-        user.password,
+        user.hashedPassword,
         user.avatar,
         user.ranking,
         user.points,
@@ -37,6 +37,17 @@ class UserManager extends AbstractManager {
     const [rows] = await this.database.query(
       `select * from ${this.table} where id = ?`,
       [id]
+    );
+
+    // Return the first row of the result, which represents the user
+    return rows[0];
+  }
+
+  async readByEmailWithPassword(email) {
+    // Execute the SQL SELECT query to retrieve a specific user by its email
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where email = ?`,
+      [email]
     );
 
     // Return the first row of the result, which represents the user
