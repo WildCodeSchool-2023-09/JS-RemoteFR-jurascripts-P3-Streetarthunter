@@ -63,10 +63,20 @@
   }
 }
 
-button {
+.sub-button {
   background-color: $light-cyan;
   border: $light-cyan;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
+  padding: 10px 60px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  color: $deep-purple;
+}
+
+.reg-button {
+  background-color: $light-yellow;
+  border: $light-cyan;
+  border-radius: 0.3rem;
   padding: 10px 60px;
   margin-top: 3rem;
   margin-bottom: 2rem;
