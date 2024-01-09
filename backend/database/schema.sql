@@ -22,7 +22,7 @@ create table users (
 create table artists (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  bio VARCHAR(255),
+  bio VARCHAR(10000),
   portrait VARCHAR(255) NOT NULL
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE artworks (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   title VARCHAR(255),
   picture VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  description VARCHAR(10000) NOT NULL,
   artist_id INT NOT NULL,
   user_id INT NOT NULL,
   general_gallery BOOLEAN NOT NULL,
