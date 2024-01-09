@@ -1,6 +1,5 @@
 import NavBar from "./components/NavBar";
 import "./styles/commons.scss";
-import Map from "./components/Map";
 
 function App() {
   return (
