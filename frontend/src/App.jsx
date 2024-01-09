@@ -17,15 +17,6 @@ function App() {
         <br />
         <p className="small-text">Un site CreaScript</p>
         <br />
-        <button type="button" className="button-yellow">
-          3
-        </button>
-        <button type="button" className="button-cyan">
-          2
-        </button>
-        <button type="button" className="button-red">
-          1
-        </button>
       </header>
       <Map />
     </>
