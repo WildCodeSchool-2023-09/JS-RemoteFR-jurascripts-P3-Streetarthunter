@@ -17,7 +17,6 @@ function App() {
         <p className="small-text">Un site CreaScript</p>
         <br />
       </header>
-      <Map />
     </>
   );
 }
