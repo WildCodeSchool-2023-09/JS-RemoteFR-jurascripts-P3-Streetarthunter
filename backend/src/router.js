@@ -4,6 +4,7 @@ const router = express.Router();
 
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
+const { hashPassword } = require("./services/auth");
 
 const artworksControllers = require("./controllers/artworkControllers");
 const { validateArtwork } = require("./services/validateArtwork");
@@ -20,7 +21,7 @@ const { validateCapture } = require("./services/validateCapture");
 // Routes of users
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.post("/users", validateUser, userControllers.add);
+router.post("/users", validateUser, hashPassword, userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 

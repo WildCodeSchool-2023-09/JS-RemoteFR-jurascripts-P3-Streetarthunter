@@ -12,7 +12,7 @@ create table users (
   lastname VARCHAR(80) NOT NULL,
   pseudo VARCHAR(80) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  password VARCHAR(80) NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL,
   avatar VARCHAR(255),
   ranking INT,
   points INT,
