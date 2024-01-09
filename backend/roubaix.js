@@ -142,31 +142,6 @@ const roubaix = async () => {
     );
     queries.push(...badgeQueries);
 
-    // Insert data into the 'user_badges' table
-    // const userBadgeQueries = Array.from({ length: 10 }, () =>
-    //   database.query(
-    //     "INSERT INTO user_badges(user_id, badge_id) VALUES (?,?)",
-    //     [
-    //       faker.number.int({ min: 1, max: 10 }),
-    //       faker.number.int({ min: 1, max: 10 }),
-    //     ]
-    //   )
-    // );
-    // queries.push(...userBadgeQueries);
-
-    // // Insert data into the 'capture' table
-    // const captureQueries = Array.from({ length: 10 }, () =>
-    //   database.query(
-    //     "INSERT INTO capture(user_id, artwork_id, capture) VALUES (?,?,?)",
-    //     [
-    //       faker.number.int({ min: 1, max: 10 }),
-    //       faker.number.int({ min: 1, max: 10 }),
-    //       faker.lorem.word(),
-    //     ]
-    //   )
-    // );
-    // queries.push(...captureQueries);
-
     // Wait for all the insertion queries to complete
     await Promise.all(queries);
 
