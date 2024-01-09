@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@react-hook/media-query": "^1.1.1",
+    "axios": "^1.6.4",
     "leaflet": "^1.9.4",
     "leaflet.locatecontrol": "^0.79.0",
     "prop-types": "^15.8.1",
@@ -13,7 +14,7 @@
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.14.2",
-    "sass": "^1.69.5"
+    "sass": "^1.69.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.3",
