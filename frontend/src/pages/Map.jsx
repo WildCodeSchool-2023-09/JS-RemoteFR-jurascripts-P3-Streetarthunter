@@ -5,6 +5,7 @@ import "leaflet.locatecontrol"; // Import plugin
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css"; // Import styles
 import { useMediaQuery } from "@react-hook/media-query";
 import "./Map.scss";
+import NavBar from "../components/NavBar";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -31,7 +32,7 @@ function Map() {
     <div>
       {isMobile ? (
         <>
-          <h1>LOGO</h1>
+          <NavBar />
           {latitude !== 48.866667 ? (
             <MapContainer
               center={[latitude, longitude]}
@@ -55,11 +56,10 @@ function Map() {
               />
             </MapContainer>
           )}
-          <h1>NavBar</h1>
         </>
       ) : (
         <>
-          <h1>NavBar</h1>
+          <NavBar />
           {latitude !== 48.866667 ? (
             <MapContainer
               center={[latitude, longitude]}
