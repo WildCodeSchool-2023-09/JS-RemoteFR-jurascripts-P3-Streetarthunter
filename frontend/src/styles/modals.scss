@@ -11,7 +11,7 @@
 
 .modal {
   position: fixed;
-  top: 12vh;
+  top: 5vh;
   left: calc(8vw + 2%);
   right: calc(8vw + 2%);
   display: flex;
@@ -68,5 +68,58 @@
   margin-top: 30px;
   .checkbox-RGPD {
     margin-bottom: 2vh;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 768px) {
+  .modal {
+    top: 5vh;
+    left: calc(8vw + 2%);
+    right: calc(8vw + 2%);
+    padding: 15px 15px 40px 15px;
+    p {
+      font-size: calc(1.5rem - 1vw);
+    }
+    input {
+      font-size: calc(1.8rem - 1.5vw);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .modal {
+    top: 6vh;
+    left: calc(15vw + 10%);
+    right: calc(15vw + 10%);
+
+    padding: 15px 15px 40px 15px;
+    form {
+      padding: 0 10 0 10;
+    }
+    p {
+      font-size: calc(1.8rem - 1vw);
+    }
+    input {
+      font-size: calc(1.8rem - 1.5vw);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal {
+    position: fixed;
+    top: 6vh;
+    left: calc(25vw + 10%);
+    right: calc(25vw + 10%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px 15px 40px 15px;
+    p {
+      font-size: calc(2.2rem - 1.1vw);
+    }
+    input {
+      font-size: calc(2.2rem - 1.1vw);
+    }
   }
 }
