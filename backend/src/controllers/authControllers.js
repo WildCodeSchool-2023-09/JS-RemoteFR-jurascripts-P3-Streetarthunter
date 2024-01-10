@@ -20,7 +20,7 @@ const add = (req, res) => {
     // and replace password with hashed password
     const user = { ...req.body, hashedPassword };
 
-    tables.user
+    tables.users
       .insert(user)
       .then(([rows]) => {
         if (rows.affectedRows === 1) {
@@ -38,7 +38,7 @@ const add = (req, res) => {
 const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided email
-    const user = await tables.user.readByEmailWithPassword(req.body.email);
+    const user = await tables.users.readByEmailWithPassword(req.body.email);
 
     if (user == null) {
       res.sendStatus(422);
