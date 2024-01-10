@@ -21,7 +21,7 @@ function NavBar() {
           <img src="./src/assets/picto/white/profil_white.svg" alt="" />
           <p>Inscription</p>
         </Link>
-        <Link to="/connexion" className="img-nav-link">
+        <Link to="/login" className="img-nav-link">
           <img src="./src/assets/picto/white/connexion_white.svg" alt="" />
           <p>Connexion</p>
         </Link>

@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const authControllers = require("./controllers/authControllers");
+
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
 const { hashPassword } = require("./services/auth");
@@ -17,6 +19,11 @@ const { validateLocation } = require("./services/validateLocation");
 
 const captureControllers = require("./controllers/captureControllers");
 const { validateCapture } = require("./services/validateCapture");
+
+// Authentification routes
+
+router.post("/register", authControllers.add);
+router.post("/login", authControllers.login);
 
 // Routes of users
 router.get("/users", userControllers.browse);

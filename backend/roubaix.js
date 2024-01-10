@@ -28,7 +28,7 @@ const roubaix = async () => {
     // Insert data into the 'users' table
     const userQueries = Array.from({ length: 50 }, () =>
       database.query(
-        "INSERT INTO users(firstname, lastname, pseudo, email, password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO users(firstname, lastname, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
         [
           faker.person.firstName(),
           faker.person.lastName(),
@@ -80,7 +80,7 @@ const roubaix = async () => {
 
       // Insert the user data
       const [userResult] = await database.query(
-        "INSERT INTO users(firstname, lastname, pseudo, email, password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO users(firstname, lastname, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
         [
           faker.person.firstName(),
           faker.person.lastName(),

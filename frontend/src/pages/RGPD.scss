@@ -1,0 +1,19 @@
+.RGPD {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 80%;
+  margin: 0 10% 10% 10%;
+  overflow: hidden;
+  li {
+    margin-left: 2em;
+  }
+  h2 {
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+  }
+  h3 {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+  }
+}
