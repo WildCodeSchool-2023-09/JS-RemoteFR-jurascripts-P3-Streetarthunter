@@ -49,6 +49,7 @@ h3 {
 %p {
   font-size: calc(1rem - 0.6vw);
   font-weight: 400;
+  color: $extra-light-yellow;
 }
 p {
   @extend %p;
@@ -106,8 +107,6 @@ p {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: $deep-purple;
-  color: $extra-light-yellow;
 }
 
 #root {
@@ -132,6 +131,8 @@ p {
 body {
   margin: auto;
   padding: 0;
+  background-color: $deep-purple;
+  color: $extra-light-yellow;
   width: 100%;
   @include flex-center;
 }
