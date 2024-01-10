@@ -42,10 +42,6 @@ function Map() {
   }, []);
 
   // logique geolocalisation
-
- 
-
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
