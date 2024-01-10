@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
+import Register from "./pages/Register";
+import RGPD from "./pages/RGPD";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,18 @@ const router = createBrowserRouter([
   {
     path: "/map",
     element: <Map />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/RGPD",
+    element: <RGPD />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
