@@ -154,6 +154,9 @@ body {
     font-size: calc(1rem - 0.6vw);
     font-weight: 300;
   }
+  button {
+    font-size: calc(0.8rem - 0.4vw);
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -173,6 +176,9 @@ body {
     font-size: calc(1.3rem - 0.6vw);
     font-weight: 300;
   }
+  button {
+    font-size: calc(1.8rem - 1.5vw);
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -183,13 +189,16 @@ body {
     font-size: calc(4rem - 2vw);
   }
   h3 {
-    font-size: calc(2.5rem - 1vw);
+    font-size: calc(2.8rem - 1vw);
   }
   p {
-    font-size: calc(3rem - 1.5vw);
+    font-size: calc(2.5rem - 1.2vw);
   }
   .small-text {
     font-size: calc(1.4rem - 0.6vw);
     font-weight: 300;
+  }
+  button {
+    font-size: calc(2.5rem - 1.5vw);
   }
 }

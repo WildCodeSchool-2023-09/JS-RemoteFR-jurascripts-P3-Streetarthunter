@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/modals.scss";
-// import RGPD from "./RGPD";
 
 function Register() {
   const [registerInfo, setRegisterInfo] = useState({
@@ -23,47 +22,42 @@ function Register() {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    const { firstname, password } = registerInfo;
+    // créer les fonctions pour vérifier que tous les input sont remplis + regex
+    // const { firstname, password } = registerInfo;
 
-    if (firstname === "" || password === "") {
-      return;
-    }
+    // if (firstname === "" || password === "") {
+    //   return;
+    // }
 
     try {
       const resregister = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/register`,
+        `${import.meta.env.VITE_BACKEND_URL}/register`, // créer la route dans le back....
         registerInfo
       );
 
       if (resregister.status === 201) {
-        // créer la route pour rediriger vers la page/modale de login
         navigate("/login");
       }
     } catch (error) {
-      // Gérer les erreurs de requête
       console.error(error);
     }
   };
 
-  // Retour à la page d'accueil?
-  const closeModal = () => {};
-
   return (
-    <section className="backdrop">
+    <container className="backdrop">
       <section className="modal">
         <header>
           <div>
-            <switch className="img-modal" onClick={closeModal}>
+            <Link to="/" className="img-modal">
               <img
                 src="src/assets/picto/yellow/cross_yell.svg"
                 alt="close-window"
               />
-            </switch>
+            </Link>
             <div>
-              <h2>Connexion</h2>
+              <h2>Inscription</h2>
             </div>
           </div>
-          <p>Tu n'as pas encore de compte ? Crééer le maintenant !</p>
         </header>
         <main className="content">
           <form>
@@ -78,21 +72,21 @@ function Register() {
               type="text"
               name="lastname"
               placeholder="Nom"
-              value={registerInfo.firstname}
+              value={registerInfo.lastname}
               onChange={handleChangeRegister}
             />
             <input
               type="text"
               name="pseudo"
               placeholder="Pseudo"
-              value={registerInfo.firstname}
+              value={registerInfo.pseudo}
               onChange={handleChangeRegister}
             />
             <input
               type="text"
               name="email"
               placeholder="example@gmail.com"
-              value={registerInfo.firstname}
+              value={registerInfo.email}
               onChange={handleChangeRegister}
             />
             <input
@@ -108,15 +102,14 @@ function Register() {
               type="text"
               name="password-repeat"
               placeholder="Répète ton mot de passe"
-              value={registerInfo.password}
+              value={registerInfo.passwordRepeat}
               onChange={handleChangeRegister}
             />
           </form>
         </main>
         <footer className="footer-modal">
           <p className="checkbox-RGPD">
-            <input type="checkbox" /> J'accepte les{" "}
-            {/* créer la route vers RGPD  */}
+            <input type="checkbox" name="RGPD-check" value="" /> J'accepte les{" "}
             <Link to="/RGPD">conditions générales d'utilisation.</Link>
           </p>
           <button
@@ -128,7 +121,7 @@ function Register() {
           </button>
         </footer>
       </section>
-    </section>
+    </container>
   );
 }
 export default Register;

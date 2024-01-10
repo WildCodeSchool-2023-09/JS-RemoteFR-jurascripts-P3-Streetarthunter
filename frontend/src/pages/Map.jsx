@@ -17,6 +17,7 @@ function Map() {
   const [latitude, setLatitude] = useState(50.6942); // Latitude de Roubaix
   const [longitude, setLongitude] = useState(3.1746); // Longitude de Roubaix
   const [markers, setMarkers] = useState([]);
+  const [userLogged, setUserLogged] = useState(false);
 
   // Marqueur
 
@@ -42,6 +43,9 @@ function Map() {
 
   // logique geolocalisation
 
+ 
+
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
@@ -49,6 +53,10 @@ function Map() {
       console.info(position);
     });
   }, []);
+
+  const handleClick = () => {
+    setUserLogged(true);
+  };
 
   useEffect(() => {
     if (mapRef.current) {
@@ -100,23 +108,64 @@ function Map() {
               />
             ))}
           </MapContainer>
-          <h2>Ajouter une oeuvre</h2>
-          <p>Télécharger ma photo</p>
-          <section>
-            <p>Nom de l'artiste</p>
-            <input />
-            <p>Nom de l'oeuvre</p>
-            <input />
-            <p>Adresse</p>
-            <input />
-            <p>Ville</p>
-            <input />
-            <p>Descritpion de l'oeuvre</p>
-            <input />
-            <p>A propos de l'artiste (bonus)</p>
-            <input />
-            <button type="button">Soumettre</button>
-          </section>
+          {userLogged ? (
+            <>
+              <h2 className="add-h2">Ajouter une oeuvre</h2>
+              <p>Logo de Téléchargement</p>
+              <p>Télécharger ma photo</p>
+              <form className="content">
+                <div className="parent-div">
+                  <div>
+                    <div className="align-div">
+                      <p>
+                        Nom de l'artiste <span className="cyan-span">*</span>
+                      </p>
+                      <input />
+                    </div>
+                    <div className="align-div">
+                      <p>Nom de l'oeuvre</p>
+                      <input />
+                    </div>
+                    <div className="align-div">
+                      <p>
+                        Adresse <span className="cyan-span">*</span>
+                      </p>
+                      <input />
+                    </div>
+                    <div className="align-div">
+                      <p>
+                        Ville <span className="cyan-span">*</span>
+                      </p>
+                      <input />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="align-div">
+                      <p>
+                        Descritpion de l'oeuvre{" "}
+                        <span className="cyan-span">*</span>
+                      </p>
+                      <input className="desc-inp" />
+                    </div>
+                    <div className="align-div">
+                      <p>
+                        A propos de l'artiste
+                        <span className="cyan-span"> (bonus)</span>
+                      </p>
+                      <input className="about-inp" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <button type="button" className="sub-button">
+                Soumettre
+              </button>
+            </>
+          ) : (
+            <button type="button" onClick={handleClick} className="reg-button">
+              S'inscrire pour jouer
+            </button>
+          )}
         </>
       )}
     </div>
