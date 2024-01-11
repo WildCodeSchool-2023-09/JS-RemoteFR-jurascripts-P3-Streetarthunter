@@ -1,10 +1,12 @@
 @import "../styles/commons.scss";
 
 .navbar-mobile {
+  background-color: $deep-purple;
   border-top: 3px solid $yellow;
-  padding-top: 30px;
+  padding-top: 20px;
   display: flex;
   justify-content: space-around;
+  padding-bottom: 1.5rem;
   position: fixed;
   bottom: 0px;
   width: 100%;
