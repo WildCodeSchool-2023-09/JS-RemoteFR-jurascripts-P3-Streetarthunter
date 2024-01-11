@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/modals.scss";
+import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function Register() {
   const [registerInfo, setRegisterInfo] = useState({
@@ -49,10 +50,7 @@ function Register() {
         <header>
           <div>
             <Link to="/" className="img-modal">
-              <img
-                src="src/assets/picto/yellow/cross_yell.svg"
-                alt="close-window"
-              />
+              <img src={CrossButton} alt="close-window" />
             </Link>
             <div>
               <h2>Inscription</h2>

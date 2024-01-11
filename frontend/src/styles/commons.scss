@@ -16,6 +16,18 @@ $light-yellow: #f1f370;
 $light-cyan: #9beeda;
 $light-red: #ff8bb5;
 
+// Logo
+.logo-container {
+  display: flex;
+  justify-content: center;
+
+  .logo-mobile {
+    max-width: 30vh;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+  }
+}
+
 // TEXTS
 %h1 {
   font-family: "Knewave";
