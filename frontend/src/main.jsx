@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import RGPD from "./pages/RGPD";
 import Login from "./components/Login";
 import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
@@ -36,11 +37,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
-   },
-   {
+  },
+  {
     path: "/profile",
     element: <Profile />,
-   },
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
