@@ -10,7 +10,7 @@ function NavBar() {
         <img src="./src/assets/picto/white/home_white.svg" alt="" />
       </Link>
       <Link to="/galery">
-        <img src="frontend/src/assets/picto/white/galery_white.svg" alt="" />
+        <img src="./src/assets/picto/white/galery_white.svg" alt="" />
       </Link>
       <Link to="/map">
         <img src="./src/assets/picto/white/map_white.svg" alt="" />
