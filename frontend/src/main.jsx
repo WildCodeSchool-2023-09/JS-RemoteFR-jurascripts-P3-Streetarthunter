@@ -6,10 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
-import Register from "./pages/Register";
+import Register from "./components/Register";
 import RGPD from "./pages/RGPD";
-import Login from "./pages/Login";
-import Admin from "./pages/Admin";
+import Login from "./components/Login";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
-  },
+   },
+   {
+    path: "/profile",
+    element: <Profile />,
+   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
