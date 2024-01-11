@@ -17,7 +17,6 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     element: <App />,
   },
-
   {
     path: "/map",
     element: <Map />,
@@ -35,9 +34,13 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/admin",
+    element: <Admin />,
+   },
+   {
     path: "/profile",
     element: <Profile />,
-  },
+   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
