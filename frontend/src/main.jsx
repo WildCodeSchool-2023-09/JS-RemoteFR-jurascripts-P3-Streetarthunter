@@ -9,6 +9,7 @@ import Error from "./pages/Error";
 import Register from "./pages/Register";
 import RGPD from "./pages/RGPD";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
   },
 ]);
 
