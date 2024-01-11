@@ -4,7 +4,7 @@ import "../styles/commons.scss";
 function Error() {
   return (
     <section>
-      <img src="./src/assets/Logo.svg" alt="logo" />
+      <img src="frontend/src/assets/Logo.svg" alt="logo" />
       <h2>Désolé, il n'y a rien ici !</h2>
       <Link to="/">
         <button type="button" className="button-yellow">
