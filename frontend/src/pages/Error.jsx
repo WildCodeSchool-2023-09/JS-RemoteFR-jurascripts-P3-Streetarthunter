@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/commons.scss";
-import { logo } from "../assets/Logo.svg";
+import logo from "../assets/Logo.svg";
 
 function Error() {
   return (
