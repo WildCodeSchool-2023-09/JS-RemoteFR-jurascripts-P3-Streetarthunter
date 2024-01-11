@@ -17,6 +17,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     element: <App />,
   },
+
   {
     path: "/map",
     element: <Map />,
