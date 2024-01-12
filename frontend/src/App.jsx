@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import "./styles/commons.scss";
+import Roubaix from "./pages/Roubaix";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <p className="small-text">Un site CreaScript</p>
         <br />
       </header>
+      <Roubaix />
     </>
   );
 }
