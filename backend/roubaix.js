@@ -44,6 +44,41 @@ const roubaix = async () => {
     );
     queries.push(...userQueries);
 
+    // Creation of reusable admin and player account
+    const userAdminQueries = () =>
+      database.query(
+        "INSERT INTO users(firstname, lastname, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
+        [
+          "Allofus",
+          "Creascript",
+          "Allofus",
+          "creascript@gmail.com",
+          "$argon2id$v=19$m=65536,t=5,p=1$QZ8jcG2CDQf2DoFzx4sYWw$GuyTq8SnnrO2WsgzLcfw43o0f9j09og11OrsuHwrESE",
+          "https://images.pexels.com/photos/1152188/pexels-photo-1152188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "0",
+          "0",
+          true,
+        ]
+      );
+    queries.push(userAdminQueries());
+
+    const userPlayerQueries = () =>
+      database.query(
+        "INSERT INTO users(firstname, lastname, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) VALUES (?,?,?,?,?,?,?,?,?)",
+        [
+          "Lucie",
+          "Creascript",
+          "Lucie_in_the_sky",
+          "lucy@gmail.com",
+          "$argon2id$v=19$m=65536,t=5,p=1$Nv4lsd4Q5rOntH2JalI2Pw$7GYdWLy9TemdyccKydNnLd9LdwPJO6T3JIr92ldZmok",
+          "https://images.pexels.com/photos/1902995/pexels-photo-1902995.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "0",
+          "0",
+          false,
+        ]
+      );
+    queries.push(userPlayerQueries());
+
     // Insert data into the 'artists' table
     const artistQueries = artworksData.map((artistData) =>
       database.query(
