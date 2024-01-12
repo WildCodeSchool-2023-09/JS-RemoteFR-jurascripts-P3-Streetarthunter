@@ -5,7 +5,7 @@
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="84" height="85" rx="15" fill="#FEFECC" />
+      <rect width="84" height="85" rx="15" fill="#f1f370" stroke="#faff00" stroke-width="6"/>
       <path
         d="M20 21L64.6907 64.0673"
         stroke="#271932"
