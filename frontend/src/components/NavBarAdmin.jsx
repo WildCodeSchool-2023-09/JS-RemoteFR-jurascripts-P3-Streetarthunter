@@ -1,10 +1,22 @@
+import "./NavBarAdmin.scss";
+
 function NavBarAdmin() {
   return (
-    <nav>
-      <h3>Tableau de bord</h3>
-      <h3>Utilisateurs</h3>
-      <h3>Street Art Hunter</h3>
-      <h3>Artistes</h3>
+    <nav className="navbar-admin">
+      <ul>
+        <li>
+          <h3>Tableau de bord</h3>
+        </li>
+        <li>
+          <h3>Utilisateurs</h3>
+        </li>
+        <li>
+          <h3>Street Art Hunter</h3>
+        </li>
+        <li>
+          <h3>Artistes</h3>
+        </li>
+      </ul>
     </nav>
   );
 }
