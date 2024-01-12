@@ -1,18 +1,21 @@
 import PropTypes from "prop-types";
+import "./InfoStreetArt.scss";
 
 function InfoStreetArt({ streetArtInfo, artistInfo }) {
   if (!streetArtInfo || !artistInfo) {
     return null;
   }
 
-  return (
-    <div>
-      <h2>{streetArtInfo.title}</h2>
-      <p>{streetArtInfo.description}</p>
-      <img src={streetArtInfo.picture} alt="Artwork" />
+  const { title, description, picture } = streetArtInfo;
+  const { name, bio } = artistInfo;
 
-      <h3>Artiste: {artistInfo.name}</h3>
-      <p>Bio: {artistInfo.bio}</p>
+  return (
+    <div className="info-street-art">
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <img src={picture} alt="Artwork" />
+      <h3>Artiste: {name}</h3>
+      <p>Bio: {bio}</p>
     </div>
   );
 }
