@@ -5,16 +5,24 @@ function NavBarAdmin() {
     <nav className="navbar-admin">
       <ul>
         <li>
-          <h3>Tableau de bord</h3>
+          <h3>
+            <a href="#notif">Tableau de bord</a>
+          </h3>
         </li>
         <li>
-          <h3>Utilisateurs</h3>
+          <a href="#uti">
+            <h3>Utilisateurs</h3>
+          </a>
         </li>
         <li>
-          <h3>Street Art Hunter</h3>
+          <h3>
+            <a href="#sa">Street Art Hunter</a>
+          </h3>
         </li>
         <li>
-          <h3>Artistes</h3>
+          <h3>
+            <a href="#art">Artistes</a>
+          </h3>
         </li>
       </ul>
     </nav>
