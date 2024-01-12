@@ -1,15 +1,23 @@
+import "./NavBarSa.scss";
+
 function NavBarSa() {
   return (
-    <nav>
+    <nav className="navbar-sa">
       <ul>
         <li>
-          <a href="#cap">Captures</a>
+          <h3>
+            <a href="#cap">Captures</a>
+          </h3>
         </li>
         <li>
-          <a href="#new">Nouvelles oeuvres</a>
+          <h3>
+            <a href="#new">Nouvelles oeuvres</a>
+          </h3>
         </li>
         <li>
-          <a href="#report">Signalées</a>
+          <h3>
+            <a href="#report">Signalées</a>
+          </h3>
         </li>
       </ul>
     </nav>
