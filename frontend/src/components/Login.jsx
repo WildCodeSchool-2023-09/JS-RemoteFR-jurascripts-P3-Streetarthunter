@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/modals.scss";
 import axios from "axios";
+import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState({
@@ -52,10 +53,7 @@ function Login() {
         <header>
           <div>
             <Link to="/" className="img-modal">
-              <img
-                src="src/assets/picto/yellow/cross_yell.svg"
-                alt="close-window"
-              />
+              <img src={CrossButton} alt="close-window" />
             </Link>
             <div>
               <h2>Connexion</h2>
