@@ -212,6 +212,16 @@
   }
 }
 
+.download-art-img {
+  width: 5%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  padding: 0.5rem;
+  transform: rotate(180deg);
+  background-color: $extra-light-yellow;
+  border-radius: 30%;
+}
+
 .add-art-form-grid {
   margin-top: 3rem;
   display: grid;

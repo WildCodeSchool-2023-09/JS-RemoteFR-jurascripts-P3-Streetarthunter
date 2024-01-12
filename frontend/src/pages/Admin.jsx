@@ -1,14 +1,15 @@
 import { useMediaQuery } from "@react-hook/media-query";
-import NavBar from "../components/NavBar";
 import "./Admin.scss";
+import NavBar from "../components/NavBar";
+import NavBarAdmin from "../components/NavBarAdmin";
+import NavBarSa from "../components/NavBarSa";
 import MapAndFlag from "../assets/panel-admin/maps-and-flags-map-svgrepo-com.svg";
 import Avatar from "../assets/panel-admin/avatar-svgrepo-com.svg";
 import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg";
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
-import NavBarAdmin from "../components/NavBarAdmin";
-import NavBarSa from "../components/NavBarSa";
+import download from "../assets/panel-admin/download-svgrepo-com.svg";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -190,7 +191,7 @@ function admin() {
           <h2 className="admin-h2" id="art">
             Ajouter un artiste
           </h2>
-          <p>Logo de téléchargemnt</p>
+          <img src={download} alt="download" className="download-art-img" />
           <p>Télécharger une photo</p>
           <form className="add-art-form-grid">
             <div className="name-art-grid">
