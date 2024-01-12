@@ -6,12 +6,14 @@ import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg"
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
+import NavBarAdmin from "../components/NavBarAdmin";
 
 function admin() {
   return (
     <>
       <NavBar />
-      <div className="notif-h2-img">
+      <NavBarAdmin />
+      <div className="notif-h2-img" id="notif">
         <h2 className="admin-h2">Notifications</h2>
         <img alt="ampoule" src={light} />
       </div>
@@ -25,7 +27,9 @@ function admin() {
           <img alt="Carte" src={MapAndFlag} />
         </div>
       </div>
-      <h2 className="admin-h2">Utilisateurs</h2>
+      <h2 className="admin-h2" id="uti">
+        Utilisateurs
+      </h2>
       <div className="uti-flex">
         <div className="uti-grid">
           <button type="button" className="uti-filter-button">
@@ -130,7 +134,9 @@ function admin() {
           </p>
         </div>
       </div>
-      <h2 className="admin-h2">Street Art</h2>
+      <h2 className="admin-h2" id="sa">
+        Street Art
+      </h2>
       <div className="sa-grid">
         <img alt="Street Art" className="img-grid" src={strafari} />
         <p className="posted-grid">
@@ -146,7 +152,9 @@ function admin() {
         <img alt="Street Art" className="original-img-grid" src={strafari} />
         <p className="original-work-grid">Oeuvre Originale</p>
       </div>
-      <h2 className="admin-h2">Ajouter un artiste</h2>
+      <h2 className="admin-h2" id="art">
+        Ajouter un artiste
+      </h2>
       <p>Logo de téléchargemnt</p>
       <p>Télécharger une photo</p>
       <form className="add-art-form-grid">
