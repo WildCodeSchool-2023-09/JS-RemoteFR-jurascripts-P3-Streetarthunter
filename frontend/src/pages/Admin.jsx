@@ -7,6 +7,7 @@ import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import NavBarAdmin from "../components/NavBarAdmin";
+import NavBarSa from "../components/NavBarSa";
 
 function admin() {
   return (
@@ -137,6 +138,7 @@ function admin() {
       <h2 className="admin-h2" id="sa">
         Street Art
       </h2>
+      <NavBarSa />
       <div className="sa-grid">
         <img alt="Street Art" className="img-grid" src={strafari} />
         <p className="posted-grid">
