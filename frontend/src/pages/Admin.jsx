@@ -1,5 +1,11 @@
 import NavBar from "../components/NavBar";
 import "./Admin.scss";
+import MapAndFlag from "../assets/panel-admin/maps-and-flags-map-svgrepo-com.svg";
+import Avatar from "../assets/panel-admin/avatar-svgrepo-com.svg";
+import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg";
+import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
+import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
+import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 
 function admin() {
   return (
@@ -7,25 +13,16 @@ function admin() {
       <NavBar />
       <div className="notif-h2-img">
         <h2 className="admin-h2">Notifications</h2>
-        <img
-          alt="ampoule"
-          src="./src/assets/panel-admin/light-bulb-idea-svgrepo-com.svg"
-        />
+        <img alt="ampoule" src={light} />
       </div>
       <div className="notif-parent-div">
         <div className="notif-grid-div notif-child-div-yellow">
           <p>12 Street Art en attente de validation</p>
-          <img
-            alt="Sablier"
-            src="./src/assets/panel-admin/hourglass-not-done-svgrepo-com.svg"
-          />
+          <img alt="Sablier" src={Hourglass} />
         </div>
         <div className="notif-grid-div notif-child-div-cyan">
           <p>3 Street Art sont portés disparus</p>
-          <img
-            alt="Carte"
-            src="./src/assets/panel-admin/maps-and-flags-map-svgrepo-com.svg"
-          />
+          <img alt="Carte" src={MapAndFlag} />
         </div>
       </div>
       <h2 className="admin-h2">Utilisateurs</h2>
@@ -43,16 +40,8 @@ function admin() {
       </div>
       <div className="profil-uti-parent">
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -66,16 +55,8 @@ function admin() {
           </p>
         </div>
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -89,16 +70,8 @@ function admin() {
           </p>
         </div>
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -112,16 +85,8 @@ function admin() {
           </p>
         </div>
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -135,16 +100,8 @@ function admin() {
           </p>
         </div>
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -158,16 +115,8 @@ function admin() {
           </p>
         </div>
         <div className="profil-uti-child">
-          <img
-            alt="avatar du profil"
-            className="avatar-grid"
-            src="./src/assets/panel-admin/avatar-svgrepo-com.svg"
-          />
-          <img
-            alt="badge du profil"
-            className="badge-grid"
-            src="./src/assets/panel-admin/badge-award-svgrepo-com.svg"
-          />
+          <img alt="avatar du profil" className="avatar-grid" src={Avatar} />
+          <img alt="badge du profil" className="badge-grid" src={badge} />
           <p className="pseudo-grid">Pseudo</p>
           <p className="name-grid">Prénom Nom</p>
           <p className="capture-grid">
@@ -183,11 +132,7 @@ function admin() {
       </div>
       <h2 className="admin-h2">Street Art</h2>
       <div className="sa-grid">
-        <img
-          alt="Street Art"
-          className="img-grid"
-          src="./src/assets/panel-admin/strafari-street-art-hunter.webp"
-        />
+        <img alt="Street Art" className="img-grid" src={strafari} />
         <p className="posted-grid">
           Posté par{" "}
           <span className="posted-grid-red">Pseudo de l'utilisateur</span>
@@ -198,11 +143,7 @@ function admin() {
         <button type="button" className="refuse-grid">
           Refuser
         </button>
-        <img
-          alt="Street Art"
-          className="original-img-grid"
-          src="./src/assets/panel-admin/strafari-street-art-hunter.webp"
-        />
+        <img alt="Street Art" className="original-img-grid" src={strafari} />
         <p className="original-work-grid">Oeuvre Originale</p>
       </div>
       <h2 className="admin-h2">Ajouter un artiste</h2>
