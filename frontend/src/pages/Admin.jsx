@@ -6,11 +6,13 @@ import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg"
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
+import NavBarAdmin from "../components/NavBarAdmin";
 
 function admin() {
   return (
     <>
       <NavBar />
+      <NavBarAdmin />
       <div className="notif-h2-img">
         <h2 className="admin-h2">Notifications</h2>
         <img alt="ampoule" src={light} />
