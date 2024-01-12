@@ -21,7 +21,7 @@ function admin() {
         <>
           <NavBarAdmin />
           <div className="notif-h2-img" id="notif">
-            <h2 className="admin-h2">Notifications</h2>
+            <h2 className="border-none-h2">Notifications</h2>
             <img alt="ampoule" src={light} />
           </div>
           <div className="notif-parent-div">
