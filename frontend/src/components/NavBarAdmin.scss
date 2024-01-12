@@ -2,11 +2,30 @@
 
 .navbar-admin {
   margin-top: 2%;
+  background-color: $deep-purple;
+
+  &.fixed-navbar {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    margin-top: 0;
+    padding: 1rem 0rem 0.1rem 0rem;
+    width: 89%;
+    left: 5.5%;
+    right: 5.5%;
+  }
+
   ul {
     display: flex;
     justify-content: space-around;
+
     li {
       list-style-type: none;
+
+      a {
+        text-decoration: none;
+        color: $extra-light-yellow;
+      }
     }
   }
 }
