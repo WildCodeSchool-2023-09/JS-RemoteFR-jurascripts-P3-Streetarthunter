@@ -15,6 +15,7 @@ import download from "../assets/panel-admin/download-svgrepo-com.svg";
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [activeComponent, setActiveComponent] = useState("captures");
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -50,6 +51,10 @@ function admin() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleActive = (section) => {
+    setActiveComponent(section);
+  };
 
   return (
     <>
@@ -210,7 +215,10 @@ function admin() {
             <h2 className="admin-h2" id="streetArt">
               Street Art
             </h2>
-            <NavBarSa />
+            <NavBarSa
+              activeComponent={activeComponent}
+              handleActive={handleActive}
+            />
             <div className="sa-grid">
               <img alt="Street Art" className="img-grid" src={strafari} />
               <p className="posted-grid">
