@@ -25,6 +25,26 @@
       a {
         text-decoration: none;
         color: $extra-light-yellow;
+
+        &:hover {
+          text-decoration: underline $red;
+          color: $red;
+          -webkit-text-fill-color: $red;
+          text-decoration-thickness: 0.1rem;
+          text-underline-offset: 1rem;
+        }
+
+        ::selection {
+          color: $red;
+        }
+
+        &.active {
+          text-decoration: underline $red;
+          color: $red;
+          -webkit-text-fill-color: $red;
+          text-decoration-thickness: 0.1rem;
+          text-underline-offset: 1rem;
+        }
       }
     }
   }
