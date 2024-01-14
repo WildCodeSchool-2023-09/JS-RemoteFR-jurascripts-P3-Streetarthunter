@@ -11,7 +11,7 @@ function NavBar() {
       <h1>STREET ART HUNTER</h1>
       <nav className="navbar">
         <Link to="/" className="img-nav-link">
-          <h3>ACCEUIL</h3>
+          <h3>ACCUEIL</h3>
         </Link>
         <Link to="/galery" className="img-nav-link">
           <h3>GALERIE</h3>
