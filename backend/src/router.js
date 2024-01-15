@@ -7,7 +7,7 @@ const { checkDatas } = require("./services/validateLogin");
 
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
-const { hashPassword } = require("./services/auth");
+const { hashPassword, verifyToken } = require("./services/auth");
 
 const artworksControllers = require("./controllers/artworkControllers");
 const { validateArtwork } = require("./services/validateArtwork");
@@ -24,7 +24,7 @@ const { validateCapture } = require("./services/validateCapture");
 // Authentification routes
 
 router.post("/register", authControllers.add);
-router.post("/login", checkDatas, authControllers.login);
+router.post("/login", checkDatas, verifyToken, authControllers.login);
 
 // Routes of users
 router.get("/users", userControllers.browse);
