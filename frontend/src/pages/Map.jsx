@@ -9,7 +9,7 @@ import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
 import "./Map.scss";
 import NavBar from "../components/NavBar";
 import MarkerSVG from "../assets/Map-Pin.svg";
-import download from "../assets/panel-admin/download-svgrepo-com.svg";
+import MapForm from "../components/MapForm";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -18,9 +18,8 @@ function Map() {
   const [latitude, setLatitude] = useState(50.6942); // Latitude de Roubaix
   const [longitude, setLongitude] = useState(3.1746); // Longitude de Roubaix
   const [markers, setMarkers] = useState([]);
-  const [userLogged, setUserLogged] = useState(false);
 
-  // Marqueur
+  // Marqueur de la carte
 
   const customMarkerIcon = new L.DivIcon({
     className: "custom-marker",
@@ -50,10 +49,6 @@ function Map() {
       console.info(position);
     });
   }, []);
-
-  const handleClick = () => {
-    setUserLogged(true);
-  };
 
   useEffect(() => {
     if (mapRef.current) {
@@ -105,64 +100,7 @@ function Map() {
               />
             ))}
           </MapContainer>
-          {userLogged ? (
-            <>
-              <h2 className="add-h2">Ajouter une oeuvre</h2>
-              <img src={download} alt="download" className="download-map-img" />
-              <p>Télécharger ma photo</p>
-              <form className="content">
-                <div className="parent-div">
-                  <div>
-                    <div className="align-div">
-                      <p>
-                        Nom de l'artiste <span className="cyan-span">*</span>
-                      </p>
-                      <input />
-                    </div>
-                    <div className="align-div">
-                      <p>Nom de l'oeuvre</p>
-                      <input />
-                    </div>
-                    <div className="align-div">
-                      <p>
-                        Adresse <span className="cyan-span">*</span>
-                      </p>
-                      <input />
-                    </div>
-                    <div className="align-div">
-                      <p>
-                        Ville <span className="cyan-span">*</span>
-                      </p>
-                      <input />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="align-div">
-                      <p>
-                        Descritpion de l'oeuvre{" "}
-                        <span className="cyan-span">*</span>
-                      </p>
-                      <input className="desc-inp" />
-                    </div>
-                    <div className="align-div">
-                      <p>
-                        A propos de l'artiste
-                        <span className="cyan-span"> (bonus)</span>
-                      </p>
-                      <input className="about-inp" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <button type="button" className="sub-button">
-                Soumettre
-              </button>
-            </>
-          ) : (
-            <button type="button" onClick={handleClick} className="reg-button">
-              S'inscrire pour jouer
-            </button>
-          )}
+          <MapForm />
         </>
       )}
     </div>

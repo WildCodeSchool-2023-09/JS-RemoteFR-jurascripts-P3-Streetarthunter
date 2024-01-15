@@ -7,7 +7,7 @@ import App from "./App";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
 import Register from "./components/Register";
-import RGPD from "./pages/RGPD";
+// import RGPD from "./pages/RGPD";
 import Login from "./components/Login";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
@@ -26,10 +26,10 @@ const router = createBrowserRouter([
     path: "/inscription",
     element: <Register />,
   },
-  {
-    path: "/RGPD",
-    element: <RGPD />,
-  },
+  // {
+  //   path: "/RGPD",
+  //   element: <RGPD />,
+  // },
   {
     path: "/connexion",
     element: <Login />,
