@@ -59,7 +59,7 @@ function Login() {
               <h2>Connexion</h2>
             </div>
           </div>
-          <p>Tu n'as pas encore de compte ? Crééer le maintenant !</p>
+          <p>Tu n'as pas encore de compte ? Créer le maintenant !</p>
         </header>
         <main className="content">
           <form>
