@@ -13,17 +13,17 @@ function NavBar() {
         <Link to="/" className="img-nav-link">
           <h3>ACCUEIL</h3>
         </Link>
-        <Link to="/galery" className="img-nav-link">
+        <Link to="/galerie" className="img-nav-link">
           <h3>GALERIE</h3>
         </Link>
-        <Link to="/map" className="img-nav-link">
+        <Link to="/carte" className="img-nav-link">
           <h3>CARTE</h3>
         </Link>
-        <Link to="/register" className="img-nav-link">
+        <Link to="/inscription" className="img-nav-link">
           <img src={register} alt="" />
           <p>Inscription</p>
         </Link>
-        <Link to="/login" className="img-nav-link">
+        <Link to="/connexion" className="img-nav-link">
           <img src={login} alt="" />
           <p>Connexion</p>
         </Link>

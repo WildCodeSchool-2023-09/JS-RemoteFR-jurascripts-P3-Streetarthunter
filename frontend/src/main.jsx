@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/map",
+    path: "/carte",
     element: <Map />,
   },
   {
-    path: "/register",
+    path: "/inscription",
     element: <Register />,
   },
   {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     element: <RGPD />,
   },
   {
-    path: "/login",
+    path: "/connexion",
     element: <Login />,
   },
   {
