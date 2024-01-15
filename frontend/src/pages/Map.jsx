@@ -9,6 +9,7 @@ import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
 import "./Map.scss";
 import NavBar from "../components/NavBar";
 import MarkerSVG from "../assets/Map-Pin.svg";
+import download from "../assets/panel-admin/download-svgrepo-com.svg";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -107,7 +108,7 @@ function Map() {
           {userLogged ? (
             <>
               <h2 className="add-h2">Ajouter une oeuvre</h2>
-              <p>Logo de Téléchargement</p>
+              <img src={download} alt="download" className="download-map-img" />
               <p>Télécharger ma photo</p>
               <form className="content">
                 <div className="parent-div">
