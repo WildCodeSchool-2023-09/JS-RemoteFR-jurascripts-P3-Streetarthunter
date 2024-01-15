@@ -64,7 +64,10 @@ function admin() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
       .then((response) => {
-        setUsers(response.data);
+        const usersPlayer = response.data.filter(
+          (user) => !user.is_administrator
+        );
+        setUsers(usersPlayer);
       })
       .catch((error) => {
         console.error(
