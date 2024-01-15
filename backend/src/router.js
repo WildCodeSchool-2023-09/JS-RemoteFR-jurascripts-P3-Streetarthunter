@@ -26,8 +26,8 @@ router.post("/register", authControllers.add);
 router.post("/login", authControllers.login);
 
 // Routes of users
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
+router.get("/artworks", artworksControllers.getArtworks);
+router.get("/artworks/:id", artworksControllers.read);
 router.post("/users", validateUser, hashPassword, userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
