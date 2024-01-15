@@ -1,23 +1,30 @@
+import { useMediaQuery } from "@react-hook/media-query";
+import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
+import NavBarM from "./components/NavBarM";
 import "./styles/commons.scss";
+import logo from "./assets/Logo.svg";
 
 function App() {
+  const isMobile = useMediaQuery("only screen and (max-width: 600px)");
+
   return (
-    <>
-      <NavBar />
-      <header className="App-header">
-        <h2>Le site des chasseurs d'art urbain !</h2>
-        <h3>En cours de développement...</h3>
-        <p>
-          Passionnés de street-art, patientez encore quelques semaines pour
-          jouer au seul jeu qui vous permettra de combiner art, compétition et
-          orientation !
-        </p>
-        <br />
-        <p className="small-text">Un site CreaScript</p>
-        <br />
-      </header>
-    </>
+    <div>
+      {isMobile ? (
+        <>
+          <div className="logo-container">
+            <img src={logo} alt="logo" className="logo-mobile" />
+          </div>
+          <Home />
+          <NavBarM />
+        </>
+      ) : (
+        <div>
+          <NavBar />
+          <Home />
+        </div>
+      )}
+    </div>
   );
 }
 

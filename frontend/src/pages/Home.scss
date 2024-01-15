@@ -1,0 +1,123 @@
+@import "../styles/commons.scss";
+
+.home-page {
+  margin: 0vh 8vw 25vh 8vw;
+  button {
+    margin-bottom: 10vh;
+    text-decoration: none;
+  }
+  p {
+    text-align: left;
+    margin-bottom: 2vh;
+  }
+
+  .kesako-content {
+    display: flex;
+    flex-direction: column-reverse;
+
+    img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-bottom: 5vh;
+    }
+  }
+  .grid-ranking {
+    display: grid;
+    grid-template-columns: repeat(12, 2fr);
+    grid-template-rows: repeat(3, 2fr);
+    grid-auto-rows: auto;
+    grid-auto-columns: minmax(10vh, 20vh);
+    grid-gap: 1vh;
+    p {
+      margin: 0;
+    }
+
+    %grid-top {
+      font-weight: 800;
+      color: $deep-purple;
+      border-radius: 5px;
+      height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10%;
+    }
+    .rank-one {
+      @extend %grid-top;
+      grid-column: 4 / 10;
+      grid-row: 1/2;
+      background-color: $red;
+      color: $extra-light-yellow;
+    }
+    .rank-two {
+      @extend %grid-top;
+      grid-column: 3 / 11;
+      grid-row: 2/3;
+      background-color: $yellow;
+    }
+    .rank-three {
+      @extend %grid-top;
+      grid-column: 2 / 12;
+      grid-row: 3/3;
+      background-color: $cyan;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .home-page {
+    margin: 8vh 8vw;
+    .kesako-content,
+    .instructions {
+      display: flex;
+      flex-direction: row;
+      border-radius: solid white;
+      img {
+        max-width: calc(40vh - 30px);
+        margin-left: 3vh;
+      }
+      button {
+        display: flex;
+        justify-content: start;
+        margin-top: 4vh;
+      }
+    }
+    .instructions {
+      .instruc {
+        min-width: 50%;
+      }
+    }
+    .ranking {
+      min-width: calc(50vh - 10px);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home-page {
+    margin: 8vh 8vw;
+    .kesako-content,
+    .instructions {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      img {
+        max-width: calc(60vh - 10px);
+        margin-left: 3vh;
+      }
+      button {
+        display: flex;
+        justify-content: start;
+        margin-top: 4vh;
+      }
+    }
+    .instructions {
+      justify-content: center;
+    }
+
+    .ranking {
+      margin-left: 10vw;
+      min-width: calc(50vh - 10px);
+    }
+  }
+}
