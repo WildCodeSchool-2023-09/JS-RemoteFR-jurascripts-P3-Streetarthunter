@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
+import axios from "axios";
 import "./Admin.scss";
 import NavBar from "../components/NavBar";
 import NavBarAdmin from "../components/NavBarAdmin";
@@ -16,10 +17,13 @@ function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
   const [activeSection, setActiveSection] = useState("dashboard");
   const [activeComponent, setActiveComponent] = useState("captures");
+  const [users, setUsers] = useState([]);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
   const artistsRef = useRef(null);
+
+  console.info(users);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +59,20 @@ function admin() {
   const handleActive = (section) => {
     setActiveComponent(section);
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des utilisateurs:",
+          error
+        );
+      });
+  }, []);
 
   return (
     <>
@@ -95,120 +113,35 @@ function admin() {
               </div>
             </div>
             <div className="profil-uti-parent">
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Points <span className="points-grid-red">1255</span>
-                </p>
-              </div>
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Poitns <span className="points-grid-red">1255</span>
-                </p>
-              </div>
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Poitns <span className="points-grid-red">1255</span>
-                </p>
-              </div>
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Poitns <span className="points-grid-red">1255</span>
-                </p>
-              </div>
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Poitns <span className="points-grid-red">1255</span>
-                </p>
-              </div>
-              <div className="profil-uti-child">
-                <img
-                  alt="avatar du profil"
-                  className="avatar-grid"
-                  src={Avatar}
-                />
-                <img alt="badge du profil" className="badge-grid" src={badge} />
-                <p className="pseudo-grid">Pseudo</p>
-                <p className="name-grid">Prénom Nom</p>
-                <p className="capture-grid">
-                  Capture <span className="capture-grid-red">12</span>
-                </p>
-                <p className="ranking-grid">
-                  Classement <span className="ranking-grid-red">203</span>
-                </p>
-                <p className="points-grid">
-                  Poitns <span className="points-grid-red">1255</span>
-                </p>
-              </div>
+              {users.map((user) => (
+                <div key={user.id} className="profil-uti-child">
+                  <img
+                    alt="avatar du profil"
+                    className="avatar-grid"
+                    src={Avatar}
+                  />
+                  <img
+                    alt="badge du profil"
+                    className="badge-grid"
+                    src={badge}
+                  />
+                  <p className="pseudo-grid">{user.pseudo}</p>
+                  <p className="name-grid">
+                    {user.firstname} {user.lastname}
+                  </p>
+                  <p className="capture-grid">
+                    Capture <span className="capture-grid-red">12</span>
+                  </p>
+                  <p className="ranking-grid">
+                    Classement{" "}
+                    <span className="ranking-grid-red">{user.ranking}</span>
+                  </p>
+                  <p className="points-grid">
+                    Points{" "}
+                    <span className="points-grid-red">{user.points}</span>
+                  </p>
+                </div>
+              ))}
             </div>
           </section>
           <section ref={streetArtRef}>
