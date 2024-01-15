@@ -1,6 +1,6 @@
 import "../styles/modals.scss";
 import "../styles/commons.scss";
-import "./RGPD.scss";
+import "./Rgpd.scss";
 
 import NavBar from "../components/NavBar";
 
