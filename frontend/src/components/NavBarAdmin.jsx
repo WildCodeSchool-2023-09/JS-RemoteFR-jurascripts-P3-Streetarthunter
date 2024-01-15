@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./NavBarAdmin.scss";
 
-function NavBarAdmin() {
+function NavBarAdmin({ activeSection }) {
   const [isNavFixed, setIsNavFixed] = useState(false);
 
   useEffect(() => {
@@ -21,32 +22,58 @@ function NavBarAdmin() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <nav className={`navbar-admin ${isNavFixed ? "fixed-navbar" : ""}`}>
       <ul>
         <li>
           <h3>
-            <a href="#notif">Tableau de bord</a>
+            <a
+              href="#dashboard"
+              className={activeSection === "dashboard" ? "active" : ""}
+            >
+              Tableau de bord
+            </a>
           </h3>
         </li>
         <li>
           <h3>
-            <a href="#uti">Utilisateurs</a>
+            <a
+              href="#users"
+              className={activeSection === "users" ? "active" : ""}
+            >
+              Utilisateurs
+            </a>
           </h3>
         </li>
         <li>
           <h3>
-            <a href="#sa">Street Art Hunter</a>
+            <a
+              href="#streetArt"
+              className={activeSection === "streetArt" ? "active" : ""}
+            >
+              Street Art Hunter
+            </a>
           </h3>
         </li>
         <li>
           <h3>
-            <a href="#art">Artistes</a>
+            <a
+              href="#artists"
+              className={activeSection === "artists" ? "active" : ""}
+            >
+              Artistes
+            </a>
           </h3>
         </li>
       </ul>
     </nav>
   );
 }
+
+NavBarAdmin.propTypes = {
+  activeSection: PropTypes.oneOf(["dashboard", "users", "streetArt", "artists"])
+    .isRequired,
+};
 
 export default NavBarAdmin;
