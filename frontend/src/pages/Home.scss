@@ -1,14 +1,14 @@
 @import "../styles/commons.scss";
 
 .home-page {
-  margin: 0vh 8vw 20vh 8vw;
+  margin: 0vh 8vw 25vh 8vw;
   button {
-    margin-top: 4vh;
     margin-bottom: 10vh;
+    text-decoration: none;
   }
   p {
     text-align: left;
-    margin: 3vh 0vh;
+    margin-bottom: 2vh;
   }
 
   .kesako-content {
@@ -23,10 +23,11 @@
   }
   .grid-ranking {
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(12, 2fr);
     grid-template-rows: repeat(3, 2fr);
     grid-auto-rows: auto;
     grid-auto-columns: minmax(10vh, 20vh);
+    grid-gap: 1vh;
     p {
       margin: 0;
     }
@@ -39,34 +40,26 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 10%;
     }
     .rank-one {
       @extend %grid-top;
-      grid-column: 1 / 3;
+      grid-column: 4 / 10;
       grid-row: 1/2;
-      margin: 0 10vh;
       background-color: $red;
-      align-self: flex-end;
+      color: $extra-light-yellow;
     }
     .rank-two {
       @extend %grid-top;
-      grid-column: 1 / 2;
+      grid-column: 3 / 11;
       grid-row: 2/3;
       background-color: $yellow;
     }
     .rank-three {
       @extend %grid-top;
-      grid-column: 2 / 3;
-      grid-row: 2/3;
+      grid-column: 2 / 12;
+      grid-row: 3/3;
       background-color: $cyan;
-      align-self: flex-start;
-    }
-    .rank-four {
-      grid-column: 1 / 3;
-      grid-row: 3/4;
-      p {
-        text-align: center;
-      }
     }
   }
 }
@@ -80,20 +73,21 @@
       flex-direction: row;
       border-radius: solid white;
       img {
-        max-width: calc(40vh - 10px);
-        margin: 0vh 3vw;
+        max-width: calc(40vh - 30px);
+        margin-left: 3vh;
       }
       button {
         display: flex;
         justify-content: start;
+        margin-top: 4vh;
       }
     }
     .instructions {
-      justify-content: center;
+      .instruc {
+        min-width: 50%;
+      }
     }
-
     .ranking {
-      margin-left: 10vw;
       min-width: calc(50vh - 10px);
     }
   }
@@ -109,11 +103,12 @@
       justify-content: center;
       img {
         max-width: calc(60vh - 10px);
-        margin: 0vh 3vw;
+        margin-left: 3vh;
       }
       button {
         display: flex;
         justify-content: start;
+        margin-top: 4vh;
       }
     }
     .instructions {
