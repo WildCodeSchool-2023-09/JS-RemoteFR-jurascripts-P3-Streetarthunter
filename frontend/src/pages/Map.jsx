@@ -19,7 +19,7 @@ function Map() {
   const [longitude, setLongitude] = useState(3.1746); // Longitude de Roubaix
   const [markers, setMarkers] = useState([]);
 
-  // Marqueur
+  // Marqueur de la carte
 
   const customMarkerIcon = new L.DivIcon({
     className: "custom-marker",
