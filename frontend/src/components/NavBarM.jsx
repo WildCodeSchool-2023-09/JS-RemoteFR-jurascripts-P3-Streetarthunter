@@ -14,16 +14,16 @@ function NavBar() {
       <Link to="/">
         <img src={home} alt="" />
       </Link>
-      <Link to="/galery">
+      <Link to="/galerie">
         <img src={gallery} alt="" />
       </Link>
-      <Link to="/map">
+      <Link to="/carte">
         <img src={map} alt="" />
       </Link>
-      <Link to="/register">
+      <Link to="/inscription">
         <img src={register} alt="" />
       </Link>
-      <Link to="/login">
+      <Link to="/connexion">
         <img src={login} alt="" />
       </Link>
     </nav>
