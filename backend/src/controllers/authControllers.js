@@ -53,7 +53,6 @@ const login = async (req, res, next) => {
     if (verified) {
       // Respond with the user in JSON format (but without the hashed password)
       delete user.hashed_password;
-      console.info(user);
       const token = jwt.sign({ user_id: user.id }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });

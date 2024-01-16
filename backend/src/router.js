@@ -7,7 +7,7 @@ const { checkDatas } = require("./services/validateLogin");
 
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
-const { hashPassword, verifyToken } = require("./services/auth");
+const { verifyToken, hashPassword } = require("./services/auth");
 
 const artworksControllers = require("./controllers/artworkControllers");
 const { validateArtwork } = require("./services/validateArtwork");
