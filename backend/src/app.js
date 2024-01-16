@@ -81,6 +81,7 @@ app.use(express.json());
 // const username = req.cookies.username;
 
 /* ************************************************************************* */
+const path = require("path");
 
 // Import the API routes from the router module
 const router = require("./router");
@@ -105,7 +106,7 @@ app.use("/api", router);
 // 1. Uncomment the lines related to serving static files and redirecting unhandled requests.
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your frontend's build artifacts are located.
 
-const reactBuildPath = `${__dirname}/../../frontend/dist`;
+// const reactBuildPath = `${__dirname}/../../frontend/dist`;
 
 // Serve react resources
 
@@ -116,8 +117,6 @@ const reactBuildPath = `${__dirname}/../../frontend/dist`;
 // app.get("*", (req, res) => {
 //   res.sendFile(`${reactBuildPath}/index.html`);
 // });
-
-const path = require("path");
 
 app.use("*", (req, res) => {
   if (req.originalUrl.includes("assets")) {
