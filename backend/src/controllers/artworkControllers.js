@@ -23,7 +23,7 @@ const read = async (req, res, next) => {
 
     // If the item is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the item in JSON format
-    if (artwork == null) {
+    if (!artwork) {
       res.sendStatus(404);
     } else {
       res.json(artwork);
@@ -92,11 +92,42 @@ const destroy = async (req, res, next) => {
   }
 };
 
-// Ready to export the controller functions
+// New function to get artworks by location_id
+const getArtworksByLocationId = async (req, res, next) => {
+  const locationId = req.query.location_id;
+
+  try {
+    if (!locationId) {
+      res.status(400).json({ error: "Location ID is required." });
+      return;
+    }
+
+    const artworks = await tables.artworks.getArtworksByLocationId(locationId);
+
+    res.json(artworks);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// New function to get all artworks
+const getArtworks = async (req, res, next) => {
+  const locationId = req.query.location_id;
+
+  if (locationId) {
+    // Si location_id est fourni, utiliser la fonction pour filtrer
+    return getArtworksByLocationId(req, res, next);
+  }
+  // Sinon, obtenir toutes les œuvres d'art en utilisant la fonction browse existante
+  return browse(req, res, next);
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  getArtworks,
+  getArtworksByLocationId,
 };

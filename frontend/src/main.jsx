@@ -7,42 +7,49 @@ import App from "./App";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
 import Register from "./components/Register";
-import RGPD from "./pages/RGPD";
+// import RGPD from "./pages/RGPD";
 import Login from "./components/Login";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Layout from "./pages/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <Error />,
-    element: <App />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/carte",
+        element: <Map />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
   },
   {
-    path: "/map",
-    element: <Map />,
-  },
-  {
-    path: "/register",
+    path: "/inscription",
     element: <Register />,
   },
   {
-    path: "/RGPD",
-    element: <RGPD />,
-  },
-  {
-    path: "/login",
+    path: "/connexion",
     element: <Login />,
   },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
 ]);
+// {
+//   path: "/RGPD",
+//   element: <RGPD />,
+// },
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

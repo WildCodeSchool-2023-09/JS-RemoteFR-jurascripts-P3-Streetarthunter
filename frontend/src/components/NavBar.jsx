@@ -1,29 +1,47 @@
 import { Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import "./NavBar.scss";
 import "../styles/commons.scss";
 import login from "../assets/picto/white/connexion_white.svg";
 import register from "../assets/picto/white/profil_white.svg";
 
-function NavBar() {
+function NavBar({ activePage, handleChangePage }) {
   return (
     <section className="nav-container">
       <h1>STREET ART HUNTER</h1>
       <nav className="navbar">
-        <Link to="/" className="img-nav-link">
-          <h3>ACCEUIL</h3>
+        <Link
+          to="/"
+          className={`img-nav-link ${activePage === "accueil" ? "active" : ""}`}
+          onClick={() => {
+            handleChangePage("accueil");
+          }}
+        >
+          <h3>ACCUEIL</h3>
         </Link>
-        <Link to="/galery" className="img-nav-link">
+        <Link
+          to="/galerie"
+          className={`img-nav-link ${activePage === "galerie" ? "active" : ""}`}
+          onClick={() => {
+            handleChangePage("galerie");
+          }}
+        >
           <h3>GALERIE</h3>
         </Link>
-        <Link to="/map" className="img-nav-link">
+        <Link
+          to="/carte"
+          className={`img-nav-link ${activePage === "carte" ? "active" : ""}`}
+          onClick={() => {
+            handleChangePage("carte");
+          }}
+        >
           <h3>CARTE</h3>
         </Link>
-        <Link to="/register" className="img-nav-link">
+        <Link to="/inscription" className="img-nav-link">
           <img src={register} alt="" />
           <p>Inscription</p>
         </Link>
-        <Link to="/login" className="img-nav-link">
+        <Link to="/connexion" className="img-nav-link">
           <img src={login} alt="" />
           <p>Connexion</p>
         </Link>
@@ -31,5 +49,10 @@ function NavBar() {
     </section>
   );
 }
+
+NavBar.propTypes = {
+  activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
+  handleChangePage: PropTypes.func.isRequired,
+};
 
 export default NavBar;
