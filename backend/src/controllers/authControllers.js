@@ -1,5 +1,5 @@
-const argon2 = require("argon2");
-const { hash, argon2id } = require("argon2");
+const { hash, argon2 } = require("argon2");
+const jwt = require("jsonwebtoken");
 // Import access to database tables
 const tables = require("../tables");
 
@@ -7,9 +7,9 @@ const add = (req, res) => {
   // First we extract the password from the body
   const { password } = req.body;
 
-  // We create our hasing options
+  // We create our hashing options
   const hashingOptions = {
-    type: argon2id,
+    type: argon2.argon2id,
     memoryCost: 2 ** 16,
     timeCost: 5,
     parallelism: 1,
@@ -53,8 +53,16 @@ const login = async (req, res, next) => {
     if (verified) {
       // Respond with the user in JSON format (but without the hashed password)
       delete user.hashed_password;
+      const token = jwt.sign({ user_id: user.id }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
 
-      res.json(user);
+      // Send the token in the response
+      res.status(200).json({ token });
+
+      // .cookie("user token", token, {
+      // httpOnly: true,
+      // });
     } else {
       res.sendStatus(422);
     }
