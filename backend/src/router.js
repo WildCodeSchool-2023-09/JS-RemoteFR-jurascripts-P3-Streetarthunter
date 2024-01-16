@@ -33,7 +33,7 @@ router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 
 // Routes of artworks
-router.get("/artworks", artworksControllers.browse);
+router.get("/artworks", artworksControllers.getArtworks);
 router.get("/artworks/:id", artworksControllers.read);
 router.post("/artworks", validateArtwork, artworksControllers.add);
 router.put("/artworks/:id", validateArtwork, artworksControllers.edit);
