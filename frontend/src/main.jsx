@@ -11,38 +11,45 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Layout from "./pages/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <Error />,
-    element: <App />,
-  },
-  {
-    path: "/carte",
-    element: <Map />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/carte",
+        element: <Map />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
   },
   {
     path: "/inscription",
     element: <Register />,
   },
-  // {
-  //   path: "/RGPD",
-  //   element: <RGPD />,
-  // },
   {
     path: "/connexion",
     element: <Login />,
   },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
 ]);
+// {
+//   path: "/RGPD",
+//   element: <RGPD />,
+// },
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

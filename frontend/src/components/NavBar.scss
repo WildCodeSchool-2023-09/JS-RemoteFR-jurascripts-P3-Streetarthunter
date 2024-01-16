@@ -31,5 +31,12 @@
     ::selection {
       color: $yellow;
     }
+    &.active {
+      text-decoration: underline $yellow;
+      color: $yellow;
+      -webkit-text-fill-color: $yellow;
+      text-decoration-thickness: 0.1rem;
+      text-underline-offset: 1rem;
+    }
   }
 }
