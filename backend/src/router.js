@@ -27,13 +27,15 @@ router.post("/register", authControllers.add);
 router.post("/login", checkDatas, verifyToken, authControllers.login);
 
 // Routes of users
-router.get("/artworks", artworksControllers.getArtworks);
-router.get("/artworks/:id", artworksControllers.read);
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
 router.post("/users", validateUser, hashPassword, userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 
 // Routes of artworks
+router.get("/artworks", artworksControllers.getArtworks);
+router.get("/artworks/:id", artworksControllers.read);
 router.get("/artworks", artworksControllers.browse);
 router.get("/artworks/:id", artworksControllers.read);
 router.post("/artworks", validateArtwork, artworksControllers.add);
