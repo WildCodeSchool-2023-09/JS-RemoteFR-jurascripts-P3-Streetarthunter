@@ -21,7 +21,10 @@ function Layout() {
             <img src={logo} alt="logo" className="logo-mobile" />
           </div>
           <Outlet />
-          <NavBarM />
+          <NavBarM
+            activePage={activePage}
+            handleChangePage={handleChangePage}
+          />
         </>
       ) : (
         <>
