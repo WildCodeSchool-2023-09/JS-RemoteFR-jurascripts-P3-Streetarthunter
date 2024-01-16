@@ -21,7 +21,7 @@ function Home() {
                 ses pratiquants se sont largement féminisés ces dernières
                 décennies.
               </p>
-              <Link to="/galery">
+              <Link to="/galery" className="link">
                 <button type="button" className="button-yellow">
                   Découvrir des artistes...
                 </button>
@@ -52,7 +52,7 @@ function Home() {
             <p>
               Progressez, obtenez des badges et devenez vous-même contributeur !
             </p>
-            <Link to="/register">
+            <Link to="/register" className="link">
               <button type="button" className="button-yellow">
                 S'inscrire
               </button>
@@ -64,12 +64,6 @@ function Home() {
               <p className="rank-one">1. Jean</p>
               <p className="rank-two">2. Paul </p>
               <p className="rank-three">3. Pierre</p>
-              <div className="rank-four">
-                <p>3. André</p>
-                <p>5. Danny</p>
-                <p>6. Doug</p>
-                <p>7.Pierre</p>
-              </div>
             </div>
           </div>
         </div>

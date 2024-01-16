@@ -1,0 +1,57 @@
+@import "../styles/commons.scss";
+
+.info-street-art {
+  max-width: none;
+}
+
+.info-street-art h2 {
+  font-size: 1rem;
+  color: black;
+  text-align: center;
+}
+
+.info-street-art h3 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 0.8rem;
+}
+
+.info-street-art img {
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 11rem;
+}
+
+.info-street-art p {
+  display: none;
+}
+
+@media screen and (min-width: 650px) {
+  .info-street-art {
+    background-color: #fff;
+    max-width: 300px;
+    text-align: left;
+    border-radius: 4px;
+  }
+
+  .info-street-art p {
+    font-size: 0.8rem;
+    color: black;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: clip;
+    position: relative;
+  }
+
+  .info-street-art img {
+    max-width: 20rem;
+    min-width: 12rem;
+    max-height: 16rem;
+  }
+}

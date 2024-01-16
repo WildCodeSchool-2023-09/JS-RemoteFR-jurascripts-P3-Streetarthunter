@@ -85,6 +85,20 @@ class ArtworkManager extends AbstractManager {
     // Return true if the deletion was successful, false otherwise
     return result.affectedRows > 0;
   }
+
+  async getArtworksByLocationId(locationId) {
+    try {
+      const [rows] = await this.database.query(
+        `SELECT * FROM ${this.table} WHERE location_id = ?`,
+        [locationId]
+      );
+
+      return rows;
+    } catch (error) {
+      console.error("Error fetching artworks:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = ArtworkManager;
