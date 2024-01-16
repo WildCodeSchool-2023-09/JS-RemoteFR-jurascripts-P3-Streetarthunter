@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import "./Admin.scss";
-import NavBar from "../components/NavBar";
 import NavBarAdmin from "../components/NavBarAdmin";
 import NavBarSa from "../components/NavBarSa";
 import MapAndFlag from "../assets/panel-admin/maps-and-flags-map-svgrepo-com.svg";
@@ -57,8 +56,7 @@ function admin() {
   };
 
   return (
-    <>
-      <NavBar />
+    <div>
       {isMobile ? (
         <>
           <NavBarAdmin activeSection={activeSection} />
@@ -268,7 +266,7 @@ function admin() {
           administrateur depuis un ordinateur
         </h3>
       )}
-    </>
+    </div>
   );
 }
 
