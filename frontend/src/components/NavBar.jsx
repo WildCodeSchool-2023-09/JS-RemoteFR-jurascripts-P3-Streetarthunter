@@ -51,8 +51,7 @@ function NavBar({ activePage, handleChangePage }) {
 }
 
 NavBar.propTypes = {
-  activePage: PropTypes.oneOf(["accueil", "galerie", "carte", "admin"])
-    .isRequired,
+  activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
   handleChangePage: PropTypes.func.isRequired,
 };
 
