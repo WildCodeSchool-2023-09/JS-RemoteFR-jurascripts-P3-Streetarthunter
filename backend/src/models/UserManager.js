@@ -54,6 +54,14 @@ class UserManager extends AbstractManager {
     return rows[0];
   }
 
+  // async readByEamilIsAdmin(is_administrator) {
+  //   const [rows] = await this.database.query(
+  //     `select * from ${this.table} where is_administrator = ?`,
+  //     [is_administrator]
+  //   );
+  //   return rows[0];
+  // }
+
   async readAll() {
     // Execute the SQL SELECT query to retrieve all items from the "user" table
     const [rows] = await this.database.query(`select * from ${this.table}`);
