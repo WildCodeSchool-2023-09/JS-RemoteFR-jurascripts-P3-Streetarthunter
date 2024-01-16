@@ -23,8 +23,6 @@ function admin() {
   const streetArtRef = useRef(null);
   const artistsRef = useRef(null);
 
-  console.info(users);
-
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -155,26 +153,30 @@ function admin() {
                 </div>
               ))}
             </div>
-            {userIndex > 0 && (
-              <button
-                type="button"
-                onClick={() => {
-                  prevUsersSlide();
-                }}
-              >
-                Précédent
-              </button>
-            )}
-            {userIndex < users.length - 1 && (
-              <button
-                type="button"
-                onClick={() => {
-                  nextUsersSlide();
-                }}
-              >
-                Suivant
-              </button>
-            )}
+            <div className="uti-btn">
+              {userIndex > 0 && (
+                <button
+                  type="button"
+                  className="button-red"
+                  onClick={() => {
+                    prevUsersSlide();
+                  }}
+                >
+                  Précédent
+                </button>
+              )}
+              {userIndex < users.length - 1 && (
+                <button
+                  type="button"
+                  className="button-red"
+                  onClick={() => {
+                    nextUsersSlide();
+                  }}
+                >
+                  Suivant
+                </button>
+              )}
+            </div>
           </section>
           <section ref={streetArtRef}>
             <h2 className="admin-h2" id="streetArt">
