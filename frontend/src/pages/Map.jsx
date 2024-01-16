@@ -10,6 +10,7 @@ import "./Map.scss";
 import MarkerSVG from "../assets/Map-Pin.svg";
 import MapForm from "../components/MapForm";
 import InfoStreetArt from "../components/InfoStreetArt";
+import DropZone from "../components/DropZone";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -222,6 +223,7 @@ function Map() {
             ))}
           </MapContainer>
           <MapForm />
+          <DropZone />
         </>
       )}
     </div>
