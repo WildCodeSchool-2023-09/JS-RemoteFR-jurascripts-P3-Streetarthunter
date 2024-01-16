@@ -18,6 +18,8 @@ function admin() {
   const [activeComponent, setActiveComponent] = useState("captures");
   const [users, setUsers] = useState([]);
   const [userIndex, setUserIndex] = useState(0);
+  const [userSlideResult, setUserSlideResult] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -66,6 +68,7 @@ function admin() {
           (user) => !user.is_administrator
         );
         setUsers(usersPlayer);
+        setUserSlideResult(Math.ceil(usersPlayer.length));
       })
       .catch((error) => {
         console.error(
@@ -83,6 +86,14 @@ function admin() {
 
   const prevUsersSlide = () => {
     setUserIndex((index) => Math.max(index - 1, 0));
+  };
+
+  const nextCurrentSlide = () => {
+    setCurrentSlide((index) => Math.min(index + 1));
+  };
+
+  const prevCurrentSlide = () => {
+    setCurrentSlide((index) => Math.max(index - 1));
   };
 
   return (
@@ -160,17 +171,22 @@ function admin() {
                   className="button-red"
                   onClick={() => {
                     prevUsersSlide();
+                    prevCurrentSlide();
                   }}
                 >
                   Précédent
                 </button>
               )}
+              <p>
+                Pages : {currentSlide} / {userSlideResult}
+              </p>
               {userIndex < users.length - 1 && (
                 <button
                   type="button"
                   className="button-red"
                   onClick={() => {
                     nextUsersSlide();
+                    nextCurrentSlide();
                   }}
                 >
                   Suivant
