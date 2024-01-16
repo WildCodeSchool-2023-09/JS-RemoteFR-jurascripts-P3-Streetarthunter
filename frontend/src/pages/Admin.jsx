@@ -17,6 +17,7 @@ function admin() {
   const [activeSection, setActiveSection] = useState("dashboard");
   const [activeComponent, setActiveComponent] = useState("captures");
   const [users, setUsers] = useState([]);
+  const [userIndex, setUserIndex] = useState(0);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -76,6 +77,16 @@ function admin() {
       });
   }, []);
 
+  const userCurrent = users.slice(userIndex, userIndex + 6);
+
+  const nextUsersSlide = () => {
+    setUserIndex((index) => Math.min(index + 1, users.length));
+  };
+
+  const prevUsersSlide = () => {
+    setUserIndex((index) => Math.max(index - 1, 0));
+  };
+
   return (
     <div>
       {isMobile ? (
@@ -114,7 +125,7 @@ function admin() {
               </div>
             </div>
             <div className="profil-uti-parent">
-              {users.map((user) => (
+              {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
                   <img
                     alt="avatar du profil"
@@ -144,6 +155,26 @@ function admin() {
                 </div>
               ))}
             </div>
+            {userIndex > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  prevUsersSlide();
+                }}
+              >
+                Précédent
+              </button>
+            )}
+            {userIndex < users.length - 1 && (
+              <button
+                type="button"
+                onClick={() => {
+                  nextUsersSlide();
+                }}
+              >
+                Suivant
+              </button>
+            )}
           </section>
           <section ref={streetArtRef}>
             <h2 className="admin-h2" id="streetArt">
