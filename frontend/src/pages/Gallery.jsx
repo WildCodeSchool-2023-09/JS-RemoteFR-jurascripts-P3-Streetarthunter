@@ -25,6 +25,7 @@ function Gallery() {
               src={artwork.picture}
               key={artwork.id}
               alt={artwork.title}
+              loading="lazy"
               className={`gallery-picture${index + 1}`}
             />
           ))}
