@@ -1,7 +1,17 @@
 @import "../styles/commons.scss";
 
+.gallery-title {
+  margin: 5rem;
+}
+
 .gallery {
-  margin-top: 5rem;
-  border: 3px solid $extra-light-yellow;
+  margin-bottom: 5rem;
   border-radius: 10px;
+  border: 3px solid $extra-light-yellow;
+
+  display: grid;
+
+  img {
+    max-width: 100%;
+  }
 }

@@ -15,15 +15,21 @@ function Gallery() {
   }, []);
 
   return (
-    <section className="gallery">
-      <h1>Gallery</h1>
-
-      {artworks
-        ?.filter((artwork, index) => index < 10)
-        .map((artwork) => (
-          <img src={artwork.picture} key={artwork.id} alt={artwork.title} />
-        ))}
-    </section>
+    <>
+      <h2 className="gallery-title">Street Art</h2>
+      <section className="gallery">
+        {artworks
+          ?.filter((artwork, index) => index < 10)
+          .map((artwork, index) => (
+            <img
+              src={artwork.picture}
+              key={artwork.id}
+              alt={artwork.title}
+              className={`gallery-picture${index}`}
+            />
+          ))}
+      </section>
+    </>
   );
 }
 
