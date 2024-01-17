@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import Layout from "./pages/Layout";
+import Gallery from "./pages/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/galerie",
+        element: <Gallery />,
       },
     ],
   },
