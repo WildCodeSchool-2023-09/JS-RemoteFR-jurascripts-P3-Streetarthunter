@@ -19,13 +19,13 @@ function Gallery() {
       <h2 className="gallery-title">Street Art</h2>
       <section className="gallery">
         {artworks
-          ?.filter((artwork, index) => index < 10)
+          ?.filter((_, index) => index < 13)
           .map((artwork, index) => (
             <img
               src={artwork.picture}
               key={artwork.id}
               alt={artwork.title}
-              className={`gallery-picture${index}`}
+              className={`gallery-picture${index + 1}`}
             />
           ))}
       </section>
