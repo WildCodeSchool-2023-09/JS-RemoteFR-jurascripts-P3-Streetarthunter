@@ -57,6 +57,12 @@
   @for $i from 1 through 14 {
     picture:nth-of-type(#{$i}) {
       grid-area: g#{$i};
+
+      opacity: 0;
+      filter: blur(10rem);
+      animation: 3s ease imgGalleryAnimation;
+      animation-delay: #{$i} / 2s;
+      animation-fill-mode: forwards;
     }
   }
 
@@ -64,5 +70,12 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+  }
+
+  @keyframes imgGalleryAnimation {
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 }

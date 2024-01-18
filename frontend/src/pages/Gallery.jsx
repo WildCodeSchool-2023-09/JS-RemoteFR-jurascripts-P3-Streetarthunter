@@ -22,7 +22,7 @@ function Gallery() {
           ?.filter((_, index) => index < 14)
           .map((artwork) => (
             <picture key={artwork.id}>
-              <img src={artwork.picture} alt={artwork.title} loading="lazy" />
+              <img src={artwork.picture} alt={artwork.title} />
             </picture>
           ))}
       </section>
