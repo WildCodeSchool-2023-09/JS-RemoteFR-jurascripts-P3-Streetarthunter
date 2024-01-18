@@ -11,6 +11,8 @@
   min-height: 50vh;
 
   display: grid;
+  gap: 0.375rem;
+  padding: 0.375rem;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 15rem 15rem 15rem 10.5rem 4.5rem 15rem 10.5rem 4.5rem 15rem 15rem;
   grid-template-areas:
@@ -23,15 +25,36 @@
     "g9 g10"
     "g11 g10"
     "g12 g12"
-    "g13 g13";
+    "g13 g13"
+    "g14 g14";
 
-  @media screen and (min-width: 650px) {
-    // grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-rows: 1fr;
-    // grid-template-areas: "";
+  @media screen and (min-width: 840px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(20, 3rem);
+    grid-template-areas:
+      "g1 g2 g3 g4"
+      "g1 g2 g3 g4"
+      "g1 g2 g3 g4"
+      "g1 g2 g3 g4"
+      "g1 g2 g5 g4"
+      "g1 g2 g5 g4"
+      "g1 g2 g5 g4"
+      "g1 g6 g5 g4"
+      "g1 g6 g5 g4"
+      "g1 g6 g5 g7"
+      "g8 g6 g5 g7"
+      "g8 g9 g5 g7"
+      "g8 g9 g10 g7"
+      "g11 g9 g10 g7"
+      "g11 g9 g10 g7"
+      "g11 g9 g10 g12"
+      "g11 g13 g14 g12"
+      "g11 g13 g14 g12"
+      "g11 g13 g14 g12"
+      "g11 g13 g14 g12";
   }
 
-  @for $i from 1 through 13 {
+  @for $i from 1 through 14 {
     picture:nth-of-type(#{$i}) {
       grid-area: g#{$i};
     }

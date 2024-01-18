@@ -19,7 +19,7 @@ function Gallery() {
       <h2 className="gallery-title">Street Art</h2>
       <section className="gallery">
         {artworks
-          ?.filter((_, index) => index < 13)
+          ?.filter((_, index) => index < 14)
           .map((artwork) => (
             <picture key={artwork.id}>
               <img src={artwork.picture} alt={artwork.title} loading="lazy" />
