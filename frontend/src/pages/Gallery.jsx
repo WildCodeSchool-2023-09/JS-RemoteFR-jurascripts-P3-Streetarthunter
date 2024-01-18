@@ -20,14 +20,10 @@ function Gallery() {
       <section className="gallery">
         {artworks
           ?.filter((_, index) => index < 13)
-          .map((artwork, index) => (
-            <img
-              src={artwork.picture}
-              key={artwork.id}
-              alt={artwork.title}
-              loading="lazy"
-              className={`gallery-picture${index + 1}`}
-            />
+          .map((artwork) => (
+            <picture key={artwork.id}>
+              <img src={artwork.picture} alt={artwork.title} loading="lazy" />
+            </picture>
           ))}
       </section>
     </>

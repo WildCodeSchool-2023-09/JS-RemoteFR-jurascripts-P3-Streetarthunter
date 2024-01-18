@@ -12,7 +12,7 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 0.7fr 0.3fr 1fr 0.7fr 0.3fr 1fr;
+  grid-template-rows: 15rem 15rem 15rem 10.5rem 4.5rem 15rem 10.5rem 4.5rem 15rem 15rem;
   grid-template-areas:
     "g1 g2"
     "g3 g3"
@@ -25,8 +25,14 @@
     "g12 g12"
     "g13 g13";
 
+  @media screen and (min-width: 650px) {
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-rows: 1fr;
+    // grid-template-areas: "";
+  }
+
   @for $i from 1 through 13 {
-    img:nth-of-type(#{$i}) {
+    picture:nth-of-type(#{$i}) {
       grid-area: g#{$i};
     }
   }
