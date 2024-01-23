@@ -62,24 +62,6 @@ function admin() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
-      .then((response) => {
-        const usersPlayer = response.data.filter(
-          (user) => !user.is_administrator
-        );
-        setUsers(usersPlayer);
-        setUserSlideResult(Math.ceil(usersPlayer.length));
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la récupération des utilisateurs:",
-          error
-        );
-      });
-  }, []);
-
-  const callUser = () => {
     if (!userSearch.trim()) {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
@@ -106,13 +88,12 @@ function admin() {
       setUsers(filteredUser);
       setUserSlideResult(Math.ceil(filteredUser.length));
     }
-  };
+  }, [users, userSearch]);
 
   const onChangeUser = (e) => {
     setUserSearch(e.target.value);
     setUserIndex(0);
     setCurrentSlide(1);
-    callUser();
   };
 
   const userCurrent = users.slice(userIndex, userIndex + 6);
@@ -158,13 +139,7 @@ function admin() {
             <h2 className="admin-h2" id="users">
               Utilisateurs
             </h2>
-            <form
-              className="uti-flex"
-              onSubmit={(e) => {
-                callUser();
-                e.preventDefault();
-              }}
-            >
+            <form className="uti-flex">
               <div className="uti-grid">
                 <button type="button" className="uti-filter-button">
                   Filtrer
