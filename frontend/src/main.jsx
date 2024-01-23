@@ -3,16 +3,18 @@ import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from "./App";
+import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
 import Register from "./components/Register";
 // import RGPD from "./pages/RGPD";
 import Login from "./components/Login";
-import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Profile from "./pages/Profile";
 import Layout from "./pages/Layout";
+import { AuthContextProvider } from "./context/AuthContext";
 import Gallery from "./pages/Gallery";
+
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "/carte",
@@ -33,33 +35,36 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/profile",
+        path: "/inscription",
+        element: <Register />,
+      },
+
+      {
+        path: "/connexion",
+        element: <Login />,
+      },
+      {
+        path: "profil",
         element: <Profile />,
       },
+      // {
+      //   path: "/RGPD",
+      //   element: <RGPD />,
+      // },
       {
         path: "/galerie",
         element: <Gallery />,
       },
     ],
   },
-  {
-    path: "/inscription",
-    element: <Register />,
-  },
-  {
-    path: "/connexion",
-    element: <Login />,
-  },
 ]);
-// {
-//   path: "/RGPD",
-//   element: <RGPD />,
-// },
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
