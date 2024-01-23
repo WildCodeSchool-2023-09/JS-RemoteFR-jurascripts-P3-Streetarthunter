@@ -152,6 +152,13 @@
   }
 }
 
+.uti-btn {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  gap: 8%;
+}
+
 .sa-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

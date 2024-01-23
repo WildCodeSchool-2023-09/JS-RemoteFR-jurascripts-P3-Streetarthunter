@@ -7,7 +7,6 @@ import "leaflet/dist/leaflet.css";
 import "leaflet.locatecontrol";
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
 import "./Map.scss";
-import NavBar from "../components/NavBar";
 import MarkerSVG from "../assets/Map-Pin.svg";
 import MapForm from "../components/MapForm";
 import InfoStreetArt from "../components/InfoStreetArt";
@@ -165,40 +164,36 @@ function Map() {
   return (
     <div>
       {isMobile ? (
-        <>
-          <NavBar />
-          <MapContainer
-            center={[latitude, longitude]}
-            zoom={ZOOM_LEVEL}
-            ref={mapRef}
-            style={{ height: "400px", width: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            {markers.map((marker) => (
-              <Marker
-                key={marker.id}
-                position={[marker.latitude, marker.longitude]}
-                icon={customMarkerIcon}
-                eventHandlers={{
-                  click: () => handleMarkerClick(marker),
-                }}
-              >
-                <Popup>
-                  <InfoStreetArt
-                    streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
-                    artistInfo={markerInfo[marker.id]?.artistInfo}
-                  />
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </>
+        <MapContainer
+          center={[latitude, longitude]}
+          zoom={ZOOM_LEVEL}
+          ref={mapRef}
+          style={{ height: "400px", width: "100%" }}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {markers.map((marker) => (
+            <Marker
+              key={marker.id}
+              position={[marker.latitude, marker.longitude]}
+              icon={customMarkerIcon}
+              eventHandlers={{
+                click: () => handleMarkerClick(marker),
+              }}
+            >
+              <Popup>
+                <InfoStreetArt
+                  streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
+                  artistInfo={markerInfo[marker.id]?.artistInfo}
+                />
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
       ) : (
         <>
-          <NavBar />
           <MapContainer
             center={[latitude, longitude]}
             zoom={ZOOM_LEVEL}

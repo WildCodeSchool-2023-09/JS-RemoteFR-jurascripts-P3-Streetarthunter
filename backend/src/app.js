@@ -81,6 +81,7 @@ app.use(express.json());
 // const username = req.cookies.username;
 
 /* ************************************************************************* */
+const path = require("path");
 
 // Import the API routes from the router module
 const router = require("./router");

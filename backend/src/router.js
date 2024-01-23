@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 const authControllers = require("./controllers/authControllers");
-const { checkDatas } = require("./services/validateLogin");
+// const { checkDatas } = require("./services/validateLogin");
 
 const userControllers = require("./controllers/userControllers");
 const { validateUser } = require("./services/validateUser");
-const { verifyToken, hashPassword } = require("./services/auth");
+const { hashPassword } = require("./services/auth");
 
 const artworksControllers = require("./controllers/artworkControllers");
 const { validateArtwork } = require("./services/validateArtwork");
@@ -24,17 +24,18 @@ const { validateCapture } = require("./services/validateCapture");
 // Authentification routes
 
 router.post("/register", authControllers.add);
-router.post("/login", checkDatas, verifyToken, authControllers.login);
+router.post("/login", authControllers.login);
 
 // Routes of users
-router.get("/artworks", artworksControllers.getArtworks);
-router.get("/artworks/:id", artworksControllers.read);
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
 router.post("/users", validateUser, hashPassword, userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 
 // Routes of artworks
-router.get("/artworks", artworksControllers.browse);
+router.get("/artworks", artworksControllers.getArtworks);
+router.get("/artworks/:id", artworksControllers.read);
 router.get("/artworks/:id", artworksControllers.read);
 router.post("/artworks", validateArtwork, artworksControllers.add);
 router.put("/artworks/:id", validateArtwork, artworksControllers.edit);

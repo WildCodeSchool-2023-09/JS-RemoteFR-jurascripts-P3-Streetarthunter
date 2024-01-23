@@ -3,44 +3,59 @@ import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from "./App";
+import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Error from "./pages/Error";
 import Register from "./components/Register";
 // import RGPD from "./pages/RGPD";
 import Login from "./components/Login";
-import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Profile from "./pages/Profile";
+import Layout from "./pages/Layout";
+import { AuthContextProvider } from "./context/AuthContext";
+import Gallery from "./pages/Gallery";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <Error />,
-    element: <App />,
-  },
-  {
-    path: "/carte",
-    element: <Map />,
-  },
-  {
-    path: "/inscription",
-    element: <Register />,
-  },
-  // {
-  //   path: "/RGPD",
-  //   element: <RGPD />,
-  // },
-  {
-    path: "/connexion",
-    element: <Login />,
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/carte",
+        element: <Map />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/inscription",
+        element: <Register />,
+      },
+
+      {
+        path: "/connexion",
+        element: <Login />,
+      },
+      {
+        path: "profil",
+        element: <Profile />,
+      },
+      // {
+      //   path: "/RGPD",
+      //   element: <RGPD />,
+      // },
+      {
+        path: "/galerie",
+        element: <Gallery />,
+      },
+    ],
   },
 ]);
 
@@ -48,6 +63,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
