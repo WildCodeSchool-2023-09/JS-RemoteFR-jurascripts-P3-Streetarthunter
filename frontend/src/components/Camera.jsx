@@ -1,21 +1,48 @@
-import React, { useRef, useCallback } from "react";
-import Webcam from "react-webcam";
+import React, { useState } from "react";
+import CameraReact from "react-html5-camera-photo";
+import "react-html5-camera-photo/build/css/index.css";
+import CameraSVG from "../assets/Camera.svg";
+import "./Camera.scss";
 
 function Camera() {
-  const webcamRef = useRef(null);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
 
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
+  const handleTakePhoto = (dataUri) => {
     // Faites quelque chose avec l'image capturée, par exemple, affichez-la ou téléchargez-la.
-    console.info(imageSrc);
-  }, [webcamRef]);
+    console.info(dataUri);
+    setIsCameraOpen(false);
+  };
+
+  const openCamera = () => {
+    setIsCameraOpen(true);
+  };
+
+  const closeCamera = () => {
+    setIsCameraOpen(false);
+  };
 
   return (
     <div>
-      <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-      <button type="button" onClick={capture}>
-        Capturer l'image
-      </button>
+      {isCameraOpen ? (
+        <div>
+          <CameraReact onTakePhoto={handleTakePhoto} isFullscreen />
+          <button type="button" onClick={closeCamera}>
+            Fermer la caméra
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button
+            className="camera-button"
+            type="button"
+            onClick={openCamera}
+            onKeyDown={openCamera}
+            style={{ cursor: "pointer" }}
+          >
+            <img src={CameraSVG} alt="Camera icon" className="Camera-Icon" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
