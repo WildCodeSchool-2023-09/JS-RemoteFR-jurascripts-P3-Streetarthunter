@@ -10,6 +10,7 @@ import "./Map.scss";
 import MarkerSVG from "../assets/Map-Pin.svg";
 import MapForm from "../components/MapForm";
 import InfoStreetArt from "../components/InfoStreetArt";
+import Camera from "../components/Camera";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -164,34 +165,37 @@ function Map() {
   return (
     <div>
       {isMobile ? (
-        <MapContainer
-          center={[latitude, longitude]}
-          zoom={ZOOM_LEVEL}
-          ref={mapRef}
-          style={{ height: "400px", width: "100%" }}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {markers.map((marker) => (
-            <Marker
-              key={marker.id}
-              position={[marker.latitude, marker.longitude]}
-              icon={customMarkerIcon}
-              eventHandlers={{
-                click: () => handleMarkerClick(marker),
-              }}
-            >
-              <Popup>
-                <InfoStreetArt
-                  streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
-                  artistInfo={markerInfo[marker.id]?.artistInfo}
-                />
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+        <>
+          <MapContainer
+            center={[latitude, longitude]}
+            zoom={ZOOM_LEVEL}
+            ref={mapRef}
+            style={{ height: "400px", width: "100%" }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {markers.map((marker) => (
+              <Marker
+                key={marker.id}
+                position={[marker.latitude, marker.longitude]}
+                icon={customMarkerIcon}
+                eventHandlers={{
+                  click: () => handleMarkerClick(marker),
+                }}
+              >
+                <Popup>
+                  <InfoStreetArt
+                    streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
+                    artistInfo={markerInfo[marker.id]?.artistInfo}
+                  />
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+          <Camera />
+        </>
       ) : (
         <>
           <MapContainer
