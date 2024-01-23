@@ -1,5 +1,13 @@
 @import "../styles/commons.scss";
 
+.dropZone {
+  border: 2px solid $yellow;
+  padding: 1rem;
+  border-radius: 15px;
+  text-align: center;
+  width: 28rem;
+  margin: auto;
+}
 .Upload-Icon {
   width: 4rem;
   background-color: $yellow;

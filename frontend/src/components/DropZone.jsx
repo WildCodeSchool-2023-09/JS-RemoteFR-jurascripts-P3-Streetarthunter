@@ -31,7 +31,7 @@ function DropZone() {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
   return (
     <div
-      style={{ border: "2px solid #ccc", padding: "20px", textAlign: "center" }}
+      className="dropZone"
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...getRootProps()}
     >
@@ -40,7 +40,7 @@ function DropZone() {
         {...getInputProps()}
       />
       <img src={Upload} alt="Upload icon" className="Upload-Icon" />
-      <p>Télécharger ma photo</p>
+      <p>Envoyer ma photo</p>
     </div>
   );
 }
