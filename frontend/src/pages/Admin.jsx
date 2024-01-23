@@ -62,7 +62,7 @@ function admin() {
   };
 
   useEffect(() => {
-    if (!userSearch.trim()) {
+    if (!userSearch) {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
         .then((response) => {
