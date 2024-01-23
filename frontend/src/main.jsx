@@ -15,7 +15,6 @@ import Layout from "./pages/Layout";
 import { AuthContextProvider } from "./context/AuthContext";
 import Gallery from "./pages/Gallery";
 
-
 const router = createBrowserRouter([
   {
     path: "/",

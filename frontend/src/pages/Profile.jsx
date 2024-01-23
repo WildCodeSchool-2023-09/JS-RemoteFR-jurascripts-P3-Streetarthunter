@@ -3,12 +3,10 @@ import { AuthContext } from "../context/AuthContext";
 
 function Profile() {
   const { user, handleAuth } = useContext(AuthContext);
-
+  console.info(user);
   useEffect(() => {
     handleAuth();
   }, []);
-
-  console.info(user);
 
   return <h2>Bienvenue sur la page profil!</h2>;
 }
