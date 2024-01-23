@@ -1,5 +1,5 @@
 import { useState } from "react";
-import download from "../assets/panel-admin/download-svgrepo-com.svg";
+import Dropzone from "./DropZone";
 
 function MapForm() {
   const [userLogged, setUserLogged] = useState(false);
@@ -12,9 +12,7 @@ function MapForm() {
       {userLogged ? (
         <>
           <h2 className="add-h2">Ajouter une oeuvre</h2>
-          <p>Logo de Téléchargement</p>
-          <p>Télécharger ma photo</p>
-          <img src={download} alt="download" className="download-map-img" />
+          <Dropzone />
           <form className="content">
             <div className="parent-div">
               <div>
