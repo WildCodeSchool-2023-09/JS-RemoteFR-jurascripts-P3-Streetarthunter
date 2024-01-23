@@ -13,6 +13,8 @@ import Admin from "./pages/Admin";
 import Profile from "./pages/Profile";
 import Layout from "./pages/Layout";
 import { AuthContextProvider } from "./context/AuthContext";
+import Gallery from "./pages/Gallery";
+
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
       //   path: "/RGPD",
       //   element: <RGPD />,
       // },
+      {
+        path: "/galerie",
+        element: <Gallery />,
+      },
     ],
   },
 ]);
