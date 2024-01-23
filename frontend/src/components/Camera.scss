@@ -1,0 +1,17 @@
+@import "../styles/commons.scss";
+
+.camera-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.Camera-Icon {
+  width: 20vw;
+  margin-bottom: 30vh;
+  background-color: $deep-purple;
+}
