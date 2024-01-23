@@ -13,8 +13,7 @@ function Login() {
     email: "",
     password: "",
   });
-  // console.info(AuthContext);
-  // const connect = axios.create(import.meta.env.VITE_BACKEND_URL);
+
   const navigate = useNavigate();
 
   const handleLoginRegister = (event) => {
@@ -35,10 +34,7 @@ function Login() {
       // Appel à l'API pour demander une connexion
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-        loginInfo,
-        {
-          withCredentials: true,
-        }
+        loginInfo
       );
       await localStorage.setItem("token", res.data.token);
       await handleAuth();
