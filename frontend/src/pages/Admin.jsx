@@ -8,10 +8,10 @@ import MapAndFlag from "../assets/panel-admin/maps-and-flags-map-svgrepo-com.svg
 import Avatar from "../assets/panel-admin/avatar-svgrepo-com.svg";
 import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg";
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
-import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
+import NewArtAdmin from "../components/NewArtAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -256,25 +256,7 @@ function admin() {
               activeComponent={activeComponent}
               handleActive={handleActive}
             />
-            <div className="sa-grid">
-              <img alt="Street Art" className="img-grid" src={strafari} />
-              <p className="posted-grid">
-                Posté par{" "}
-                <span className="posted-grid-red">Pseudo de l'utilisateur</span>
-              </p>
-              <button type="button" className="validate-grid">
-                Valider
-              </button>
-              <button type="button" className="refuse-grid">
-                Refuser
-              </button>
-              <img
-                alt="Street Art"
-                className="original-img-grid"
-                src={strafari}
-              />
-              <p className="original-work-grid">Oeuvre Originale</p>
-            </div>
+            <NewArtAdmin />
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
