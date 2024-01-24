@@ -121,6 +121,9 @@ function admin() {
       if (sortOrder === "descRank") {
         return b.ranking - a.ranking;
       }
+      if (sortOrder === null) {
+        return null;
+      }
       return null;
     })
     .slice(userIndex, userIndex + 6);

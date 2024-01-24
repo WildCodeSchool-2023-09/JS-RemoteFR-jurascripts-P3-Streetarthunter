@@ -26,6 +26,10 @@ function FilterUsersAdmin({ setSortOrder }) {
     setSortOrder("descRank");
   };
 
+  const handleSortNull = () => {
+    setSortOrder(null);
+  };
+
   return (
     <section className="fliter-users-section">
       <h2>Filtrer</h2>
@@ -76,12 +80,21 @@ function FilterUsersAdmin({ setSortOrder }) {
           <p>Classements croissant</p>
         </button>
         <button
+          className="border-none"
           type="button"
           onClick={() => {
             handleSortDescRank();
           }}
         >
           <p>Classements décroissant</p>
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleSortNull();
+          }}
+        >
+          <p>Annuler</p>
         </button>
       </div>
     </section>
