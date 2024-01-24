@@ -11,7 +11,6 @@ import MarkerSVG from "../assets/Map-Pin.svg";
 import MapForm from "../components/MapForm";
 import InfoStreetArt from "../components/InfoStreetArt";
 import Camera from "../components/Camera";
-import ImageList from "../components/ImageList";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -227,7 +226,6 @@ function Map() {
             ))}
           </MapContainer>
           <MapForm />
-          <ImageList />
         </>
       )}
     </div>
