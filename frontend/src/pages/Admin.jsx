@@ -11,6 +11,7 @@ import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
+import FilterUsersAdmin from "../components/FilterUsersAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -20,6 +21,8 @@ function admin() {
   const [userIndex, setUserIndex] = useState(0);
   const [userSlideResult, setUserSlideResult] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [toggleUserFilter, setToggleUserFilter] = useState(false);
+  const [initialOffset, setInitialOffset] = useState(null);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -96,6 +99,30 @@ function admin() {
     setCurrentSlide((index) => Math.max(index - 1));
   };
 
+  const handleClickFilter = () => {
+    setInitialOffset(window.scrollY);
+    setToggleUserFilter(!toggleUserFilter);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (initialOffset !== null) {
+        const currentOffset = window.scrollY;
+        const scrollDifference = Math.abs(currentOffset - initialOffset);
+
+        if (scrollDifference >= 200) {
+          setToggleUserFilter(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [initialOffset]);
+
   return (
     <div>
       {isMobile ? (
@@ -117,13 +144,20 @@ function admin() {
               </div>
             </div>
           </section>
+          {toggleUserFilter && <FilterUsersAdmin users={users} />}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
             </h2>
             <div className="uti-flex">
               <div className="uti-grid">
-                <button type="button" className="uti-filter-button">
+                <button
+                  type="button"
+                  className="uti-filter-button"
+                  onClick={() => {
+                    handleClickFilter();
+                  }}
+                >
                   Filtrer
                 </button>
                 <input
