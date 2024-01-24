@@ -25,7 +25,6 @@ function admin() {
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
-  console.info(sortOrder);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -189,7 +188,13 @@ function admin() {
               </div>
             </div>
           </section>
-          {toggleUserFilter && <FilterUsersAdmin setSortOrder={setSortOrder} />}
+          {toggleUserFilter && (
+            <FilterUsersAdmin
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+              setToggleUserFilter={setToggleUserFilter}
+            />
+          )}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
