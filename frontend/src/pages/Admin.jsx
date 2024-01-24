@@ -115,6 +115,12 @@ function admin() {
       if (sortOrder === "descPoints") {
         return b.points - a.points;
       }
+      if (sortOrder === "ascRank") {
+        return a.ranking - b.ranking;
+      }
+      if (sortOrder === "descRank") {
+        return b.ranking - a.ranking;
+      }
       return null;
     })
     .slice(userIndex, userIndex + 6);

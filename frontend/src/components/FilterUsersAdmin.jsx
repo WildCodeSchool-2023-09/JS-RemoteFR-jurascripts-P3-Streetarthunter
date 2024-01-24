@@ -18,6 +18,14 @@ function FilterUsersAdmin({ setSortOrder }) {
     setSortOrder("descPoints");
   };
 
+  const handleSortAscRank = () => {
+    setSortOrder("ascRank");
+  };
+
+  const handleSortDescRank = () => {
+    setSortOrder("descRank");
+  };
+
   return (
     <section className="fliter-users-section">
       <h2>Filtrer</h2>
@@ -58,11 +66,22 @@ function FilterUsersAdmin({ setSortOrder }) {
         >
           <p>Points décroissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Ordre Classements</p>
+        <button
+          className="border-none"
+          type="button"
+          onClick={() => {
+            handleSortAscRank();
+          }}
+        >
+          <p>Classements croissant</p>
         </button>
-        <button type="button">
-          <p>Désordre Classements</p>
+        <button
+          type="button"
+          onClick={() => {
+            handleSortDescRank();
+          }}
+        >
+          <p>Classements décroissant</p>
         </button>
       </div>
     </section>
