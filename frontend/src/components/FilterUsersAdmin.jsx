@@ -3,11 +3,11 @@ import "./FilterUsersAdmin.scss";
 
 function FilterUsersAdmin({ setSortOrder }) {
   const handleSortAscPseudo = () => {
-    setSortOrder("asc");
+    setSortOrder("ascPseudo");
   };
 
   const handleSortDescPseudo = () => {
-    setSortOrder("desc");
+    setSortOrder("descPseudo");
   };
 
   return (

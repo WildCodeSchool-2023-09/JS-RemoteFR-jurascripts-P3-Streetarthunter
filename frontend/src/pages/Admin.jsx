@@ -103,10 +103,10 @@ function admin() {
 
   const userCurrent = users
     .sort((a, b) => {
-      if (sortOrder === "asc") {
+      if (sortOrder === "ascPseudo") {
         return a.pseudo.localeCompare(b.pseudo);
       }
-      if (sortOrder === "desc") {
+      if (sortOrder === "descPseudo") {
         return b.pseudo.localeCompare(a.pseudo);
       }
       return null;
