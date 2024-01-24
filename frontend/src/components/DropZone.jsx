@@ -6,16 +6,6 @@ import Upload from "../assets/Upload.svg";
 
 import "./DropZone.scss";
 
-// Fonction pour convertir un fichier en base64
-const convertFileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = (error) => reject(error);
-    reader.readAsDataURL(file);
-  });
-};
-
 function DropZone() {
   const [capturedImage, setCapturedImage] = useState(null);
 
@@ -23,25 +13,29 @@ function DropZone() {
     const file = acceptedFiles[0];
 
     try {
-      // Convertir le fichier en base64
-      const base64Image = await convertFileToBase64(file);
+      const formData = new FormData();
+      formData.append("capture", file);
+      formData.append("user_id", 123);
+      formData.append("artwork_id", 20);
 
-      // Envoyez le fichier au serveur
+      // Envoyer le fichier au serveur avec Multer
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
-        { user_id: 123, artwork_id: 20, capture: base64Image },
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
-      // Mise à jour de l'image capturée
+      // Mise à jour de l'image capturée si nécessaire
       setCapturedImage(response.data.capture);
 
+      // Faites quelque chose avec la réponse du serveur si nécessaire
       console.info(response.data);
     } catch (error) {
+      // Gérer les erreurs d'envoi
       console.error("Erreur lors de l'envoi du fichier", error);
     }
   };
@@ -55,7 +49,7 @@ function DropZone() {
       <input {...getInputProps()} />
       {capturedImage ? (
         <img
-          src={`data:image/jpeg;base64,${capturedImage}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${capturedImage}`}
           alt="Captured"
           className="Captured-Image"
         />
