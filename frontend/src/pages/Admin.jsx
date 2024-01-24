@@ -24,6 +24,8 @@ function admin() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
+  console.info(sortOrder);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -99,7 +101,17 @@ function admin() {
     setCurrentSlide(1);
   };
 
-  const userCurrent = users.slice(userIndex, userIndex + 6);
+  const userCurrent = users
+    .sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.pseudo.localeCompare(b.pseudo);
+      }
+      if (sortOrder === "desc") {
+        return b.pseudo.localeCompare(a.pseudo);
+      }
+      return null;
+    })
+    .slice(userIndex, userIndex + 6);
 
   const nextUsersSlide = () => {
     setUserIndex((index) => Math.min(index + 1, users.length));
@@ -162,7 +174,7 @@ function admin() {
               </div>
             </div>
           </section>
-          {toggleUserFilter && <FilterUsersAdmin users={users} />}
+          {toggleUserFilter && <FilterUsersAdmin setSortOrder={setSortOrder} />}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
