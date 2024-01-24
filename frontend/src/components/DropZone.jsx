@@ -1,24 +1,44 @@
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+
 import Upload from "../assets/Upload.svg";
 
 import "./DropZone.scss";
 
+// Fonction pour convertir un fichier en base64
+const convertFileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+};
+
 function DropZone() {
+  const [capturedImage, setCapturedImage] = useState(null);
+
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
 
-    // Créez un objet FormData pour envoyer le fichier au serveur
-    const formData = new FormData();
-    formData.append("picture", file);
-
     try {
+      // Convertir le fichier en base64
+      const base64Image = await convertFileToBase64(file);
+
       // Envoyez le fichier au serveur
-      const response = await axios.post("URL_DU_ENDPOINT_API", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
+        { user_id: 1, artwork_id: 1, capture: base64Image },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Mise à jour de l'image capturée
+      setCapturedImage(response.data.capture);
 
       // Faites quelque chose avec la réponse du serveur si nécessaire
       console.info(response.data);
@@ -29,18 +49,24 @@ function DropZone() {
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
   return (
-    <div
-      className="dropZone"
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...getRootProps()}
-    >
-      <input
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...getInputProps()}
-      />
-      <img src={Upload} alt="Upload icon" className="Upload-Icon" />
-      <p>Envoyer ma photo</p>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div className="dropZone" {...getRootProps()}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <input {...getInputProps()} />
+      {capturedImage ? (
+        <img
+          src={`data:image/jpeg;base64,${capturedImage}`}
+          alt="Captured"
+          className="Captured-Image"
+        />
+      ) : (
+        <>
+          <img src={Upload} alt="Upload icon" className="Upload-Icon" />
+          <p>Envoyer ma photo</p>
+        </>
+      )}
     </div>
   );
 }
