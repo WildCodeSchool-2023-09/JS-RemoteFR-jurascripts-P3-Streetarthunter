@@ -1,8 +1,8 @@
-import Home from "./pages/Home";
+import { Outlet } from "react-router-dom";
 import "./styles/commons.scss";
 
 function App() {
-  return <Home />;
+  return <Outlet />;
 }
 
 export default App;

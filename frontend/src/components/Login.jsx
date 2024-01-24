@@ -1,16 +1,19 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../styles/modals.scss";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
+import "../styles/modals.scss";
+
 import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function Login() {
+  const { handleAuth } = useContext(AuthContext);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
 
-  // const connect = axios.create(import.meta.env.VITE_BACKEND_URL);
   const navigate = useNavigate();
 
   const handleLoginRegister = (event) => {
@@ -29,26 +32,20 @@ function Login() {
 
     try {
       // Appel à l'API pour demander une connexion
-      const response = await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         loginInfo
       );
-
-      // Redirection vers la page de connexion si la création réussit
-      if (response.status === 200) {
-        navigate("/Profile");
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
-      }
+      await localStorage.setItem("token", res.data.token);
+      await handleAuth();
+      await navigate("/profil");
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
     }
   };
 
   return (
-    <container className="backdrop">
+    <section className="backdrop">
       <section className="modal">
         <header>
           <div>
@@ -72,7 +69,7 @@ function Login() {
             />
             <input
               id="password"
-              type="text"
+              type="password"
               name="password"
               placeholder="Votre mot de passe"
               value={loginInfo.password}
@@ -86,7 +83,7 @@ function Login() {
           </button>
         </footer>
       </section>
-    </container>
+    </section>
   );
 }
 

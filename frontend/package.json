@@ -7,11 +7,14 @@
   "dependencies": {
     "@react-hook/media-query": "^1.1.1",
     "axios": "^1.6.5",
+    "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "leaflet.locatecontrol": "^0.79.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-html5-camera-photo": "^1.5.11",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.14.2",
     "sass": "^1.69.7"
