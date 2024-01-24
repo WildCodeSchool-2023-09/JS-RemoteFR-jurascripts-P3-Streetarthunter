@@ -72,13 +72,7 @@ CREATE TABLE capture (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   artwork_id INT NOT NULL,
-  capture VARCHAR(255) NOT NULL,
+  capture VARCHAR(255) NOT NULL,  
   FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (artwork_id) REFERENCES artworks(id) ON UPDATE CASCADE
 );
-
-
-
-
-
-
