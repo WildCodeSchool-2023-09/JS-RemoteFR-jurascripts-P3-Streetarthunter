@@ -18,6 +18,7 @@ function admin() {
   const [activeSection, setActiveSection] = useState("dashboard");
   const [activeComponent, setActiveComponent] = useState("captures");
   const [users, setUsers] = useState([]);
+  const [userSearch, setUserSearch] = useState("");
   const [userIndex, setUserIndex] = useState(0);
   const [userSlideResult, setUserSlideResult] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -64,22 +65,39 @@ function admin() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
-      .then((response) => {
-        const usersPlayer = response.data.filter(
-          (user) => !user.is_administrator
-        );
-        setUsers(usersPlayer);
-        setUserSlideResult(Math.ceil(usersPlayer.length));
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la récupération des utilisateurs:",
-          error
-        );
-      });
-  }, []);
+    if (!userSearch) {
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
+        .then((response) => {
+          const usersPlayer = response.data.filter(
+            (user) => !user.is_administrator
+          );
+          setUsers(usersPlayer);
+          setUserSlideResult(Math.ceil(usersPlayer.length));
+        })
+        .catch((error) => {
+          console.error(
+            "Erreur lors de la récupération des utilisateurs:",
+            error
+          );
+        });
+    } else {
+      const filteredUser = users.filter(
+        (user) =>
+          user.pseudo.toLowerCase().includes(userSearch.toLowerCase()) ||
+          user.firstname.toLowerCase().includes(userSearch.toLowerCase()) ||
+          user.lastname.toLowerCase().includes(userSearch.toLowerCase())
+      );
+      setUsers(filteredUser);
+      setUserSlideResult(Math.ceil(filteredUser.length));
+    }
+  }, [users, userSearch]);
+
+  const onChangeUser = (e) => {
+    setUserSearch(e.target.value);
+    setUserIndex(0);
+    setCurrentSlide(1);
+  };
 
   const userCurrent = users.slice(userIndex, userIndex + 6);
 
@@ -149,7 +167,7 @@ function admin() {
             <h2 className="admin-h2" id="users">
               Utilisateurs
             </h2>
-            <div className="uti-flex">
+            <form className="uti-flex">
               <div className="uti-grid">
                 <button
                   type="button"
@@ -164,9 +182,11 @@ function admin() {
                   className="uti-research-input"
                   type="text"
                   placeholder="Recherchez..."
+                  value={userSearch}
+                  onChange={onChangeUser}
                 />
               </div>
-            </div>
+            </form>
             <div className="profil-uti-parent">
               {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
