@@ -1,22 +1,7 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import "./FilterUsersAdmin.scss";
 
-function FilterUsersAdmin({ users }) {
-  const [sortOrder, setSortOrder] = useState(null);
-  console.info(sortOrder);
-
-  const sortUsersPseudo = [...users].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.pseudo - b.pseudo;
-    }
-    if (sortOrder === "desc") {
-      return b.pseudo - a.pseudo;
-    }
-    return null;
-  });
-  console.info(sortUsersPseudo);
-
+function FilterUsersAdmin({ setSortOrder }) {
   const handleSortAscPseudo = () => {
     setSortOrder("asc");
   };
@@ -65,11 +50,7 @@ function FilterUsersAdmin({ users }) {
 }
 
 FilterUsersAdmin.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      pseudo: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  setSortOrder: PropTypes.func.isRequired,
 };
 
 export default FilterUsersAdmin;
