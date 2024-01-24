@@ -11,6 +11,7 @@ import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import strafari from "../assets/panel-admin/strafari-street-art-hunter.webp";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
+import FilterUsersAdmin from "../components/FilterUsersAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -133,6 +134,7 @@ function admin() {
                 />
               </div>
             </div>
+            <FilterUsersAdmin />
             <div className="profil-uti-parent">
               {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
