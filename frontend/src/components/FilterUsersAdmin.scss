@@ -1,0 +1,48 @@
+@import "../styles/commons.scss";
+
+.fliter-users-section {
+  position: fixed;
+  z-index: 15;
+  top: 0%;
+  left: 0%;
+  background-color: $deep-purple;
+  height: 100vh;
+  width: 25%;
+
+  h2 {
+    margin-top: 15%;
+  }
+
+  .fliter-users-div {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      background-color: $light-red;
+      border-color: $red;
+      border: 3px solid $red;
+      border-left: none;
+      border-right: none;
+      padding: 3%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $red;
+      }
+
+      p {
+        color: $deep-purple;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .border-none {
+      border-bottom: none;
+    }
+  }
+}
