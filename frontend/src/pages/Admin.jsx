@@ -22,6 +22,7 @@ function admin() {
   const [userSlideResult, setUserSlideResult] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
+  const [initialOffset, setInitialOffset] = useState(null);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -99,8 +100,28 @@ function admin() {
   };
 
   const handleClickFilter = () => {
+    setInitialOffset(window.scrollY);
     setToggleUserFilter(!toggleUserFilter);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (initialOffset !== null) {
+        const currentOffset = window.scrollY;
+        const scrollDifference = Math.abs(currentOffset - initialOffset);
+
+        if (scrollDifference >= 200) {
+          setToggleUserFilter(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [initialOffset]);
 
   return (
     <div>
@@ -123,6 +144,7 @@ function admin() {
               </div>
             </div>
           </section>
+          {toggleUserFilter && <FilterUsersAdmin />}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
@@ -145,7 +167,6 @@ function admin() {
                 />
               </div>
             </div>
-            {toggleUserFilter && <FilterUsersAdmin />}
             <div className="profil-uti-parent">
               {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
