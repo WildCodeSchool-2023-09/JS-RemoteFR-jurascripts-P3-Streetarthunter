@@ -8,13 +8,20 @@ import "../styles/modals.scss";
 import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function Login() {
-  const { handleAuth } = useContext(AuthContext);
+  const { user, handleAuth } = useContext(AuthContext);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
 
   const navigate = useNavigate();
+  const redirectTo = () => {
+    if (!user.is_administrator) {
+      return navigate("/admin");
+    }
+
+    return navigate("/profil");
+  };
 
   const handleLoginRegister = (event) => {
     const { name, value } = event.target;
@@ -38,7 +45,8 @@ function Login() {
       );
       await localStorage.setItem("token", res.data.token);
       await handleAuth();
-      await navigate("/profil");
+      await redirectTo();
+      console.info(user);
     } catch (err) {
       console.error(err);
     }
