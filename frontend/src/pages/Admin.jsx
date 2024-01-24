@@ -144,7 +144,7 @@ function admin() {
               </div>
             </div>
           </section>
-          {toggleUserFilter && <FilterUsersAdmin />}
+          {toggleUserFilter && <FilterUsersAdmin users={users} />}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
