@@ -21,6 +21,7 @@ function admin() {
   const [userIndex, setUserIndex] = useState(0);
   const [userSlideResult, setUserSlideResult] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -97,6 +98,10 @@ function admin() {
     setCurrentSlide((index) => Math.max(index - 1));
   };
 
+  const handleClickFilter = () => {
+    setToggleUserFilter(!toggleUserFilter);
+  };
+
   return (
     <div>
       {isMobile ? (
@@ -124,7 +129,13 @@ function admin() {
             </h2>
             <div className="uti-flex">
               <div className="uti-grid">
-                <button type="button" className="uti-filter-button">
+                <button
+                  type="button"
+                  className="uti-filter-button"
+                  onClick={() => {
+                    handleClickFilter();
+                  }}
+                >
                   Filtrer
                 </button>
                 <input
@@ -134,7 +145,7 @@ function admin() {
                 />
               </div>
             </div>
-            <FilterUsersAdmin />
+            {toggleUserFilter && <FilterUsersAdmin />}
             <div className="profil-uti-parent">
               {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
