@@ -10,6 +10,14 @@ function FilterUsersAdmin({ setSortOrder }) {
     setSortOrder("descPseudo");
   };
 
+  const handleSortAscPoints = () => {
+    setSortOrder("ascPoints");
+  };
+
+  const handleSortDescPoints = () => {
+    setSortOrder("descPoints");
+  };
+
   return (
     <section className="fliter-users-section">
       <h2>Filtrer</h2>
@@ -30,13 +38,25 @@ function FilterUsersAdmin({ setSortOrder }) {
             handleSortDescPseudo();
           }}
         >
-          <p>Pseudo Décroissant</p>
+          <p>Pseudo décroissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Ordre Points</p>
+        <button
+          className="border-none"
+          type="button"
+          onClick={() => {
+            handleSortAscPoints();
+          }}
+        >
+          <p>Points croissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Désordre Points</p>
+        <button
+          className="border-none"
+          type="button"
+          onClick={() => {
+            handleSortDescPoints();
+          }}
+        >
+          <p>Points décroissant</p>
         </button>
         <button className="border-none" type="button">
           <p>Ordre Classements</p>

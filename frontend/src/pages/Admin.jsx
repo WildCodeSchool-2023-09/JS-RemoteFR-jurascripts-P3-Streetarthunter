@@ -109,6 +109,12 @@ function admin() {
       if (sortOrder === "descPseudo") {
         return b.pseudo.localeCompare(a.pseudo);
       }
+      if (sortOrder === "ascPoints") {
+        return a.points - b.points;
+      }
+      if (sortOrder === "descPoints") {
+        return b.points - a.points;
+      }
       return null;
     })
     .slice(userIndex, userIndex + 6);
