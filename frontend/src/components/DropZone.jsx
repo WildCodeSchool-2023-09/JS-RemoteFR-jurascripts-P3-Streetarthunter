@@ -29,7 +29,7 @@ function DropZone() {
       // Envoyez le fichier au serveur
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
-        { user_id: 1, artwork_id: 1, capture: base64Image },
+        { user_id: 123, artwork_id: 20, capture: base64Image },
         {
           headers: {
             "Content-Type": "application/json",
@@ -40,10 +40,8 @@ function DropZone() {
       // Mise à jour de l'image capturée
       setCapturedImage(response.data.capture);
 
-      // Faites quelque chose avec la réponse du serveur si nécessaire
       console.info(response.data);
     } catch (error) {
-      // Gérez les erreurs d'envoi
       console.error("Erreur lors de l'envoi du fichier", error);
     }
   };
