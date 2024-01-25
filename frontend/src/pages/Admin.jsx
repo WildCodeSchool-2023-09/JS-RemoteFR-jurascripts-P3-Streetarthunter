@@ -290,9 +290,9 @@ function admin() {
               activeComponent={activeComponent}
               handleActive={handleActive}
             />
-            <CaptureAdmin />
-            <NewArtAdmin />
-            <ReportedArtAdmin />
+            {activeComponent === "captures" && <CaptureAdmin />}
+            {activeComponent === "newWork" && <NewArtAdmin />}
+            {activeComponent === "reported" && <ReportedArtAdmin />}
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
