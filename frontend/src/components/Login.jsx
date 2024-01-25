@@ -39,8 +39,8 @@ function Login() {
       await localStorage.setItem("token", res.data.token);
       await handleAuth();
       await navigate("/profil");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error.response.data);
     }
   };
 
