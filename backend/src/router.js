@@ -20,6 +20,7 @@ const { validateLocation } = require("./services/validateLocation");
 
 const captureControllers = require("./controllers/captureControllers");
 const { validateCapture } = require("./services/validateCapture");
+const uploadCapture = require("./services/uploadCapture");
 
 // Authentification routes
 
@@ -58,7 +59,12 @@ router.delete("/locations/:id", locationControllers.destroy);
 // Routes of captures
 router.get("/captures", captureControllers.browse);
 router.get("/captures/:id", captureControllers.read);
-router.post("/captures", validateCapture, captureControllers.add);
+router.post(
+  "/captures",
+  uploadCapture.single("capture"),
+  validateCapture,
+  captureControllers.add
+);
 router.put("/captures/:id", validateCapture, captureControllers.edit);
 router.delete("/captures/:id", captureControllers.destroy);
 
