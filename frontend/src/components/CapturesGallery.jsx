@@ -10,7 +10,7 @@ function CapturesGallery() {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/captures`
         );
-        console.info(response.data); // Assurez-vous que le champ 'capture' contient des valeurs correctes
+        console.info(response.data);
 
         setCaptures(response.data);
       } catch (error) {
@@ -26,11 +26,8 @@ function CapturesGallery() {
       {captures.map((capture) => (
         <div key={capture.id} className="capture-item">
           <p>{`User ID: ${capture.user_id}, Artwork ID: ${capture.artwork_id}`}</p>
-          {/* Utilisez le champ 'capture' pour afficher l'image */}
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/captures/${
-              capture.capture
-            }`}
+            src={`${import.meta.env.VITE_BACKEND_URL}${capture.capture}`}
             alt="Capture"
           />
         </div>
