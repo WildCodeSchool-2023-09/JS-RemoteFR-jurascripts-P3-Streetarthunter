@@ -130,11 +130,11 @@ function admin() {
     .slice(userIndex, userIndex + 6);
 
   const nextUsersSlide = () => {
-    setUserIndex((index) => Math.min(index + 1, users.length));
+    setUserIndex((index) => Math.min(index + 6, users.length));
   };
 
   const prevUsersSlide = () => {
-    setUserIndex((index) => Math.max(index - 1, 0));
+    setUserIndex((index) => Math.max(index - 6, 0));
   };
 
   const nextCurrentSlide = () => {
@@ -266,9 +266,9 @@ function admin() {
                 </button>
               )}
               <p>
-                Pages : {currentSlide} / {userSlideResult}
+                Pages : {currentSlide} / {Math.round(userSlideResult / 6)}
               </p>
-              {userIndex < users.length - 1 && (
+              {userIndex < users.length - 3 && (
                 <button
                   type="button"
                   className="button-red"
