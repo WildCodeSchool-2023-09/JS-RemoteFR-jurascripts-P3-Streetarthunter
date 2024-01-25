@@ -1,36 +1,58 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import "./FilterUsersAdmin.scss";
+import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
-function FilterUsersAdmin({ users }) {
-  const [sortOrder, setSortOrder] = useState(null);
-  console.info(sortOrder);
-
-  const sortUsersPseudo = [...users].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.pseudo - b.pseudo;
-    }
-    if (sortOrder === "desc") {
-      return b.pseudo - a.pseudo;
-    }
-    return null;
-  });
-  console.info(sortUsersPseudo);
-
+function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
   const handleSortAscPseudo = () => {
-    setSortOrder("asc");
+    setSortOrder("ascPseudo");
   };
 
   const handleSortDescPseudo = () => {
-    setSortOrder("desc");
+    setSortOrder("descPseudo");
+  };
+
+  const handleSortAscPoints = () => {
+    setSortOrder("ascPoints");
+  };
+
+  const handleSortDescPoints = () => {
+    setSortOrder("descPoints");
+  };
+
+  const handleSortAscRank = () => {
+    setSortOrder("ascRank");
+  };
+
+  const handleSortDescRank = () => {
+    setSortOrder("descRank");
+  };
+
+  const handleSortNull = () => {
+    setSortOrder(null);
+  };
+
+  const handleClickFilter = () => {
+    setToggleUserFilter(false);
   };
 
   return (
     <section className="fliter-users-section">
+      <hr />
+      <div className="cross-filter-div">
+        <button
+          className="cross-filter-button"
+          type="button"
+          onClick={() => {
+            handleClickFilter();
+          }}
+        >
+          <img src={CrossButton} alt="Fermeture du filtre" />
+        </button>
+      </div>
       <h2>Filtrer</h2>
       <div className="fliter-users-div">
         <button
-          className="border-none"
+          className={`border-none ${sortOrder === "ascPseudo" ? "active" : ""}`}
           type="button"
           onClick={() => {
             handleSortAscPseudo();
@@ -39,25 +61,61 @@ function FilterUsersAdmin({ users }) {
           <p>Pseudo croissant</p>
         </button>
         <button
-          className="border-none"
+          className={`border-none ${
+            sortOrder === "descPseudo" ? "active" : ""
+          }`}
           type="button"
           onClick={() => {
             handleSortDescPseudo();
           }}
         >
-          <p>Pseudo Décroissant</p>
+          <p>Pseudo décroissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Ordre Points</p>
+        <button
+          className={`border-none ${sortOrder === "ascPoints" ? "active" : ""}`}
+          type="button"
+          onClick={() => {
+            handleSortAscPoints();
+          }}
+        >
+          <p>Points croissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Désordre Points</p>
+        <button
+          className={`border-none ${
+            sortOrder === "descPoints" ? "active" : ""
+          }`}
+          type="button"
+          onClick={() => {
+            handleSortDescPoints();
+          }}
+        >
+          <p>Points décroissant</p>
         </button>
-        <button className="border-none" type="button">
-          <p>Ordre Classements</p>
+        <button
+          className={`border-none ${sortOrder === "ascRank" ? "active" : ""}`}
+          type="button"
+          onClick={() => {
+            handleSortAscRank();
+          }}
+        >
+          <p>Classements croissant</p>
         </button>
-        <button type="button">
-          <p>Désordre Classements</p>
+        <button
+          className={`border-none ${sortOrder === "descRank" ? "active" : ""}`}
+          type="button"
+          onClick={() => {
+            handleSortDescRank();
+          }}
+        >
+          <p>Classements décroissant</p>
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleSortNull();
+          }}
+        >
+          <p>Annuler</p>
         </button>
       </div>
     </section>
@@ -65,11 +123,17 @@ function FilterUsersAdmin({ users }) {
 }
 
 FilterUsersAdmin.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      pseudo: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  sortOrder: PropTypes.oneOf([
+    "ascPseudo",
+    "descPseudo",
+    "ascPoints",
+    "descPoints",
+    "ascRank",
+    "descRank",
+    null,
+  ]).isRequired,
+  setSortOrder: PropTypes.func.isRequired,
+  setToggleUserFilter: PropTypes.func.isRequired,
 };
 
 export default FilterUsersAdmin;

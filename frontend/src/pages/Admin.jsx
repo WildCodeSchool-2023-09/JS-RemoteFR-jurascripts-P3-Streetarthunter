@@ -12,6 +12,7 @@ import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
+import ReportedArtAdmin from "../components/ReportedArtAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -24,6 +25,7 @@ function admin() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -99,7 +101,32 @@ function admin() {
     setCurrentSlide(1);
   };
 
-  const userCurrent = users.slice(userIndex, userIndex + 6);
+  const userCurrent = users
+    .sort((a, b) => {
+      if (sortOrder === "ascPseudo") {
+        return a.pseudo.localeCompare(b.pseudo);
+      }
+      if (sortOrder === "descPseudo") {
+        return b.pseudo.localeCompare(a.pseudo);
+      }
+      if (sortOrder === "ascPoints") {
+        return a.points - b.points;
+      }
+      if (sortOrder === "descPoints") {
+        return b.points - a.points;
+      }
+      if (sortOrder === "ascRank") {
+        return a.ranking - b.ranking;
+      }
+      if (sortOrder === "descRank") {
+        return b.ranking - a.ranking;
+      }
+      if (sortOrder === null) {
+        return null;
+      }
+      return null;
+    })
+    .slice(userIndex, userIndex + 6);
 
   const nextUsersSlide = () => {
     setUserIndex((index) => Math.min(index + 1, users.length));
@@ -162,7 +189,13 @@ function admin() {
               </div>
             </div>
           </section>
-          {toggleUserFilter && <FilterUsersAdmin users={users} />}
+          {toggleUserFilter && (
+            <FilterUsersAdmin
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+              setToggleUserFilter={setToggleUserFilter}
+            />
+          )}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
@@ -257,6 +290,7 @@ function admin() {
               handleActive={handleActive}
             />
             <NewArtAdmin />
+            <ReportedArtAdmin />
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
