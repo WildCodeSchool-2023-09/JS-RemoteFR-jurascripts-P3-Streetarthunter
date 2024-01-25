@@ -7,10 +7,27 @@ import "./Camera.scss";
 function Camera() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
-  const handleTakePhoto = (dataUri) => {
-    // Faites quelque chose avec l'image capturée, par exemple, affichez-la ou téléchargez-la.
-    console.info(dataUri);
-    setIsCameraOpen(false);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  const handleTakePhoto = async (dataUri) => {
+    try {
+      const response = await fetch(`${backendUrl}/api/captures`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ photo: dataUri }), // Envoyez la photo dans le corps de la requête.
+      });
+
+      const data = await response.json();
+
+      // Faites quelque chose avec la réponse du serveur, si nécessaire.
+      console.info(data);
+
+      setIsCameraOpen(false);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de la photo:", error);
+    }
   };
 
   const openCamera = () => {
