@@ -11,15 +11,22 @@ import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import CaptureAdmin from "../components/CaptureAdmin";
+import FilterUsersAdmin from "../components/FilterUsersAdmin";
+import NewArtAdmin from "../components/NewArtAdmin";
+import ReportedArtAdmin from "../components/ReportedArtAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
   const [activeSection, setActiveSection] = useState("dashboard");
   const [activeComponent, setActiveComponent] = useState("captures");
   const [users, setUsers] = useState([]);
+  const [userSearch, setUserSearch] = useState("");
   const [userIndex, setUserIndex] = useState(0);
   const [userSlideResult, setUserSlideResult] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [toggleUserFilter, setToggleUserFilter] = useState(false);
+  const [initialOffset, setInitialOffset] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -61,24 +68,66 @@ function admin() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
-      .then((response) => {
-        const usersPlayer = response.data.filter(
-          (user) => !user.is_administrator
-        );
-        setUsers(usersPlayer);
-        setUserSlideResult(Math.ceil(usersPlayer.length));
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la récupération des utilisateurs:",
-          error
-        );
-      });
-  }, []);
+    if (!userSearch) {
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
+        .then((response) => {
+          const usersPlayer = response.data.filter(
+            (user) => !user.is_administrator
+          );
+          setUsers(usersPlayer);
+          setUserSlideResult(Math.ceil(usersPlayer.length));
+        })
+        .catch((error) => {
+          console.error(
+            "Erreur lors de la récupération des utilisateurs:",
+            error
+          );
+        });
+    } else {
+      const filteredUser = users.filter(
+        (user) =>
+          user.pseudo.toLowerCase().includes(userSearch.toLowerCase()) ||
+          user.firstname.toLowerCase().includes(userSearch.toLowerCase()) ||
+          user.lastname.toLowerCase().includes(userSearch.toLowerCase())
+      );
+      setUsers(filteredUser);
+      setUserSlideResult(Math.ceil(filteredUser.length));
+    }
+  }, [users, userSearch]);
 
-  const userCurrent = users.slice(userIndex, userIndex + 6);
+  const onChangeUser = (e) => {
+    setUserSearch(e.target.value);
+    setUserIndex(0);
+    setCurrentSlide(1);
+  };
+
+  const userCurrent = users
+    .sort((a, b) => {
+      if (sortOrder === "ascPseudo") {
+        return a.pseudo.localeCompare(b.pseudo);
+      }
+      if (sortOrder === "descPseudo") {
+        return b.pseudo.localeCompare(a.pseudo);
+      }
+      if (sortOrder === "ascPoints") {
+        return a.points - b.points;
+      }
+      if (sortOrder === "descPoints") {
+        return b.points - a.points;
+      }
+      if (sortOrder === "ascRank") {
+        return a.ranking - b.ranking;
+      }
+      if (sortOrder === "descRank") {
+        return b.ranking - a.ranking;
+      }
+      if (sortOrder === null) {
+        return null;
+      }
+      return null;
+    })
+    .slice(userIndex, userIndex + 6);
 
   const nextUsersSlide = () => {
     setUserIndex((index) => Math.min(index + 1, users.length));
@@ -95,6 +144,30 @@ function admin() {
   const prevCurrentSlide = () => {
     setCurrentSlide((index) => Math.max(index - 1));
   };
+
+  const handleClickFilter = () => {
+    setInitialOffset(window.scrollY);
+    setToggleUserFilter(!toggleUserFilter);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (initialOffset !== null) {
+        const currentOffset = window.scrollY;
+        const scrollDifference = Math.abs(currentOffset - initialOffset);
+
+        if (scrollDifference >= 200) {
+          setToggleUserFilter(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [initialOffset]);
 
   return (
     <div>
@@ -117,22 +190,37 @@ function admin() {
               </div>
             </div>
           </section>
+          {toggleUserFilter && (
+            <FilterUsersAdmin
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+              setToggleUserFilter={setToggleUserFilter}
+            />
+          )}
           <section ref={usersRef}>
             <h2 className="admin-h2" id="users">
               Utilisateurs
             </h2>
-            <div className="uti-flex">
+            <form className="uti-flex">
               <div className="uti-grid">
-                <button type="button" className="uti-filter-button">
+                <button
+                  type="button"
+                  className="uti-filter-button"
+                  onClick={() => {
+                    handleClickFilter();
+                  }}
+                >
                   Filtrer
                 </button>
                 <input
                   className="uti-research-input"
                   type="text"
                   placeholder="Recherchez..."
+                  value={userSearch}
+                  onChange={onChangeUser}
                 />
               </div>
-            </div>
+            </form>
             <div className="profil-uti-parent">
               {userCurrent.map((user) => (
                 <div key={user.id} className="profil-uti-child">
@@ -203,6 +291,8 @@ function admin() {
               handleActive={handleActive}
             />
             <CaptureAdmin />
+            <NewArtAdmin />
+            <ReportedArtAdmin />
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
