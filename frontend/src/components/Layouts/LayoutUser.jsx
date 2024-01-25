@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import NavBar from "../MainNavBars/NavBar";
 import NavBarM from "../MainNavBars/NavBarM";
 import logo from "../../assets/Logo.svg";
+import "./LayoutUser.scss";
 
 function LayoutUser() {
   const isMobile = useMediaQuery("only screen and (max-width: 600px)");
