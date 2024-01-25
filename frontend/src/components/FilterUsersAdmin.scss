@@ -2,15 +2,39 @@
 
 .fliter-users-section {
   position: fixed;
-  z-index: 15;
+  z-index: 2;
   top: 0%;
   left: 0%;
   background-color: $deep-purple;
   height: 100vh;
   width: 25%;
 
+  hr {
+    margin-top: 24.4%;
+    border: 1.5px solid $red;
+  }
+
+  .cross-filter-div {
+    display: flex;
+    justify-content: end;
+
+    .cross-filter-button {
+      margin-top: 4%;
+      margin-right: 4%;
+      width: 8%;
+      height: 0;
+      border: none;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   h2 {
-    margin-top: 15%;
+    margin-top: 17%;
+    margin-bottom: -5%;
   }
 
   .fliter-users-div {
@@ -39,6 +63,10 @@
           transform: scale(1.1);
         }
       }
+    }
+
+    .active {
+      background-color: $red;
     }
 
     .border-none {
