@@ -11,6 +11,7 @@ import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
 import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
+import NewArtAdmin from "../components/NewArtAdmin";
 import ReportedArtAdmin from "../components/ReportedArtAdmin";
 
 function admin() {
@@ -288,6 +289,7 @@ function admin() {
               activeComponent={activeComponent}
               handleActive={handleActive}
             />
+            <NewArtAdmin />
             <ReportedArtAdmin />
           </section>
           <section ref={artistsRef}>
