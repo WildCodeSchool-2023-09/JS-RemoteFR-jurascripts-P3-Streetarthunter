@@ -1,4 +1,4 @@
-@import "../styles/commons.scss";
+@import "../../styles/commons.scss";
 
 .navbar {
   border-top: 3px solid $yellow;
@@ -9,6 +9,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  img.player-mode {
+    filter: hue-rotate(82deg) contrast(150%);
+  }
+
   h3 {
     margin-bottom: 1vh;
     color: $extra-light-yellow;

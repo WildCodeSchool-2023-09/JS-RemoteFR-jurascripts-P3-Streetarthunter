@@ -44,7 +44,6 @@ const login = async (req, res, next) => {
       res.sendStatus(422);
       return;
     }
-
     const verified = await verify(user.hashed_password, req.body.password);
 
     if (verified) {

@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 import "./Gallery.scss";
 
 function Gallery() {
   const [artworks, setArtworks] = useState([]);
+  const { user, handleAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    handleAuth();
+  }, []);
 
   useEffect(() => {
     axios
@@ -16,7 +22,13 @@ function Gallery() {
 
   return (
     <>
-      <h2 className="gallery-title">Street Art</h2>
+      <h2
+        className={
+          user.is_administrator === 0 ? "player-mode" : "gallery-title"
+        }
+      >
+        Galerie
+      </h2>
       <section className="gallery">
         {artworks
           ?.filter((_, index) => index < 14)

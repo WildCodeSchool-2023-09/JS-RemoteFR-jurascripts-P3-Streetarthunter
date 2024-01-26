@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./CaptureAdmin.scss";
 
 function CaptureAdmin() {
   const [artCapture, setArtCapture] = useState([]);
@@ -26,7 +27,7 @@ function CaptureAdmin() {
   return (
     <>
       {artCapture.map((artwork) => (
-        <div className="sa-grid">
+        <div className="sa-grid-captures">
           <img alt="Street Art" className="img-grid" src={artwork.picture} />
           <p className="posted-grid">
             Posté par{" "}

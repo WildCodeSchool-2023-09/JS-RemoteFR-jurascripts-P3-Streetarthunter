@@ -12,7 +12,7 @@ class UserManager extends AbstractManager {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "users" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstName, lastName, pseudo, email, hashed_password, avatar, ranking, points, is_administrator) values (?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (firstName, lastName, pseudo, email, hashed_password, avatar, bio, ranking, points, is_administrator) values (?,?,?,?,?,?,?,?,?,?)`,
       [
         user.firstname,
         user.lastname,
@@ -20,6 +20,7 @@ class UserManager extends AbstractManager {
         user.email,
         user.hashedPassword,
         user.avatar,
+        user.bio,
         user.ranking,
         user.points,
         user.is_administrator,
@@ -74,7 +75,7 @@ class UserManager extends AbstractManager {
 
   async update(id, user) {
     const [result] = await this.database.query(
-      "UPDATE users SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, avatar = ?, ranking = ?, points = ?, is_administrator = ? WHERE id = ?",
+      "UPDATE users SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, avatar = ?, bio = ?, ranking = ?, points = ?, is_administrator = ? WHERE id = ?",
       [
         user.firstname,
         user.lastname,
@@ -82,6 +83,7 @@ class UserManager extends AbstractManager {
         user.email,
         user.password,
         user.avatar,
+        user.bio,
         user.ranking,
         user.points,
         user.is_administrator,
