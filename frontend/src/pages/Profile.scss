@@ -6,9 +6,10 @@
   align-items: center;
   padding: 20px;
 
-  h1 {
+  h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    order: -1;
   }
 
   .avatar-container {
@@ -35,16 +36,16 @@
       margin: 5px 0;
     }
 
-    p firstname {
+    .firstname {
       margin: 5px 0;
       font-size: 16px;
     }
+  }
 
-    .lorem-ipsum {
-      margin-top: 20px;
-      max-width: 400px;
-      text-align: justify;
-    }
+  .bio {
+    margin-top: 80px;
+    max-width: 400px;
+    text-align: justify;
   }
 
   @media only screen and (max-width: 767px) {
@@ -62,10 +63,21 @@
   }
 
   @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-
+    .profile-container {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 50px;
+    }
+    .card-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
     .avatar-container {
       margin-right: 20px;
     }
