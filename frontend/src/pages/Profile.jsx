@@ -12,7 +12,9 @@ function Profile() {
 
   return (
     <div className="profile-container">
-    <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>Profil</h2>
+      <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>
+        Profil
+      </h2>
 
       <div className="card-content">
         <div className="avatar-container">
@@ -29,11 +31,7 @@ function Profile() {
         </div>
 
         <div className="bio">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-            voluptate nobis earum ratione soluta laboriosam similique facere
-            amet fuga corrupti!
-          </p>
+          <p>{user.bio}</p>
         </div>
       </div>
     </div>
