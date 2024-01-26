@@ -3,7 +3,6 @@
     "dev": "nodemon index.js",
     "db:migrate": "node migrate.js",
     "db:seed": "node seed.js",
-    "db:roubaix": "node roubaix.js",
     "build": "node migrate.js",
     "start": "node index.js",
     "test": "jest"
