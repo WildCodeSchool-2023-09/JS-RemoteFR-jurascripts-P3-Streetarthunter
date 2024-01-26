@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Dropzone from "./DropZone";
+import CapturesGallery from "./CapturesGallery";
 
 function MapForm() {
   const [userLogged, setUserLogged] = useState(false);
@@ -59,6 +60,7 @@ function MapForm() {
           <button type="button" className="sub-button">
             Soumettre
           </button>
+          <CapturesGallery />
         </>
       ) : (
         <button type="button" onClick={handleClick} className="reg-button">

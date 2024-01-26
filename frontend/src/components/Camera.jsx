@@ -6,10 +6,10 @@ import "./Camera.scss";
 
 function Camera() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const [capturedImage, setCapturedImage] = useState(null);
 
   const handleTakePhoto = (dataUri) => {
-    // Faites quelque chose avec l'image capturée, par exemple, affichez-la ou téléchargez-la.
-    console.info(dataUri);
+    setCapturedImage(dataUri);
     setIsCameraOpen(false);
   };
 
@@ -32,15 +32,24 @@ function Camera() {
         </div>
       ) : (
         <div>
-          <button
-            className="camera-button"
-            type="button"
-            onClick={openCamera}
-            onKeyDown={openCamera}
-            style={{ cursor: "pointer" }}
-          >
-            <img src={CameraSVG} alt="Camera icon" className="Camera-Icon" />
-          </button>
+          {capturedImage ? (
+            <div>
+              <img src={capturedImage} alt="Captured" />
+              <button type="button" onClick={() => setCapturedImage(null)}>
+                Reprendre la photo
+              </button>
+            </div>
+          ) : (
+            <button
+              className="camera-button"
+              type="button"
+              onClick={openCamera}
+              onKeyDown={openCamera}
+              style={{ cursor: "pointer" }}
+            >
+              <img src={CameraSVG} alt="Camera icon" className="cameraIcon" />
+            </button>
+          )}
         </div>
       )}
     </div>

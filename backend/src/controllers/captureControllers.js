@@ -1,3 +1,4 @@
+const fs = require("fs").promises;
 const CaptureManager = require("../models/CaptureManager");
 
 const captureManager = new CaptureManager();
@@ -17,7 +18,7 @@ const read = async (req, res, next) => {
     if (capture == null) {
       res.sendStatus(404);
     } else {
-      res.json(capture);
+      res.send(capture.capture);
     }
   } catch (err) {
     next(err);
@@ -42,10 +43,20 @@ const edit = async (req, res, next) => {
 const add = async (req, res, next) => {
   const capture = req.body;
 
+  // Récupérer le chemin du fichier uploadé par Multer
+  const capturePath = req.file.path;
+
   try {
+    // Ajouter la capture à la base de données
+    capture.capture = capturePath;
     const insertId = await captureManager.create(capture);
+
     res.status(201).json({ insertId });
   } catch (err) {
+    // En cas d'erreur, supprimer le fichier uploadé
+    await fs.unlink(capturePath);
+
+    console.error("Erreur lors de l'ajout de la capture :", err);
     next(err);
   }
 };

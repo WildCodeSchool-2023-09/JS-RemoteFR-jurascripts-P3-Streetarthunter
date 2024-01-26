@@ -5,14 +5,14 @@ import "./Profile.scss";
 
 function Profile() {
   const { user, handleAuth } = useContext(AuthContext);
-  console.info(user);
+
   useEffect(() => {
     handleAuth();
   }, []);
 
   return (
     <div className="profile-container">
-      <h3>Mon Profil</h3>
+    <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>Profil</h2>
 
       <div className="card-content">
         <div className="avatar-container">

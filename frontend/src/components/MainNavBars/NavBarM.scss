@@ -1,8 +1,8 @@
-@import "../styles/commons.scss";
+@import "../../styles/commons.scss";
 
 .navbar-mobile {
   background-color: $deep-purple;
-  border-top: 3px solid $yellow;
+  border-top: 3px solid white;
   padding-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -10,4 +10,11 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
+
+  &.player-mode {
+    border-top: 3px solid $cyan;
+  }
+  &.admin-mode {
+    border-top: 3px solid $red;
+  }
 }

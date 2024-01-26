@@ -43,7 +43,11 @@ class ArtworkManager extends AbstractManager {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all artworks from the "artworks" table
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    const [rows] = await this.database
+      .query(`SELECT artworks.*, artists.name AS artist_name, users.pseudo AS user_pseudo
+    FROM ${this.table}
+    JOIN artists ON artworks.artist_id = artists.id
+    JOIN users ON artworks.user_id = users.id`);
 
     // Return the array of artworks
     return rows;

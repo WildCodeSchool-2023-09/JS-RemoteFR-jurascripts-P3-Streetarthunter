@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./NavBar.scss";
-import "../styles/commons.scss";
-import login from "../assets/picto/white/connexion_white.svg";
-import register from "../assets/picto/white/profil_white.svg";
 
-function NavBar({ activePage, handleChangePage }) {
+import "./NavBar.scss";
+import "../../styles/commons.scss";
+import login from "../../assets/picto/white/connexion_white.svg";
+import register from "../../assets/picto/white/profil_white.svg";
+
+function NavBarUsers({ activePage, handleChangePage }) {
   return (
     <section className="nav-container">
       <h1>STREET ART HUNTER</h1>
@@ -50,9 +51,9 @@ function NavBar({ activePage, handleChangePage }) {
   );
 }
 
-NavBar.propTypes = {
+NavBarUsers.propTypes = {
   activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
   handleChangePage: PropTypes.func.isRequired,
 };
 
-export default NavBar;
+export default NavBarUsers;
