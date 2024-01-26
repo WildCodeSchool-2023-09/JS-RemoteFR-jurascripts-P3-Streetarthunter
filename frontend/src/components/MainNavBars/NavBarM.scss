@@ -1,4 +1,4 @@
-@import "../styles/commons.scss";
+@import "../../styles/commons.scss";
 
 .navbar-mobile {
   background-color: $deep-purple;
@@ -10,4 +10,9 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
+  &.player-mode {
+    img {
+      filter: hue-rotate(82deg) contrast(150%);
+    }
+  }
 }

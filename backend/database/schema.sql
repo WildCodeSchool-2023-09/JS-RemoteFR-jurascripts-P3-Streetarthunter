@@ -14,6 +14,7 @@ create table users (
   email VARCHAR(255) NOT NULL,
   hashed_password VARCHAR(255) NOT NULL,
   avatar VARCHAR(255),
+  bio VARCHAR(255),
   ranking INT,
   points INT,
   is_administrator BOOLEAN NOT NULL
@@ -72,13 +73,7 @@ CREATE TABLE capture (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   artwork_id INT NOT NULL,
-  capture VARCHAR(255) NOT NULL,
+  capture VARCHAR(255) NOT NULL,  
   FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,
   FOREIGN KEY (artwork_id) REFERENCES artworks(id) ON UPDATE CASCADE
 );
-
-
-
-
-
-

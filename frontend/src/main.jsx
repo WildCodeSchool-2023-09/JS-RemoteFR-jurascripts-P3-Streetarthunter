@@ -11,8 +11,10 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import Profile from "./pages/Profile";
-import Layout from "./pages/Layout";
+import Layout from "./components/Layouts/Layout";
+import LayoutUser from "./components/Layouts/LayoutUser";
 import { AuthContextProvider } from "./context/AuthContext";
+
 import Gallery from "./pages/Gallery";
 
 const router = createBrowserRouter([
@@ -29,10 +31,7 @@ const router = createBrowserRouter([
         path: "/carte",
         element: <Map />,
       },
-      {
-        path: "/admin",
-        element: <Admin />,
-      },
+
       {
         path: "/inscription",
         element: <Register />,
@@ -42,10 +41,6 @@ const router = createBrowserRouter([
         path: "/connexion",
         element: <Login />,
       },
-      {
-        path: "profil",
-        element: <Profile />,
-      },
       // {
       //   path: "/RGPD",
       //   element: <RGPD />,
@@ -53,6 +48,20 @@ const router = createBrowserRouter([
       {
         path: "/galerie",
         element: <Gallery />,
+      },
+    ],
+  },
+  {
+    path: "/user",
+    element: <LayoutUser />,
+    children: [
+      {
+        path: "/user/profil",
+        element: <Profile />,
+      },
+      {
+        path: "/user/admin",
+        element: <Admin />,
       },
     ],
   },
