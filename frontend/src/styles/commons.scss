@@ -10,6 +10,7 @@ $extra-light-yellow: #fefecc;
 $yellow: #faff00;
 $cyan: #37ffcf;
 $red: #ff2977;
+$filter-cyan: hue-rotate(82deg) contrast(150%);
 
 // Light colors: h2 and buttons fill
 $light-yellow: #f1f370;
@@ -37,6 +38,12 @@ $light-red: #ff8bb5;
 h1 {
   @extend %h1;
   color: $yellow;
+  &.player-mode {
+    color: $cyan;
+  }
+  &.admin-mode {
+    color: $red;
+  }
 }
 %h2 {
   font-size: calc(2rem - 0.8vw);
@@ -47,6 +54,12 @@ h1 {
 h2 {
   @extend %h2;
   color: $yellow;
+  &.player-mode {
+    color: $cyan;
+  }
+  &.admin-mode {
+    color: $red;
+  }
 }
 %h3 {
   font-size: calc(1.5rem - 0.7vw);
@@ -91,6 +104,20 @@ p {
   border-color: $yellow;
   &:hover {
     background-color: $yellow;
+  }
+  &.player-mode {
+    background-color: $light-cyan;
+    border-color: $cyan;
+    &:hover {
+      background-color: $cyan;
+    }
+  }
+  &.admin-mode {
+    background-color: $light-red;
+    border-color: $red;
+    &:hover {
+      background-color: $red;
+    }
   }
 }
 .button-red {

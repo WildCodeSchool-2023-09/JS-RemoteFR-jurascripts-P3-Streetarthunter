@@ -12,7 +12,8 @@ import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import Profile from "./pages/Profile";
 import Layout from "./components/Layouts/Layout";
-import LayoutUser from "./components/Layouts/LayoutUser";
+import UserLayout from "./components/Layouts/UserLayout";
+// import AdminLayout from "./components/Layouts/AdminLayout";
 import { AuthContextProvider } from "./context/AuthContext";
 
 import Gallery from "./pages/Gallery";
@@ -49,19 +50,19 @@ const router = createBrowserRouter([
         path: "/galerie",
         element: <Gallery />,
       },
-    ],
-  },
-  {
-    path: "/user",
-    element: <LayoutUser />,
-    children: [
       {
-        path: "/user/profil",
-        element: <Profile />,
-      },
-      {
-        path: "/user/admin",
-        element: <Admin />,
+        path: "user",
+        element: <UserLayout />,
+        children: [
+          {
+            path: "/user/profil",
+            element: <Profile />,
+          },
+          {
+            path: "/user/admin",
+            element: <Admin />,
+          },
+        ],
       },
     ],
   },
