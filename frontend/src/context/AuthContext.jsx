@@ -6,9 +6,7 @@ const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({ is_administrator: 0 });
-  const [isPlayerMode, setIsPlayerMode] = useState(false);
-  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [user, setUser] = useState({ is_administrator: 3 });
 
   const handleAuth = async () => {
     const getToken = localStorage.getItem("token");
@@ -26,28 +24,30 @@ function AuthContextProvider({ children }) {
       }
     }
   };
+
   useEffect(() => {
-    if (user && !user.is_administrator) {
-      console.info("player mode true");
-      setIsPlayerMode(true);
-      setIsAdminMode(false);
-    } else {
-      console.info("admin mode true");
-      setIsPlayerMode(false);
-      setIsAdminMode(true);
+    handleAuth();
+  }, []);
+
+  function userMode() {
+    if (user.is_administrator === 0) {
+      return "player-mode";
     }
-    console.info(isPlayerMode);
-  }, [setUser]);
+    if (user.is_administrator === 1) {
+      return "admin-mode";
+    }
+    return "";
+  }
+  // sert pour savoir si un utilisateur est connecté - retourne false si on est en mode "visiteur"
 
   const userMemo = useMemo(
     () => ({
       user,
       setUser,
       handleAuth,
-      isAdminMode,
-      isPlayerMode,
+      userMode,
     }),
-    [user, setUser, handleAuth]
+    [user, setUser, handleAuth, userMode]
   );
 
   return (

@@ -3,12 +3,14 @@ import { AuthContext } from "../context/AuthContext";
 
 function Profile() {
   const { user, handleAuth } = useContext(AuthContext);
-  console.info(user);
+
   useEffect(() => {
     handleAuth();
   }, []);
 
-  return <h2>Bienvenue sur la page profil!</h2>;
+  return (
+    <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>Profil</h2>
+  );
 }
 
 export default Profile;

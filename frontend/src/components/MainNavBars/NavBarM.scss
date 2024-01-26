@@ -2,7 +2,7 @@
 
 .navbar-mobile {
   background-color: $deep-purple;
-  border-top: 3px solid $yellow;
+  border-top: 3px solid white;
   padding-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -10,9 +10,11 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
+
   &.player-mode {
-    img {
-      filter: hue-rotate(82deg) contrast(150%);
-    }
+    border-top: 3px solid $cyan;
+  }
+  &.admin-mode {
+    border-top: 3px solid $red;
   }
 }
