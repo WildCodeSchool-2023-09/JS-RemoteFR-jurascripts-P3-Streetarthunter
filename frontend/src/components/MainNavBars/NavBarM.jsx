@@ -74,7 +74,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
         />
       </Link>
       <Link
-        to="/connexion"
+        to={isAdminMode || isPlayerMode ? "/user/logout" : "/connexion"}
         onClick={() => {
           handleChangePage("connexion");
         }}

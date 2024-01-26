@@ -10,6 +10,7 @@ function AuthContextProvider({ children }) {
 
   const handleAuth = async () => {
     const getToken = localStorage.getItem("token");
+
     if (getToken) {
       const decodeToken = jwtDecode(getToken);
       const userId = decodeToken.user_id;
@@ -29,6 +30,7 @@ function AuthContextProvider({ children }) {
     handleAuth();
   }, []);
 
+  // sert pour les className
   function userMode() {
     if (user.is_administrator === 0) {
       return "player-mode";
@@ -38,7 +40,6 @@ function AuthContextProvider({ children }) {
     }
     return "";
   }
-  // sert pour savoir si un utilisateur est connecté - retourne false si on est en mode "visiteur"
 
   const userMemo = useMemo(
     () => ({
