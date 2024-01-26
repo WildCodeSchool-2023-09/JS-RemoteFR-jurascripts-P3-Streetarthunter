@@ -54,12 +54,20 @@ function Layout() {
               />
             </>
           ) : (
-            <UserLayout
-              isPlayerMode={isPlayerMode}
-              isAdminMode={isAdminMode}
-              activePage={activePage}
-              handleChangePage={handleChangePage}
-            />
+            <>
+              <UserLayout
+                isPlayerMode={isPlayerMode}
+                isAdminMode={isAdminMode}
+                activePage={activePage}
+                handleChangePage={handleChangePage}
+              />
+              <NavBar
+                activePage={activePage}
+                handleChangePage={handleChangePage}
+                isPlayerMode={isPlayerMode}
+                isAdminMode={isAdminMode}
+              />
+            </>
           )}
         </>
       ) : (
@@ -75,12 +83,20 @@ function Layout() {
               <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
             </div>
           ) : (
-            <UserLayout
-              isPlayerMode={isPlayerMode}
-              isAdminMode={isAdminMode}
-              activePage={activePage}
-              handleChangePage={handleChangePage}
-            />
+            <div>
+              <UserLayout
+                isPlayerMode={isPlayerMode}
+                isAdminMode={isAdminMode}
+                activePage={activePage}
+                handleChangePage={handleChangePage}
+              />
+              <NavBar
+                activePage={activePage}
+                handleChangePage={handleChangePage}
+                isPlayerMode={isPlayerMode}
+                isAdminMode={isAdminMode}
+              />
+            </div>
           )}
         </div>
       )}

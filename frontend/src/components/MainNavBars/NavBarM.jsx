@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
+
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import "./NavBarM.scss";
 import "../../styles/commons.scss";
 import home from "../../assets/picto/white/home_white.svg";
@@ -14,13 +17,12 @@ import mapY from "../../assets/picto/yellow/map_yell_full.png";
 import profile from "../../assets/picto/yellow/profile_yell_full.png";
 import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 
-function NavBarM({
-  activePage,
-  handleChangePage,
-  isPlayerMode,
-  userMode,
-  isAdminMode,
-}) {
+function NavBarM({ isPlayerMode, isAdminMode }) {
+  const { userMode } = useContext(AuthContext);
+  const [activePage, setActivePage] = useState("accueil");
+  const handleChangePage = (page) => {
+    setActivePage(page);
+  };
   return (
     <nav className="navbar-mobile">
       <Link
@@ -60,7 +62,7 @@ function NavBarM({
         />
       </Link>
       <Link
-        to={isAdminMode || isPlayerMode ? "/profil" : "/inscription"}
+        to={isAdminMode || isPlayerMode ? "/user/profil" : "/inscription"}
         onClick={() => {
           handleChangePage("profil");
         }}
@@ -88,11 +90,8 @@ function NavBarM({
 }
 
 NavBarM.propTypes = {
-  activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
-  handleChangePage: PropTypes.func.isRequired,
   isPlayerMode: PropTypes.bool.isRequired,
   isAdminMode: PropTypes.bool.isRequired,
-  userMode: PropTypes.func.isRequired,
 };
 
 export default NavBarM;
