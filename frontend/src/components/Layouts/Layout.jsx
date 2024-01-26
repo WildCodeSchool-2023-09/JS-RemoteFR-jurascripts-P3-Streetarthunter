@@ -61,7 +61,7 @@ function Layout() {
                 activePage={activePage}
                 handleChangePage={handleChangePage}
               />
-              <NavBar
+              <NavBarM
                 activePage={activePage}
                 handleChangePage={handleChangePage}
                 isPlayerMode={isPlayerMode}
@@ -84,17 +84,17 @@ function Layout() {
             </div>
           ) : (
             <div>
-              <UserLayout
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                activePage={activePage}
-                handleChangePage={handleChangePage}
-              />
               <NavBar
                 activePage={activePage}
                 handleChangePage={handleChangePage}
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
+              />
+              <UserLayout
+                isPlayerMode={isPlayerMode}
+                isAdminMode={isAdminMode}
+                activePage={activePage}
+                handleChangePage={handleChangePage}
               />
             </div>
           )}
