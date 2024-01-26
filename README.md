@@ -25,7 +25,7 @@ Street Art Hunter est une plateforme interactive conçue pour les amateurs d'art
 
 ## Capture d'écran
 
-![Capture d'écran de Street Art Hunter](lien_vers_capture_d_ecran.png)
+![Capture d'écran de Street Art Hunter](https://i.postimg.cc/B6Nhrktq/temp-Image3f-Nl-En.jpg)
 
 ## Installation
 
