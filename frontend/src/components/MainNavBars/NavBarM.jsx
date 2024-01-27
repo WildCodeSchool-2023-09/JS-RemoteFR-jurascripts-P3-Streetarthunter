@@ -18,11 +18,12 @@ import profile from "../../assets/picto/yellow/profile_yell_full.png";
 import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 
 function NavBarM({ isPlayerMode, isAdminMode }) {
-  const { userMode } = useContext(AuthContext);
+  const { userMode, user } = useContext(AuthContext);
   const [activePage, setActivePage] = useState("accueil");
   const handleChangePage = (page) => {
     setActivePage(page);
   };
+  console.info(user);
   return (
     <nav className="navbar-mobile">
       <Link
@@ -62,7 +63,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
         />
       </Link>
       <Link
-        to={isAdminMode || isPlayerMode ? "/user/profil" : "/inscription"}
+        to={user.is_administrator === 3 ? "/connexion" : "/user/profil"}
         onClick={() => {
           handleChangePage("profil");
         }}
@@ -74,7 +75,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
         />
       </Link>
       <Link
-        to={isAdminMode || isPlayerMode ? "/user/logout" : "/connexion"}
+        to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
         onClick={() => {
           handleChangePage("connexion");
         }}

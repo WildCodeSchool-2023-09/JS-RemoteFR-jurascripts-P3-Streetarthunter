@@ -41,14 +41,20 @@ function AuthContextProvider({ children }) {
     return "";
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser({ is_administrator: 3 });
+  };
+  console.info(user);
   const userMemo = useMemo(
     () => ({
       user,
       setUser,
       handleAuth,
       userMode,
+      handleLogout,
     }),
-    [user, setUser, handleAuth, userMode]
+    [user, setUser, handleAuth, userMode, handleLogout]
   );
 
   return (

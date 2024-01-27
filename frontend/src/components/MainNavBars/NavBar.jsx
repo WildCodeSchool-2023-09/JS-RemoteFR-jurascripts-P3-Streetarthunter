@@ -10,7 +10,7 @@ import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 import profile from "../../assets/picto/yellow/profile_yell_full.png";
 
 function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
-  const { userMode } = useContext(AuthContext);
+  const { userMode, user } = useContext(AuthContext);
   return (
     <section className="nav-container">
       <h1 className={isAdminMode || isPlayerMode ? userMode() : ""}>
@@ -45,7 +45,7 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
           <h3>CARTE</h3>
         </Link>
         <Link
-          to={isPlayerMode ? "/user/profil" : "/inscription"}
+          to={user.is_administrator === 3 ? "/inscription" : "/user/profil"}
           className="img-nav-link"
           onClick={() => {
             handleChangePage("incription");
@@ -56,21 +56,21 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
             alt=""
             className={isPlayerMode ? "player-mode" : ""}
           />
-          <p>{isPlayerMode ? "Profil" : "Inscription"}</p>
+          <p>{user.is_administrator === 3 ? "Inscription" : "Profil"}</p>
         </Link>
         <Link
-          to="/connexion"
+          to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
           className="img-nav-link"
           onClick={() => {
             handleChangePage("connexion");
           }}
         >
           <img
-            src={activePage === "connexion" ? deconnect : login}
+            src={activePage === "connexion" ? login : deconnect}
             alt=""
             className={isPlayerMode ? "player-mode" : ""}
           />
-          <p>{isPlayerMode ? "Déconnexion" : "Connexion"}</p>
+          <p>{isAdminMode || isPlayerMode ? "Déconnexion" : "Connexion"}</p>
         </Link>
       </nav>
     </section>

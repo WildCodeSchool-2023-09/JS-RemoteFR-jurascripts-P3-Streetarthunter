@@ -14,7 +14,7 @@ function Layout() {
   const [activePage, setActivePage] = useState("accueil");
   const [isPlayerMode, setIsPlayerMode] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
-  const { user, userMode } = useContext(AuthContext);
+  const { user, userMode, setUser } = useContext(AuthContext);
 
   const handleChangePage = (page) => {
     setActivePage(page);
@@ -29,7 +29,7 @@ function Layout() {
       setIsPlayerMode(false);
       setIsAdminMode(true);
     }
-  }, [user]);
+  }, [user, setUser]);
 
   return (
     <div>
