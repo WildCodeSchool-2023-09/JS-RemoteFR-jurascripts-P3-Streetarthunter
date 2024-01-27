@@ -18,7 +18,8 @@
     "react-leaflet": "^4.2.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.14.2",
-    "sass": "^1.69.7"
+    "sass": "^1.69.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.3",
