@@ -6,11 +6,11 @@ import "./NavBar.scss";
 import "../../styles/commons.scss";
 import login from "../../assets/picto/white/connexion_white.svg";
 import register from "../../assets/picto/white/profil_white.svg";
-import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 import profile from "../../assets/picto/yellow/profile_yell_full.png";
 
 function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
   const { userMode, user } = useContext(AuthContext);
+
   return (
     <section className="nav-container">
       <h1 className={isAdminMode || isPlayerMode ? userMode() : ""}>
@@ -24,7 +24,9 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
             handleChangePage("accueil");
           }}
         >
-          <h3 className={isPlayerMode ? "player-mode" : ""}>ACCUEIL</h3>
+          <h3 className={isAdminMode || isPlayerMode ? userMode() : ""}>
+            ACCUEIL
+          </h3>
         </Link>
         <Link
           to="/galerie"
@@ -48,11 +50,11 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
           to={user.is_administrator === 3 ? "/inscription" : "/user/profil"}
           className="img-nav-link"
           onClick={() => {
-            handleChangePage("incription");
+            handleChangePage("user/profil");
           }}
         >
           <img
-            src={activePage === "inscription" ? profile : register}
+            src={activePage === "user/profil" ? profile : register}
             alt=""
             className={isPlayerMode ? "player-mode" : ""}
           />
@@ -61,16 +63,13 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
         <Link
           to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
           className="img-nav-link"
-          onClick={() => {
-            handleChangePage("connexion");
-          }}
         >
           <img
-            src={activePage === "connexion" ? login : deconnect}
+            src={login}
             alt=""
             className={isPlayerMode ? "player-mode" : ""}
           />
-          <p>{isAdminMode || isPlayerMode ? "Déconnexion" : "Connexion"}</p>
+          <p>{user.is_administrator === 3 ? "Connexion" : "Déconnexion"}</p>
         </Link>
       </nav>
     </section>
