@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 import "./Home.scss";
 
 function Home() {
+  const { user, handleAuth } = useContext(AuthContext);
+  useEffect(() => {
+    handleAuth();
+  }, []);
   return (
     <section className="home-page">
       <section>
         <div>
-          <h2>Le street-art Késako ?</h2>
+          <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>
+            Le street-art Késako ?
+          </h2>
           <div className="kesako-content">
             <div>
               <p>
@@ -21,8 +29,15 @@ function Home() {
                 ses pratiquants se sont largement féminisés ces dernières
                 décennies.
               </p>
-              <Link to="/galery" className="link">
-                <button type="button" className="button-yellow">
+              <Link to="/galerie" className="link">
+                <button
+                  type="button"
+                  className={
+                    user.is_administrator === 0
+                      ? "button-cyan"
+                      : "button-yellow"
+                  }
+                >
                   Découvrir des artistes...
                 </button>
               </Link>
@@ -37,10 +52,14 @@ function Home() {
         </div>
       </section>
       <section>
-        <h2>Comment jouer à notre jeu ?</h2>
+        <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>
+          Comment jouer à notre jeu ?
+        </h2>
         <div className="instructions">
           <div className="instruc">
-            <h3>Suivez le guide !</h3>
+            <h3 className={user.is_administrator === 0 ? "player-mode" : ""}>
+              Suivez le guide !
+            </h3>
             <p>
               Parcourez votre ville, trouvez les oeuvres que d'autres joueurs
               ont déjà repérées, capturez-les et gagnez des points !
@@ -52,8 +71,13 @@ function Home() {
             <p>
               Progressez, obtenez des badges et devenez vous-même contributeur !
             </p>
-            <Link to="/register" className="link">
-              <button type="button" className="button-yellow">
+            <Link to="/inscription" className="link">
+              <button
+                type="button"
+                className={
+                  user.is_administrator === 0 ? "button-cyan" : "button-yellow"
+                }
+              >
                 S'inscrire
               </button>
             </Link>

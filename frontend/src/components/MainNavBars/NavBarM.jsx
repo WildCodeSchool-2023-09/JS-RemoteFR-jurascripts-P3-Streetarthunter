@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
+
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import "./NavBarM.scss";
 import "../../styles/commons.scss";
 import home from "../../assets/picto/white/home_white.svg";
@@ -11,8 +14,16 @@ import login from "../../assets/picto/white/connexion_white.svg";
 import homeY from "../../assets/picto/yellow/home_yell_full.png";
 import galleryY from "../../assets/picto/yellow/galery_yell_full.png";
 import mapY from "../../assets/picto/yellow/map_yell_full.png";
+import profile from "../../assets/picto/yellow/profile_yell_full.png";
+import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 
-function NavBarM({ activePage, handleChangePage, isPlayerMode }) {
+function NavBarM({ isPlayerMode, isAdminMode }) {
+  const { userMode, user } = useContext(AuthContext);
+  const [activePage, setActivePage] = useState("accueil");
+  const handleChangePage = (page) => {
+    setActivePage(page);
+  };
+  console.info(user);
   return (
     <nav className="navbar-mobile">
       <Link
@@ -24,7 +35,7 @@ function NavBarM({ activePage, handleChangePage, isPlayerMode }) {
         <img
           src={activePage === "accueil" ? homeY : home}
           alt=""
-          className={isPlayerMode ? "player-mode" : ""}
+          className={isAdminMode || isPlayerMode ? userMode() : ""}
         />
       </Link>
       <Link
@@ -36,7 +47,7 @@ function NavBarM({ activePage, handleChangePage, isPlayerMode }) {
         <img
           src={activePage === "galerie" ? galleryY : gallery}
           alt=""
-          className={isPlayerMode ? "player-mode" : ""}
+          className={isAdminMode || isPlayerMode ? userMode() : ""}
         />
       </Link>
       <Link
@@ -48,28 +59,40 @@ function NavBarM({ activePage, handleChangePage, isPlayerMode }) {
         <img
           src={activePage === "carte" ? mapY : map}
           alt=""
-          className={isPlayerMode ? "player-mode" : ""}
+          className={isAdminMode || isPlayerMode ? userMode() : ""}
         />
       </Link>
-      <Link to="/inscription">
+      <Link
+        to={user.is_administrator === 3 ? "/connexion" : "/user/profil"}
+        onClick={() => {
+          handleChangePage("profil");
+        }}
+      >
         <img
-          src={register}
+          src={activePage === "profil" ? profile : register}
           alt=""
-          className={isPlayerMode ? "player-mode" : ""}
+          className={isAdminMode || isPlayerMode ? userMode() : ""}
         />
       </Link>
-      <Link to="/connexion">
-        <img src={login} alt="" className={isPlayerMode ? "player-mode" : ""} />
+      <Link
+        to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
+        onClick={() => {
+          handleChangePage("connexion");
+        }}
+      >
+        <img
+          src={activePage === "connexion" ? deconnect : login}
+          alt=""
+          className={isAdminMode || isPlayerMode ? userMode() : ""}
+        />
       </Link>
     </nav>
   );
 }
 
 NavBarM.propTypes = {
-  activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
-  handleChangePage: PropTypes.func.isRequired,
   isPlayerMode: PropTypes.bool.isRequired,
-  // isAdminMode: PropTypes.bool.isRequired,
+  isAdminMode: PropTypes.bool.isRequired,
 };
 
 export default NavBarM;

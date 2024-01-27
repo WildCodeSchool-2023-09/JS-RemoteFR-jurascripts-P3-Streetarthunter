@@ -6,12 +6,11 @@ const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({ is_administrator: 0 });
-  const [isPlayerMode, setIsPlayerMode] = useState(false);
-  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [user, setUser] = useState({ is_administrator: 3 });
 
   const handleAuth = async () => {
     const getToken = localStorage.getItem("token");
+
     if (getToken) {
       const decodeToken = jwtDecode(getToken);
       const userId = decodeToken.user_id;
@@ -26,28 +25,36 @@ function AuthContextProvider({ children }) {
       }
     }
   };
-  useEffect(() => {
-    if (user && !user.is_administrator) {
-      console.info("player mode true");
-      setIsPlayerMode(true);
-      setIsAdminMode(false);
-    } else {
-      console.info("admin mode true");
-      setIsPlayerMode(false);
-      setIsAdminMode(true);
-    }
-    console.info(isPlayerMode);
-  }, [setUser]);
 
+  useEffect(() => {
+    handleAuth();
+  }, []);
+
+  // sert pour les className
+  function userMode() {
+    if (user.is_administrator === 0) {
+      return "player-mode";
+    }
+    if (user.is_administrator === 1) {
+      return "admin-mode";
+    }
+    return "";
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser({ is_administrator: 3 });
+  };
+  console.info(user);
   const userMemo = useMemo(
     () => ({
       user,
       setUser,
       handleAuth,
-      isAdminMode,
-      isPlayerMode,
+      userMode,
+      handleLogout,
     }),
-    [user, setUser, handleAuth]
+    [user, setUser, handleAuth, userMode, handleLogout]
   );
 
   return (
