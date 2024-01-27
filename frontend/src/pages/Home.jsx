@@ -29,7 +29,7 @@ function Home() {
                 ses pratiquants se sont largement féminisés ces dernières
                 décennies.
               </p>
-              <Link to="/galery" className="link">
+              <Link to="/galerie" className="link">
                 <button
                   type="button"
                   className={
@@ -71,7 +71,7 @@ function Home() {
             <p>
               Progressez, obtenez des badges et devenez vous-même contributeur !
             </p>
-            <Link to="/register" className="link">
+            <Link to="/inscription" className="link">
               <button
                 type="button"
                 className={
