@@ -1,15 +1,15 @@
 @import "../styles/commons.scss";
 
 .map-container {
-  width: 95vw;
-  height: 45vh;
+  width: 93vw;
+  height: 40vh;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
   border-radius: 0.8rem;
 }
 
 .add-h2 {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .download-map-img {
@@ -22,81 +22,24 @@
   border-radius: 30%;
 }
 
-.content {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-  }
-
-  .parent-div {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    .align-div {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-
-      input {
-        font-style: oblique;
-        padding: 6px 100px;
-        border-radius: 2px;
-        margin-top: 5px;
-        margin-bottom: 20px;
-        background-color: $extra-light-yellow;
-        border-color: $extra-light-yellow;
-        border-radius: 0.3rem;
-        color: $deep-purple;
-      }
-
-      .desc-inp {
-        padding: 70px 100px;
-      }
-
-      .about-inp {
-        padding: 35px 100px;
-      }
-      p {
-        .cyan-span {
-          color: $light-cyan;
-        }
-      }
-    }
-  }
-}
-
-.sub-button {
-  background-color: $light-cyan;
-  border: $light-cyan;
-  border-radius: 0.3rem;
-  padding: 10px 60px;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  color: $deep-purple;
-}
-
 .reg-button {
   background-color: $light-yellow;
   border: $light-cyan;
   border-radius: 0.3rem;
   padding: 10px 60px;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   margin-bottom: 2rem;
   color: $deep-purple;
 }
 
 @media screen and (min-width: 650px) {
   .map-container {
-    width: 100%;
+    width: 95%;
     height: 80vh;
     margin-top: 3rem;
     border-radius: 0.8rem;
+  }
+  .add-h2 {
+    margin-top: 5rem;
   }
 }

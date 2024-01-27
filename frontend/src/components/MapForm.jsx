@@ -17,7 +17,7 @@ function MapForm() {
           <Dropzone />
           <form className="content">
             <div className="parent-div">
-              <div>
+              <div className="left-container">
                 <div className="align-div">
                   <p>
                     Nom de l'artiste <span className="cyan-span">*</span>
@@ -41,7 +41,7 @@ function MapForm() {
                   <input />
                 </div>
               </div>
-              <div>
+              <div className="right-container">
                 <div className="align-div">
                   <p>
                     Descritpion de l'oeuvre <span className="cyan-span">*</span>
@@ -50,7 +50,7 @@ function MapForm() {
                 </div>
                 <div className="align-div">
                   <p>
-                    A propos de l'artiste
+                    À propos de l'artiste
                     <span className="cyan-span"> (bonus)</span>
                   </p>
                   <input className="about-inp" />
