@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dropzone from "./DropZone";
-import CapturesGallery from "./CapturesGallery";
+
+import "./MapForm.scss";
 
 function MapForm() {
   const [userLogged, setUserLogged] = useState(false);
@@ -9,7 +10,7 @@ function MapForm() {
     setUserLogged(true);
   };
   return (
-    <div>
+    <div className="form-container">
       {userLogged ? (
         <>
           <h2 className="add-h2">Ajouter une oeuvre</h2>
@@ -60,7 +61,6 @@ function MapForm() {
           <button type="button" className="sub-button">
             Soumettre
           </button>
-          <CapturesGallery />
         </>
       ) : (
         <button type="button" onClick={handleClick} className="reg-button">

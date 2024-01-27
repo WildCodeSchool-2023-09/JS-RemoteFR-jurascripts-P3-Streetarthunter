@@ -10,7 +10,6 @@ import "./Map.scss";
 import MarkerSVG from "../assets/Map-Pin.svg";
 import MapForm from "../components/MapForm";
 import InfoStreetArt from "../components/InfoStreetArt";
-import Camera from "../components/Camera";
 
 function Map() {
   const ZOOM_LEVEL = 11;
@@ -170,7 +169,7 @@ function Map() {
             center={[latitude, longitude]}
             zoom={ZOOM_LEVEL}
             ref={mapRef}
-            style={{ height: "400px", width: "100%" }}
+            className="map-container"
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -194,7 +193,7 @@ function Map() {
               </Marker>
             ))}
           </MapContainer>
-          <Camera />
+          <MapForm />
         </>
       ) : (
         <>
@@ -202,6 +201,7 @@ function Map() {
             center={[latitude, longitude]}
             zoom={ZOOM_LEVEL}
             ref={mapRef}
+            className="map-container"
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

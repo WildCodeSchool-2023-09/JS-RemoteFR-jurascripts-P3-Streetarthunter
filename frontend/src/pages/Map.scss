@@ -1,12 +1,11 @@
 @import "../styles/commons.scss";
 
-.leaflet-container {
-  height: 75vh;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  border-radius: 0.7rem;
+.map-container {
+  width: 95vw;
+  height: 45vh;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 0.8rem;
 }
 
 .add-h2 {
@@ -91,4 +90,13 @@
   margin-top: 3rem;
   margin-bottom: 2rem;
   color: $deep-purple;
+}
+
+@media screen and (min-width: 650px) {
+  .map-container {
+    width: 100%;
+    height: 80vh;
+    margin-top: 3rem;
+    border-radius: 0.8rem;
+  }
 }

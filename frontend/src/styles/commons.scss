@@ -176,6 +176,7 @@ body {
   background-color: $deep-purple;
   color: $extra-light-yellow;
   width: 100%;
+  overflow-x: hidden;
   @include flex-center;
 }
 
