@@ -1,8 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
 import axios from "axios";
 import L from "leaflet";
+import { AuthContext } from "../context/AuthContext";
 import "leaflet/dist/leaflet.css";
 import "leaflet.locatecontrol";
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
@@ -21,7 +23,8 @@ function Map() {
   const [markers, setMarkers] = useState([]);
   const [markerInfo, setMarkerInfo] = useState({});
   const [userLocation, setUserLocation] = useState(null);
-
+  const { user, handleAuth } = useContext(AuthContext);
+  console.info(user.is_administrator);
   // Marqueur carte
   const customMarkerIcon = new L.DivIcon({
     className: "custom-marker",
@@ -47,6 +50,11 @@ function Map() {
       .catch((error) => {
         console.error("Erreur lors de la récupération des marqueurs:", error);
       });
+  }, []);
+
+  // Appel le AuthContext pour savoir si un utilisateur est connecté
+  useEffect(() => {
+    handleAuth();
   }, []);
 
   // logique de géolocalisation
@@ -193,23 +201,25 @@ function Map() {
                 <Popup>Votre position actuelle</Popup>
               </Marker>
             )}
-            {markers.map((marker) => (
-              <Marker
-                key={marker.id}
-                position={[marker.latitude, marker.longitude]}
-                icon={customMarkerIcon}
-                eventHandlers={{
-                  click: () => handleMarkerClick(marker),
-                }}
-              >
-                <Popup>
-                  <InfoStreetArt
-                    streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
-                    artistInfo={markerInfo[marker.id]?.artistInfo}
-                  />
-                </Popup>
-              </Marker>
-            ))}
+            {user.is_administrator === 1 || user.is_administrator === 0
+              ? markers.map((marker) => (
+                  <Marker
+                    key={marker.id}
+                    position={[marker.latitude, marker.longitude]}
+                    icon={customMarkerIcon}
+                    eventHandlers={{
+                      click: () => handleMarkerClick(marker),
+                    }}
+                  >
+                    <Popup>
+                      <InfoStreetArt
+                        streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
+                        artistInfo={markerInfo[marker.id]?.artistInfo}
+                      />
+                    </Popup>
+                  </Marker>
+                ))
+              : null}
           </MapContainer>
           <MapForm />
         </>
@@ -231,23 +241,25 @@ function Map() {
                 <Popup className="user-location">Votre position actuelle</Popup>
               </Marker>
             )}
-            {markers.map((marker) => (
-              <Marker
-                key={marker.id}
-                position={[marker.latitude, marker.longitude]}
-                icon={customMarkerIcon}
-                eventHandlers={{
-                  click: () => handleMarkerClick(marker),
-                }}
-              >
-                <Popup>
-                  <InfoStreetArt
-                    streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
-                    artistInfo={markerInfo[marker.id]?.artistInfo}
-                  />
-                </Popup>
-              </Marker>
-            ))}
+            {user.is_administrator === 1 || user.is_administrator === 0
+              ? markers.map((marker) => (
+                  <Marker
+                    key={marker.id}
+                    position={[marker.latitude, marker.longitude]}
+                    icon={customMarkerIcon}
+                    eventHandlers={{
+                      click: () => handleMarkerClick(marker),
+                    }}
+                  >
+                    <Popup>
+                      <InfoStreetArt
+                        streetArtInfo={markerInfo[marker.id]?.streetArtInfo}
+                        artistInfo={markerInfo[marker.id]?.artistInfo}
+                      />
+                    </Popup>
+                  </Marker>
+                ))
+              : null}
           </MapContainer>
           <MapForm />
         </>
