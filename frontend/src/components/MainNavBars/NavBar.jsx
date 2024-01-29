@@ -6,11 +6,15 @@ import "./NavBar.scss";
 import "../../styles/commons.scss";
 import login from "../../assets/picto/white/connexion_white.svg";
 import register from "../../assets/picto/white/profil_white.svg";
-import profile from "../../assets/picto/yellow/profile_yell_full.png";
 
-function NavBar({ activePage, handleChangePage }) {
+function NavBar({
+  activePage,
+  handleChangePage,
+  handleProfile,
+  handleProfileLink,
+}) {
   const { userMode, user } = useContext(AuthContext);
-  console.info(userMode());
+
   return (
     <section className="nav-container">
       <h1 className={user.is_administrator === 3 ? "" : userMode()}>
@@ -51,28 +55,20 @@ function NavBar({ activePage, handleChangePage }) {
           </h3>
         </Link>
         <Link
-          to={user.is_administrator === 3 ? "/inscription" : "/user/profil"}
+          to={handleProfileLink()}
           className="img-nav-link"
           onClick={() => {
             handleChangePage("user/profil");
           }}
         >
-          <img
-            src={activePage === "user/profil" ? profile : register}
-            alt=""
-            className={user.is_administrator === 3 ? "img" : userMode()}
-          />
-          <p>{user.is_administrator === 3 ? "Inscription" : "Profil"}</p>
+          <img src={register} alt="" />
+          <p>{handleProfile()}</p>
         </Link>
         <Link
           to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
           className="img-nav-link"
         >
-          <img
-            src={login}
-            alt=""
-            className={user.is_administrator === 3 ? "img" : userMode()}
-          />
+          <img src={login} alt="" />
           <p>{user.is_administrator === 3 ? "Connexion" : "Déconnexion"}</p>
         </Link>
       </nav>
@@ -83,6 +79,8 @@ function NavBar({ activePage, handleChangePage }) {
 NavBar.propTypes = {
   activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
   handleChangePage: PropTypes.func.isRequired,
+  handleProfile: PropTypes.func.isRequired,
+  handleProfileLink: PropTypes.func.isRequired,
 };
 
 export default NavBar;
