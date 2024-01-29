@@ -36,6 +36,10 @@
   display: none;
 }
 
+.sub-button {
+  @extend %buttons;
+}
+
 @media screen and (min-width: 650px) {
   .info-street-art {
     max-width: 300px;

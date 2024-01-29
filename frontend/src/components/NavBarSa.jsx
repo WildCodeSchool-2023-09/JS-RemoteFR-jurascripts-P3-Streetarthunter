@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import "./NavBarSa.scss";
 
 function NavBarSa({ activeComponent, handleActive }) {
-  console.info(activeComponent);
-
   return (
     <nav className="navbar-sa">
       <ul>

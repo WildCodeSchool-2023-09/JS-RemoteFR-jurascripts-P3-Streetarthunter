@@ -5,7 +5,7 @@ import "./Gallery.scss";
 
 function Gallery() {
   const [artworks, setArtworks] = useState([]);
-  const { user, handleAuth } = useContext(AuthContext);
+  const { user, userMode, handleAuth } = useContext(AuthContext);
 
   useEffect(() => {
     handleAuth();
@@ -23,9 +23,7 @@ function Gallery() {
   return (
     <>
       <h2
-        className={
-          user.is_administrator === 0 ? "player-mode" : "gallery-title"
-        }
+        className={user.is_administrator === 3 ? "gallery-title" : userMode()}
       >
         Galerie
       </h2>

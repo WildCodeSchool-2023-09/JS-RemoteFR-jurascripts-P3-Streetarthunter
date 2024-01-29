@@ -1,47 +1,132 @@
 @import "../../styles/commons.scss";
 
-.navbar {
-  border-top: 3px solid $yellow;
-  border-bottom: 3px solid $yellow;
-  background-color: $deep-purple;
-  padding: 15px;
-  font-family: "Roboto";
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  img.player-mode {
-    filter: hue-rotate(82deg) contrast(150%);
-  }
-
-  h3 {
-    margin-bottom: 1vh;
-    color: $extra-light-yellow;
-  }
-
-  .nav-link {
-    @include flex-center;
-    text-decoration: none;
-  }
-  .img-nav-link {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline $yellow;
-      color: $yellow;
-      -webkit-text-fill-color: $yellow;
-      text-decoration-thickness: 0.1rem;
-      text-underline-offset: 1rem;
+.nav-container {
+  h1 {
+    &.admin-mode {
+      color: $red;
     }
-    ::selection {
-      color: $yellow;
+    &.player-mode {
+      color: $cyan;
     }
-    &.active {
-      text-decoration: underline $yellow;
-      color: $yellow;
-      -webkit-text-fill-color: $yellow;
-      text-decoration-thickness: 0.1rem;
-      text-underline-offset: 1rem;
+  }
+  .navbar {
+    border-top: 3px solid $yellow;
+    border-bottom: 3px solid $yellow;
+    background-color: $deep-purple;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    h3 {
+      margin-bottom: 1vh;
+      color: $extra-light-yellow;
+    }
+
+    .nav-link {
+      @include flex-center;
+      text-decoration: none;
+    }
+    .img-nav-link {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline $yellow;
+        color: $yellow;
+        -webkit-text-fill-color: $yellow;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
+      &.active {
+        text-decoration: underline $yellow;
+        color: $yellow;
+        -webkit-text-fill-color: $yellow;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
+    }
+  }
+
+  .admin-mode {
+    border-bottom: 3px solid $red;
+    background-color: $deep-purple;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img.player-mode {
+      filter: hue-rotate(82deg) contrast(150%);
+    }
+
+    h3 {
+      margin-bottom: 1vh;
+      color: $extra-light-yellow;
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    .nav-link {
+      @include flex-center;
+      text-decoration: none;
+    }
+    .img-nav-link {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline $red;
+        color: $yellow;
+        -webkit-text-fill-color: $red;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
+      &.active {
+        text-decoration: underline $red;
+        color: $yellow;
+        -webkit-text-fill-color: $red;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
+    }
+  }
+  .player-mode {
+    border-bottom: 3px solid $cyan;
+    background-color: $deep-purple;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img.player-mode {
+      filter: hue-rotate(82deg) contrast(150%);
+    }
+
+    h3 {
+      margin-bottom: 1vh;
+      color: $extra-light-yellow;
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    .nav-link {
+      @include flex-center;
+      text-decoration: none;
+    }
+    .img-nav-link {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline $cyan;
+        color: $yellow;
+        -webkit-text-fill-color: $cyan;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
+      &.active {
+        text-decoration: underline $cyan;
+        color: $yellow;
+        -webkit-text-fill-color: $cyan;
+        text-decoration-thickness: 0.1rem;
+        text-underline-offset: 1rem;
+      }
     }
   }
 }

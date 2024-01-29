@@ -3,7 +3,9 @@
 .navbar-sa {
   margin-top: 2%;
   background-color: $deep-purple;
-
+  h3 {
+    color: $red;
+  }
   ul {
     display: flex;
     justify-content: space-around;
