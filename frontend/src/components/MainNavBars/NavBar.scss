@@ -54,9 +54,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    img.player-mode {
-      filter: hue-rotate(82deg) contrast(150%);
-    }
 
     h3 {
       margin-bottom: 1vh;
@@ -71,7 +68,13 @@
     }
     .img-nav-link {
       text-decoration: none;
-
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        max-width: 8vh;
+        margin-bottom: 0.5vh;
+      }
       &:hover {
         text-decoration: underline $red;
         color: $yellow;
@@ -95,9 +98,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    img.player-mode {
-      filter: hue-rotate(82deg) contrast(150%);
-    }
 
     h3 {
       margin-bottom: 1vh;

@@ -30,7 +30,30 @@ function Layout() {
       setIsAdminMode(true);
     }
   }, [user, setUser]);
-
+  const handleProfile = () => {
+    switch (user.is_administrator) {
+      case 3:
+        return "Inscription";
+      case 2:
+        return "Profil";
+      case 1:
+        return "Tableau de bord";
+      default:
+        return "";
+    }
+  };
+  const handleProfileLink = () => {
+    switch (user.is_administrator) {
+      case 3:
+        return "/inscription";
+      case 2:
+        return "user/profil";
+      case 1:
+        return "/user/admin";
+      default:
+        return "";
+    }
+  };
   return (
     <div>
       {isMobile ? (
@@ -51,6 +74,7 @@ function Layout() {
                 activePage={activePage}
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
+                handleProfileLink={handleProfileLink}
               />
             </>
           ) : (
@@ -66,6 +90,7 @@ function Layout() {
                 handleChangePage={handleChangePage}
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
+                handleProfileLink={handleProfileLink}
               />
             </>
           )}
@@ -79,6 +104,8 @@ function Layout() {
                 handleChangePage={handleChangePage}
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
+                handleProfile={handleProfile}
+                handleProfileLink={handleProfileLink}
               />
               <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
             </div>
@@ -89,12 +116,12 @@ function Layout() {
                 handleChangePage={handleChangePage}
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
+                handleProfile={handleProfile}
+                handleProfileLink={handleProfileLink}
               />
               <UserLayout
                 isPlayerMode={isPlayerMode}
                 isAdminMode={isAdminMode}
-                activePage={activePage}
-                handleChangePage={handleChangePage}
               />
             </div>
           )}
