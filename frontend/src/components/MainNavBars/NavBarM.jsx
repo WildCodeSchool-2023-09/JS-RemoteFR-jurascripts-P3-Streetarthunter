@@ -63,7 +63,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
         />
       </Link>
       <Link
-        to={user.is_administrator === 3 ? "/connexion" : "/user/profil"}
+        to={user.is_administrator === 3 ? "/inscription" : "/user/profil"}
         onClick={() => {
           handleChangePage("profil");
         }}

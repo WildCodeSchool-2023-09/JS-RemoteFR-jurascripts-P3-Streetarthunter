@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import "./Home.scss";
 
 function Home() {
-  const { user, handleAuth } = useContext(AuthContext);
+  const { user, handleAuth, userMode } = useContext(AuthContext);
   useEffect(() => {
     handleAuth();
   }, []);
@@ -13,7 +13,7 @@ function Home() {
     <section className="home-page">
       <section>
         <div>
-          <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>
+          <h2 className={user.is_administrator === 3 ? "" : userMode()}>
             Le street-art Késako ?
           </h2>
           <div className="kesako-content">
@@ -33,9 +33,7 @@ function Home() {
                 <button
                   type="button"
                   className={
-                    user.is_administrator === 0
-                      ? "button-cyan"
-                      : "button-yellow"
+                    user.is_administrator === 3 ? "button-yellow" : userMode()
                   }
                 >
                   Découvrir des artistes...
@@ -52,12 +50,12 @@ function Home() {
         </div>
       </section>
       <section>
-        <h2 className={user.is_administrator === 0 ? "player-mode" : ""}>
+        <h2 className={user.is_administrator === 3 ? "" : userMode()}>
           Comment jouer à notre jeu ?
         </h2>
         <div className="instructions">
           <div className="instruc">
-            <h3 className={user.is_administrator === 0 ? "player-mode" : ""}>
+            <h3 className={user.is_administrator === 3 ? "" : userMode()}>
               Suivez le guide !
             </h3>
             <p>
@@ -75,7 +73,7 @@ function Home() {
               <button
                 type="button"
                 className={
-                  user.is_administrator === 0 ? "button-cyan" : "button-yellow"
+                  user.is_administrator === 3 ? "button-yellow" : userMode()
                 }
               >
                 S'inscrire
@@ -83,7 +81,9 @@ function Home() {
             </Link>
           </div>
           <div className="ranking">
-            <h3>Classement</h3>
+            <h3 className={user.is_administrator === 3 ? "" : userMode()}>
+              Classement
+            </h3>
             <div className="grid-ranking">
               <p className="rank-one">1. Jean</p>
               <p className="rank-two">2. Paul </p>

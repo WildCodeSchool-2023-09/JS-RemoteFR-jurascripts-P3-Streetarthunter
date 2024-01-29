@@ -4,7 +4,6 @@ import "./CaptureAdmin.scss";
 
 function CaptureAdmin() {
   const [artCapture, setArtCapture] = useState([]);
-  console.info(artCapture);
 
   useEffect(() => {
     axios
@@ -33,10 +32,10 @@ function CaptureAdmin() {
             Posté par{" "}
             <span className="posted-grid-red">{artwork.user_pseudo}</span>
           </p>
-          <button type="button" className="validate-grid">
+          <button type="button" className="button-cyan">
             Valider
           </button>
-          <button type="button" className="refuse-grid">
+          <button type="button" className="button-red">
             Refuser
           </button>
           <img
