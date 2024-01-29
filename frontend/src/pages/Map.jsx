@@ -64,7 +64,7 @@ function Map() {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
         setUserLocation([position.coords.latitude, position.coords.longitude]);
-        console.info(position);
+        // console.info(position);
       },
       (error) => {
         console.error("Erreur lors de la récupération de la position:", error);
@@ -221,7 +221,7 @@ function Map() {
                 ))
               : null}
           </MapContainer>
-          <MapForm />
+          <MapForm artistInfo={markerInfo.artistInfo} />
         </>
       ) : (
         // Le reste du code pour les écrans non mobiles
@@ -261,7 +261,7 @@ function Map() {
                 ))
               : null}
           </MapContainer>
-          <MapForm />
+          <MapForm artistInfo={markerInfo.artistInfo} />
         </>
       )}
     </div>

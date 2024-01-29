@@ -34,7 +34,7 @@ function Layout() {
     switch (user.is_administrator) {
       case 3:
         return "Inscription";
-      case 2:
+      case 0:
         return "Profil";
       case 1:
         return "Tableau de bord";
@@ -46,7 +46,7 @@ function Layout() {
     switch (user.is_administrator) {
       case 3:
         return "/inscription";
-      case 2:
+      case 0:
         return "user/profil";
       case 1:
         return "/user/admin";
