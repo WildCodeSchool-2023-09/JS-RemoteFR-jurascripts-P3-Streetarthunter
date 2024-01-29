@@ -32,6 +32,10 @@
   color: $deep-purple;
 }
 
+.leaflet-popup-content {
+  color: $light-yellow;
+}
+
 @media screen and (min-width: 650px) {
   .map-container {
     width: 95%;
