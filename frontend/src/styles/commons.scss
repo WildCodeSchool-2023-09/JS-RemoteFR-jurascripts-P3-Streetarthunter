@@ -39,12 +39,6 @@ $light-red: #ff8bb5;
 h1 {
   @extend %h1;
   color: $yellow;
-  &.player-mode {
-    color: $cyan;
-  }
-  &.admin-mode {
-    color: $red;
-  }
 }
 %h2 {
   font-size: calc(2rem - 0.8vw);
@@ -106,21 +100,8 @@ p {
   &:hover {
     background-color: $yellow;
   }
-  &.player-mode {
-    background-color: $light-cyan;
-    border-color: $cyan;
-    &:hover {
-      background-color: $cyan;
-    }
-  }
-  &.admin-mode {
-    background-color: $light-red;
-    border-color: $red;
-    &:hover {
-      background-color: $red;
-    }
-  }
 }
+
 .button-red {
   @extend %buttons;
   background-color: $light-red;
