@@ -1,13 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
 import Upload from "../assets/Upload.svg";
-
 import "./DropZone.scss";
 
 function DropZone() {
   const [capturedImage, setCapturedImage] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -18,7 +20,6 @@ function DropZone() {
       formData.append("user_id", 123);
       formData.append("artwork_id", 20);
 
-      // Envoyer le fichier au serveur avec Multer
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
         formData,
@@ -29,13 +30,11 @@ function DropZone() {
         }
       );
 
-      // Mise à jour de l'image capturée si nécessaire
       setCapturedImage(response.data.capture);
+      setShowPopup(true);
 
-      // Faites quelque chose avec la réponse du serveur si nécessaire
       console.info(response.data);
     } catch (error) {
-      // Gérer les erreurs d'envoi
       console.error("Erreur lors de l'envoi du fichier", error);
     }
   };
@@ -43,9 +42,7 @@ function DropZone() {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <div className="dropZone" {...getRootProps()}>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <input {...getInputProps()} />
       {capturedImage ? (
         <img
@@ -56,8 +53,13 @@ function DropZone() {
       ) : (
         <>
           <img src={Upload} alt="Upload icon" className="Upload-Icon" />
-          <p>Envoyer ma photo</p>
+          {!showPopup && <p>Envoyer ma photo</p>}
         </>
+      )}
+      {showPopup && (
+        <div className="confirmation-popup">
+          <p>Votre photo a bien été ajoutée à la base de données !</p>
+        </div>
       )}
     </div>
   );

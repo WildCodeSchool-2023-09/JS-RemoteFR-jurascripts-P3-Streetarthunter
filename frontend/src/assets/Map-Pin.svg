@@ -1,7 +1,7 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-50.8 -50.8 609.60 609.60" xml:space="preserve" fill="#000000" stroke="#000000">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <ellipse style="fill:#40596B;" cx="254" cy="469.1" rx="121.2" ry="38.9"/> <path style="fill:#FF7058;" d="M254,0C153.1,0,71.2,81.8,71.2,182.8S254,482.6,254,482.6s182.8-198.9,182.8-299.8S354.9,0,254,0z"/> <path style="fill:#FFFFFF;" d="M254,62.5c-66.3,0-120.3,53.9-120.3,120.3s54,120.3,120.3,120.3s120.3-54,120.3-120.3 S320.3,62.5,254,62.5z"/> <path style="fill:#84DBFF;" d="M254,87.4c-52.6,0-95.4,42.8-95.4,95.4s42.8,95.4,95.4,95.4s95.4-42.8,95.4-95.4S306.6,87.4,254,87.4 z"/> <path style="fill:#54C0EB;" d="M254,134.5c-26.6,0-48.3,21.7-48.3,48.3s21.7,48.3,48.3,48.3s48.3-21.7,48.3-48.3 S280.6,134.5,254,134.5z"/> <path style="fill:#FFFFFF;" d="M212.2,180.6c-9.5,0-17.2-7.7-17.2-17.2s7.7-17.2,17.2-17.2s17.2,7.7,17.2,17.2 S221.7,180.6,212.2,180.6z"/> </g>
-</svg>
+<svg width="54" height="79" viewBox="0 0 54 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.9025 0C52.4023 2.68421e-06 55.9027 26.1667 51.9027 37.5C44.9027 52.5 28.4027 79.5002 26.9025 78C20.1023 71.2 7.4027 47.5 1.4027 37.5C-2.76396 22.8333 1.40266 -2.68421e-06 26.9025 0Z" fill="#FF1469"/>
+<circle cx="27" cy="26" r="19" fill="#FEFECC"/>
+<circle cx="27" cy="26" r="13" fill="#37FFCF"/>
+<circle cx="27" cy="26" r="9" fill="#271932"/>
+<circle cx="32" cy="20" r="2" fill="#FEFECC"/>
+</svg>
