@@ -253,33 +253,37 @@ function admin() {
               ))}
             </div>
             <div className="uti-btn">
-              {userIndex > 0 && (
-                <button
-                  type="button"
-                  className="button-red"
-                  onClick={() => {
-                    prevUsersSlide();
-                    prevCurrentSlide();
-                  }}
-                >
-                  Précédent
-                </button>
-              )}
-              <p>
+              <div className="flex-div-users-prev">
+                {userIndex > 0 && (
+                  <button
+                    type="button"
+                    className="button-red grid-btn-users-prev"
+                    onClick={() => {
+                      prevUsersSlide();
+                      prevCurrentSlide();
+                    }}
+                  >
+                    Précédent
+                  </button>
+                )}
+              </div>
+              <p className="grid-p-users">
                 Pages : {currentSlide} / {Math.round(userSlideResult / 6)}
               </p>
-              {userIndex < users.length - 3 && (
-                <button
-                  type="button"
-                  className="button-red"
-                  onClick={() => {
-                    nextUsersSlide();
-                    nextCurrentSlide();
-                  }}
-                >
-                  Suivant
-                </button>
-              )}
+              <div className="flex-div-users-next">
+                {userIndex < users.length - 4 && (
+                  <button
+                    type="button"
+                    className="button-red grid-btn-users-next"
+                    onClick={() => {
+                      nextUsersSlide();
+                      nextCurrentSlide();
+                    }}
+                  >
+                    Suivant
+                  </button>
+                )}
+              </div>
             </div>
           </section>
           <section ref={streetArtRef}>
