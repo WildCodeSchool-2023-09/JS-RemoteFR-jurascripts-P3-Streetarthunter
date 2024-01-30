@@ -98,25 +98,23 @@ function MapForm() {
     }
   };
 
-  const handleSubmitCapture = async () => {
-    try {
-      if (selectedArtworkId !== null && artistSelect !== null) {
-        const captureData = {
-          user_id: user.id,
-          artwork_id: selectedArtworkId,
-        };
+  // const handleSubmitCapture = async () => {
+  //   try {
+  //     if (selectedArtworkId !== null && artistSelect !== null) {
+  //       const captureData = {
+  //         user_id: user.id,
+  //         artwork_id: selectedArtworkId,
+  //       };
 
-        await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
-          captureData
-        );
-      }
-    } catch (error) {
-      console.error("Erreur lors de la soumission des données.", error.message);
-    }
-  };
-  console.info(selectedArtworkId);
-  console.info(artworks);
+  //       await axios.post(
+  //         `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
+  //         captureData
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error("Erreur lors de la soumission des données.", error.message);
+  //   }
+  // };
 
   const handleReturn = () => {
     switch (user.is_administrator) {
@@ -124,7 +122,7 @@ function MapForm() {
         return (
           <>
             <h2 className="admin-mode">Ajouter une œuvre</h2>
-            <Dropzone />
+
             <form className="content">
               <div className="parent-div">
                 <div className="left-container">
@@ -168,6 +166,7 @@ function MapForm() {
                 </div>
               </div>
             </form>
+            <Dropzone selectedArtworkId={selectedArtworkId} />
             <button
               type="button"
               className="button-red"
@@ -217,16 +216,13 @@ function MapForm() {
                       />
                     </div>
                   ))}
-                  <h3>3. Télécharge ta capture</h3>
-                  <Dropzone />
-                  <button
-                    type="button"
-                    className="button-cyan"
-                    onClick={handleSubmitCapture}
-                  >
-                    Soumettre
-                  </button>
                 </div>
+              ) : null}
+              {selectedArtworkId && artistSelect !== undefined ? (
+                <>
+                  <h3>3. Télécharge ta capture</h3>
+                  <Dropzone selectedArtworkId={selectedArtworkId} />
+                </>
               ) : null}
             </form>
           </>
