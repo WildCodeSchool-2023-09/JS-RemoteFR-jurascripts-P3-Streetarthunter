@@ -94,12 +94,28 @@ function MapForm() {
         throw new Error("Erreur lors de la création de l'œuvre d'art");
       }
     } catch (error) {
-      // Gestion des erreurs
       console.error("Erreur lors de la soumission des données.", error.message);
     }
   };
 
-  console.info(artists);
+  const handleSubmitCapture = async () => {
+    try {
+      if (selectedArtworkId !== null && artistSelect !== null) {
+        const captureData = {
+          user_id: user.id,
+          artwork_id: selectedArtworkId,
+        };
+
+        await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
+          captureData
+        );
+      }
+    } catch (error) {
+      console.error("Erreur lors de la soumission des données.", error.message);
+    }
+  };
+  console.info(selectedArtworkId);
   console.info(artworks);
 
   const handleReturn = () => {
@@ -206,7 +222,7 @@ function MapForm() {
                   <button
                     type="button"
                     className="button-cyan"
-                    // onClick={handleSubmitCapture}
+                    onClick={handleSubmitCapture}
                   >
                     Soumettre
                   </button>

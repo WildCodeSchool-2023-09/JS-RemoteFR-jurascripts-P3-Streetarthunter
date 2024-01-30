@@ -64,7 +64,6 @@ h2 {
 }
 h3 {
   @extend %h3;
-  color: $yellow;
 }
 %p {
   font-size: calc(1rem - 0.6vw);
