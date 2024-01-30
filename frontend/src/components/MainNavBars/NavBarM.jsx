@@ -23,7 +23,7 @@ function NavBarM({ isPlayerMode, isAdminMode, handleProfileLink }) {
   const handleChangePage = (page) => {
     setActivePage(page);
   };
-  console.info(user);
+
   return (
     <nav className="navbar-mobile">
       <Link

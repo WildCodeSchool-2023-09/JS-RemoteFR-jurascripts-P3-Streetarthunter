@@ -1,24 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import PropTypes from "prop-types";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 import Upload from "../assets/Upload.svg";
 import "./DropZone.scss";
 
-function DropZone() {
+function DropZone({ selectedArtworkId }) {
   const [capturedImage, setCapturedImage] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
+    console.info(file);
 
     try {
       const formData = new FormData();
       formData.append("capture", file);
-      formData.append("user_id", 123);
-      formData.append("artwork_id", 20);
+      formData.append("user_id", user.id);
+      formData.append("artwork_id", selectedArtworkId);
 
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/captures`,
@@ -53,7 +57,7 @@ function DropZone() {
       ) : (
         <>
           <img src={Upload} alt="Upload icon" className="Upload-Icon" />
-          {!showPopup && <p>Envoyer ma photo</p>}
+          {!showPopup && <p>Sélectionner ma photo</p>}
         </>
       )}
       {showPopup && (
@@ -64,5 +68,9 @@ function DropZone() {
     </div>
   );
 }
+
+DropZone.propTypes = {
+  selectedArtworkId: PropTypes.number.isRequired,
+};
 
 export default DropZone;

@@ -2,8 +2,36 @@
 
 .form-container {
   margin-bottom: 15vh;
-}
 
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .artist-list {
+      margin: 0vh 15% 5vh 15%;
+      font-size: large;
+    }
+    h3 {
+      margin: 4vh 8vw;
+      color: $extra-light-yellow;
+    }
+    .artwork-select {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .artworks-img {
+      width: 80%;
+      object-fit: cover;
+      margin: 2vh 10vw;
+      border-radius: 10px;
+    }
+  }
+}
+.register-button {
+  margin: 5vh 0vw;
+}
 .dropZone {
   width: 95%;
   margin-bottom: 2rem;
@@ -34,8 +62,8 @@
       padding: 1rem 5rem;
     }
     p {
-      .cyan-span {
-        color: $light-cyan;
+      .red-span {
+        color: $light-red;
       }
     }
   }
