@@ -41,10 +41,10 @@ function CaptureAdmin() {
             Posté par{" "}
             <span className="posted-grid-red">{artwork.user_pseudo}</span>
           </p>
-          <button type="button" className="button-cyan">
+          <button type="button" className="player-mode">
             Valider
           </button>
-          <button type="button" className="button-red">
+          <button type="button" className="admin-mode">
             Refuser
           </button>
           <img

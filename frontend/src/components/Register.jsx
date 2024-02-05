@@ -110,11 +110,7 @@ function Register() {
             <input type="checkbox" name="RGPD-check" value="" /> J'accepte les{" "}
             <Link to="/RGPD">conditions générales d'utilisation.</Link>
           </p>
-          <button
-            className="button-yellow"
-            type="button"
-            onClick={handleRegister}
-          >
+          <button type="button" onClick={handleRegister}>
             S'inscrire
           </button>
         </footer>

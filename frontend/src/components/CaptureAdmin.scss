@@ -9,8 +9,8 @@
 
   .img-grid {
     grid-area: 1 / 1 / 3 / 3;
-    max-width: 50%;
-    max-height: 46vh;
+    max-width: 70%;
+    max-height: 100%;
     margin: auto;
     border-radius: 0.5rem;
   }
@@ -28,7 +28,7 @@
     }
   }
 
-  .button-cyan {
+  .player-mode {
     grid-area: 4 / 1 / 5 / 2;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
     margin-left: 50%;
   }
 
-  .button-red {
+  .admin-mode {
     grid-area: 4 / 2 / 5 / 3;
     display: flex;
     align-items: center;

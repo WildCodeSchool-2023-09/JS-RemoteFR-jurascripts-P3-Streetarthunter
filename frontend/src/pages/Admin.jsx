@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+import "../styles/commons.scss";
 import "./Admin.scss";
 import NavBarAdmin from "../components/NavBarAdmin";
 import NavBarSa from "../components/NavBarSa";
@@ -35,7 +36,7 @@ function admin() {
   const streetArtRef = useRef(null);
   const artistsRef = useRef(null);
 
-  const { user, handleAuth } = useContext(AuthContext);
+  const { user, handleAuth, userMode } = useContext(AuthContext);
 
   useEffect(() => {
     handleAuth();
@@ -337,7 +338,7 @@ function admin() {
                       <input className="about-art-pad" />
                     </div>
                   </form>
-                  <button type="button" className="button-red">
+                  <button type="button" className={userMode()}>
                     Ajouter
                   </button>
                 </section>
@@ -356,7 +357,7 @@ function admin() {
           <div className="access-denied">
             <p>Vous n'avez pas accès à cette page</p>
             <Link to="/connexion">
-              <button type="button" className="button-yellow">
+              <button type="button" className={userMode()}>
                 Se connecter
               </button>
             </Link>
