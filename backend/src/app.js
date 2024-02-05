@@ -80,7 +80,7 @@ app.use(express.json());
 
 /* ************************************************************************* */
 
-app.use("public", express.static("public"));
+app.use(express.static("public"));
 
 // Import the API routes from the router module
 const router = require("./router");
