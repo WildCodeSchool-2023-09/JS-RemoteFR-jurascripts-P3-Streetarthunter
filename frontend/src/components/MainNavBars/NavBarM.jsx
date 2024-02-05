@@ -11,7 +11,7 @@ import gallery from "../../assets/picto/white/galery_white.svg";
 import map from "../../assets/picto/white/map_white.svg";
 import register from "../../assets/picto/white/profil_white.svg";
 import login from "../../assets/picto/white/connexion_white.svg";
-import homeY from "../../assets/picto/yellow/home_yell_full.png";
+import homeY from "../../assets/picto/yellow/home_yell_full.svg";
 import galleryY from "../../assets/picto/yellow/galery_yell_full.png";
 import mapY from "../../assets/picto/yellow/map_yell_full.png";
 import profile from "../../assets/picto/yellow/profile_yell_full.png";
