@@ -36,7 +36,7 @@ function Home() {
                     user.is_administrator === 3 ? "button-yellow" : userMode()
                   }
                 >
-                  Découvrir des artistes...
+                  Découvrir la galerie...
                 </button>
               </Link>
             </div>

@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 import logo from "../../assets/Logo.svg";
 
 import "./Layout.scss";
-import UserLayout from "./UserLayout";
 
 function Layout() {
   const isMobile = useMediaQuery("only screen and (max-width: 600px)");
@@ -67,64 +66,28 @@ function Layout() {
               }
             />
           </div>
-          {isAdminMode || isPlayerMode ? (
-            <>
-              <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
-              <NavBarM
-                activePage={activePage}
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                handleProfileLink={handleProfileLink}
-              />
-            </>
-          ) : (
-            <>
-              <UserLayout
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                activePage={activePage}
-                handleChangePage={handleChangePage}
-              />
-              <NavBarM
-                activePage={activePage}
-                handleChangePage={handleChangePage}
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                handleProfileLink={handleProfileLink}
-              />
-            </>
-          )}
+
+          <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
+          <NavBarM
+            activePage={activePage}
+            isPlayerMode={isPlayerMode}
+            isAdminMode={isAdminMode}
+            handleProfileLink={handleProfileLink}
+          />
         </>
       ) : (
         <div>
-          {isAdminMode || isPlayerMode ? (
-            <div>
-              <NavBar
-                activePage={activePage}
-                handleChangePage={handleChangePage}
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                handleProfile={handleProfile}
-                handleProfileLink={handleProfileLink}
-              />
-              <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
-            </div>
-          ) : (
-            <div>
-              <NavBar
-                activePage={activePage}
-                handleChangePage={handleChangePage}
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-                handleProfile={handleProfile}
-                handleProfileLink={handleProfileLink}
-              />
-              <UserLayout
-                isPlayerMode={isPlayerMode}
-                isAdminMode={isAdminMode}
-              />
-            </div>
-          )}
+          <div>
+            <NavBar
+              activePage={activePage}
+              handleChangePage={handleChangePage}
+              isPlayerMode={isPlayerMode}
+              isAdminMode={isAdminMode}
+              handleProfile={handleProfile}
+              handleProfileLink={handleProfileLink}
+            />
+            <Outlet isPlayerMode={isPlayerMode} isAdminMode={isAdminMode} />
+          </div>
         </div>
       )}
     </div>
