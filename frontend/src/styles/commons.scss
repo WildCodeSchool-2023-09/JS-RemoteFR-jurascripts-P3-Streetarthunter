@@ -66,7 +66,7 @@ h3 {
   @extend %h3;
 }
 %p {
-  font-size: calc(1rem - 0.6vw);
+  font-size: calc(2rem - 2vw);
   font-weight: 400;
   color: $extra-light-yellow;
 }
@@ -83,38 +83,41 @@ p {
 }
 // BUTTONS PLACEHOLDERS
 %buttons {
-  font-size: calc(0.8rem + 0.2vw);
   font-weight: 800;
   border-radius: 3px;
   padding: 10px 20px;
   border-style: solid;
   border-width: 0.2rem;
   border-radius: 0.5rem;
-  color: $deep-purple;
-}
-.button-yellow {
-  @extend %buttons;
-  background-color: $light-yellow;
-  border-color: $yellow;
+
   &:hover {
     background-color: $yellow;
   }
 }
 
-.button-red {
+button {
   @extend %buttons;
-  background-color: $light-red;
-  border-color: $red;
+  margin-bottom: 10vh;
+  text-decoration: none;
+  color: $deep-purple;
+  background-color: $light-yellow;
+  border-color: $yellow;
   &:hover {
-    background-color: $red;
+    background-color: $yellow;
   }
-}
-.button-cyan {
-  @extend %buttons;
-  background-color: $light-cyan;
-  border-color: $cyan;
-  &:hover {
-    background-color: $cyan;
+  &.player-mode {
+    background-color: $light-cyan;
+    border-color: $cyan;
+    &:hover {
+      background-color: $cyan;
+    }
+  }
+  &.admin-mode {
+    background-color: $light-red;
+    border-color: $red;
+    &:hover {
+      background-color: $red;
+    }
   }
 }
 // MIXINS
@@ -171,14 +174,11 @@ body {
     font-size: calc(2rem - 1.5vw);
   }
   p {
-    font-size: calc(1rem - 0.4vw);
+    font-size: calc(1.1rem - 0.2vw);
   }
   .small-text {
     font-size: calc(1rem - 0.6vw);
     font-weight: 300;
-  }
-  button {
-    font-size: calc(0.8rem - 0.4vw);
   }
 }
 
@@ -199,9 +199,6 @@ body {
     font-size: calc(1.3rem - 0.6vw);
     font-weight: 300;
   }
-  button {
-    font-size: calc(1.8rem - 1.5vw);
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -215,13 +212,10 @@ body {
     font-size: calc(2.8rem - 1vw);
   }
   p {
-    font-size: calc(2.5rem - 1.2vw);
+    font-size: calc(2.3rem - 1.2vw);
   }
   .small-text {
     font-size: calc(1.4rem - 0.6vw);
     font-weight: 300;
-  }
-  button {
-    font-size: calc(2.5rem - 1.5vw);
   }
 }

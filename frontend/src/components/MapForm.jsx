@@ -169,7 +169,7 @@ function MapForm() {
             <Dropzone selectedArtworkId={selectedArtworkId} />
             <button
               type="button"
-              className="button-red"
+              className="admin-mode"
               onClick={handleSubmitNewArt}
             >
               Soumettre
@@ -231,9 +231,7 @@ function MapForm() {
         return (
           <div className="register-button">
             <Link to="/inscription" className="link">
-              <button type="button" className="button-yellow">
-                S'inscrire pour jouer
-              </button>
+              <button type="button">S'inscrire pour jouer</button>
             </Link>
           </div>
         );

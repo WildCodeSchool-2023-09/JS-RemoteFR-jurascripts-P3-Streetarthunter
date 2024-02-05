@@ -46,9 +46,7 @@ function Profile() {
           <div className="access-denied">
             <p>Vous n'avez pas accès à cette page</p>
             <Link to="/connexion">
-              <button type="button" className="button-yellow">
-                Se connecter
-              </button>
+              <button type="button">Se connecter</button>
             </Link>
           </div>
         );
