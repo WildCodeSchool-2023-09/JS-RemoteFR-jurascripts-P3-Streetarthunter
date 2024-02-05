@@ -82,7 +82,7 @@ function admin() {
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
         .then((response) => {
           const usersPlayer = response.data.filter(
-            () => !user.is_administrator
+            () => !players.is_administrator
           );
           setPlayers(usersPlayer);
           setUserSlideResult(Math.ceil(usersPlayer.length));
@@ -179,7 +179,7 @@ function admin() {
   }, [initialOffset]);
 
   const handleReturn = () => {
-    switch (user.is_administrator0) {
+    switch (user.is_administrator) {
       case 1: {
         return (
           <section className="admin-page">
