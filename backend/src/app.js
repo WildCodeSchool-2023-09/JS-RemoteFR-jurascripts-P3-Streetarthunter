@@ -83,6 +83,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Import the API routes from the router module
+const path = require("path");
 const router = require("./router");
 
 // Mount the API routes under the "/api" endpoint
@@ -113,21 +114,19 @@ app.use(express.static(reactBuildPath));
 
 // Redirect unhandled requests to the react index file
 
-app.get("*", (req, res) => {
-  res.sendFile(`${reactBuildPath}/index.html`);
-});
-
-// const path = require("path");
-
-// app.use("*", (req, res) => {
-//   if (req.originalUrl.includes("assets")) {
-//     res.sendFile(
-//       path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
-//     );
-//   } else {
-//     res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
-//   }
+// app.get("*", (req, res) => {
+//   res.sendFile(`${reactBuildPath}/index.html`);
 // });
+
+app.use("*", (req, res) => {
+  if (req.originalUrl.includes("assets")) {
+    res.sendFile(
+      path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
+    );
+  } else {
+    res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
+  }
+});
 
 /* ************************************************************************* */
 
