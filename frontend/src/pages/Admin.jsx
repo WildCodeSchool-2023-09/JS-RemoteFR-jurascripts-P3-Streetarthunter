@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
 import "./Admin.scss";
 import NavBarAdmin from "../components/NavBarAdmin";
 import NavBarSa from "../components/NavBarSa";
@@ -19,7 +22,7 @@ function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
   const [activeSection, setActiveSection] = useState("dashboard");
   const [activeComponent, setActiveComponent] = useState("captures");
-  const [users, setUsers] = useState([]);
+  const [players, setPlayers] = useState([]);
   const [userSearch, setUserSearch] = useState("");
   const [userIndex, setUserIndex] = useState(0);
   const [userSlideResult, setUserSlideResult] = useState(0);
@@ -31,6 +34,12 @@ function admin() {
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
   const artistsRef = useRef(null);
+
+  const { user, handleAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    handleAuth();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,9 +82,9 @@ function admin() {
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/users`)
         .then((response) => {
           const usersPlayer = response.data.filter(
-            (user) => !user.is_administrator
+            () => !user.is_administrator
           );
-          setUsers(usersPlayer);
+          setPlayers(usersPlayer);
           setUserSlideResult(Math.ceil(usersPlayer.length));
         })
         .catch((error) => {
@@ -85,16 +94,16 @@ function admin() {
           );
         });
     } else {
-      const filteredUser = users.filter(
-        (user) =>
-          user.pseudo.toLowerCase().includes(userSearch.toLowerCase()) ||
-          user.firstname.toLowerCase().includes(userSearch.toLowerCase()) ||
-          user.lastname.toLowerCase().includes(userSearch.toLowerCase())
+      const filteredUser = players.filter(
+        (player) =>
+          player.pseudo.toLowerCase().includes(userSearch.toLowerCase()) ||
+          player.firstname.toLowerCase().includes(userSearch.toLowerCase()) ||
+          player.lastname.toLowerCase().includes(userSearch.toLowerCase())
       );
-      setUsers(filteredUser);
+      setPlayers(filteredUser);
       setUserSlideResult(Math.ceil(filteredUser.length));
     }
-  }, [users, userSearch]);
+  }, [players, userSearch]);
 
   const onChangeUser = (e) => {
     setUserSearch(e.target.value);
@@ -102,7 +111,7 @@ function admin() {
     setCurrentSlide(1);
   };
 
-  const userCurrent = users
+  const userCurrent = players
     .sort((a, b) => {
       if (sortOrder === "ascPseudo") {
         return a.pseudo.localeCompare(b.pseudo);
@@ -130,7 +139,7 @@ function admin() {
     .slice(userIndex, userIndex + 6);
 
   const nextUsersSlide = () => {
-    setUserIndex((index) => Math.min(index + 6, users.length));
+    setUserIndex((index) => Math.min(index + 6, players.length));
   };
 
   const prevUsersSlide = () => {
@@ -169,166 +178,193 @@ function admin() {
     };
   }, [initialOffset]);
 
-  return (
-    <section className="admin-page">
-      {isMobile ? (
-        <>
-          <NavBarAdmin activeSection={activeSection} />
-          <section ref={dashboardRef}>
-            <div className="notif-h2-img" id="dashboard">
-              <h2 className="border-none-h2">Notifications</h2>
-              <img alt="ampoule" src={light} />
-            </div>
-            <div className="notif-parent-div">
-              <div className="notif-grid-div notif-child-div-yellow">
-                <p>12 Street Art en attente de validation</p>
-                <img alt="Sablier" src={Hourglass} />
-              </div>
-              <div className="notif-grid-div notif-child-div-cyan">
-                <p>3 Street Art sont portés disparus</p>
-                <img alt="Carte" src={MapAndFlag} />
-              </div>
-            </div>
-          </section>
-          {toggleUserFilter && (
-            <FilterUsersAdmin
-              sortOrder={sortOrder}
-              setSortOrder={setSortOrder}
-              setToggleUserFilter={setToggleUserFilter}
-            />
-          )}
-          <section ref={usersRef}>
-            <h2 className="admin-h2" id="users">
-              Utilisateurs
-            </h2>
-            <form className="uti-flex">
-              <div className="uti-grid">
-                <button
-                  type="button"
-                  className="button-red"
-                  onClick={() => {
-                    handleClickFilter();
-                  }}
-                >
-                  Filtrer
-                </button>
-                <input
-                  className="uti-research-input"
-                  type="text"
-                  placeholder="Recherchez..."
-                  value={userSearch}
-                  onChange={onChangeUser}
-                />
-              </div>
-            </form>
-            <div className="profil-uti-parent">
-              {userCurrent.map((user) => (
-                <div key={user.id} className="profil-uti-child">
-                  <img
-                    alt="avatar du profil"
-                    className="avatar-grid"
-                    src={Avatar}
+  const handleReturn = () => {
+    switch (user.is_administrator0) {
+      case 1: {
+        return (
+          <section className="admin-page">
+            {isMobile ? (
+              <>
+                <NavBarAdmin activeSection={activeSection} />
+                <section ref={dashboardRef}>
+                  <div className="notif-h2-img" id="dashboard">
+                    <h2 className="border-none-h2">Notifications</h2>
+                    <img alt="ampoule" src={light} />
+                  </div>
+                  <div className="notif-parent-div">
+                    <div className="notif-grid-div notif-child-div-yellow">
+                      <p>12 Street Art en attente de validation</p>
+                      <img alt="Sablier" src={Hourglass} />
+                    </div>
+                    <div className="notif-grid-div notif-child-div-cyan">
+                      <p>3 Street Art sont portés disparus</p>
+                      <img alt="Carte" src={MapAndFlag} />
+                    </div>
+                  </div>
+                </section>
+                {toggleUserFilter && (
+                  <FilterUsersAdmin
+                    sortOrder={sortOrder}
+                    setSortOrder={setSortOrder}
+                    setToggleUserFilter={setToggleUserFilter}
                   />
-                  <img
-                    alt="badge du profil"
-                    className="badge-grid"
-                    src={badge}
+                )}
+                <section ref={usersRef}>
+                  <h2 className="admin-h2" id="users">
+                    Utilisateurs
+                  </h2>
+                  <form className="uti-flex">
+                    <div className="uti-grid">
+                      <button
+                        type="button"
+                        className="button-red"
+                        onClick={() => {
+                          handleClickFilter();
+                        }}
+                      >
+                        Filtrer
+                      </button>
+                      <input
+                        className="uti-research-input"
+                        type="text"
+                        placeholder="Recherchez..."
+                        value={userSearch}
+                        onChange={onChangeUser}
+                      />
+                    </div>
+                  </form>
+                  <div className="profil-uti-parent">
+                    {userCurrent.map((userC) => (
+                      <div key={userC.id} className="profil-uti-child">
+                        <img
+                          alt="avatar du profil"
+                          className="avatar-grid"
+                          src={Avatar}
+                        />
+                        <img
+                          alt="badge du profil"
+                          className="badge-grid"
+                          src={badge}
+                        />
+                        <p className="pseudo-grid">{userC.pseudo}</p>
+                        <p className="name-grid">
+                          {userC.firstname} {userC.lastname}
+                        </p>
+                        <p className="capture-grid">
+                          Capture <span className="capture-grid-red">12</span>
+                        </p>
+                        <p className="ranking-grid">
+                          Classement{" "}
+                          <span className="ranking-grid-red">
+                            {userC.ranking}
+                          </span>
+                        </p>
+                        <p className="points-grid">
+                          Points{" "}
+                          <span className="points-grid-red">
+                            {userC.points}
+                          </span>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="uti-btn">
+                    <div className="flex-div-users-prev">
+                      {userIndex > 0 && (
+                        <button
+                          type="button"
+                          className="button-red grid-btn-users-prev"
+                          onClick={() => {
+                            prevUsersSlide();
+                            prevCurrentSlide();
+                          }}
+                        >
+                          Précédent
+                        </button>
+                      )}
+                    </div>
+                    <p className="grid-p-users">
+                      Pages : {currentSlide} / {Math.round(userSlideResult / 6)}
+                    </p>
+                    <div className="flex-div-users-next">
+                      {userIndex < players.length - 4 && (
+                        <button
+                          type="button"
+                          className="button-red grid-btn-users-next"
+                          onClick={() => {
+                            nextUsersSlide();
+                            nextCurrentSlide();
+                          }}
+                        >
+                          Suivant
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </section>
+                <section ref={streetArtRef}>
+                  <h2 className="admin-h2" id="streetArt">
+                    Street Art
+                  </h2>
+                  <NavBarSa
+                    activeComponent={activeComponent}
+                    handleActive={handleActive}
                   />
-                  <p className="pseudo-grid">{user.pseudo}</p>
-                  <p className="name-grid">
-                    {user.firstname} {user.lastname}
-                  </p>
-                  <p className="capture-grid">
-                    Capture <span className="capture-grid-red">12</span>
-                  </p>
-                  <p className="ranking-grid">
-                    Classement{" "}
-                    <span className="ranking-grid-red">{user.ranking}</span>
-                  </p>
-                  <p className="points-grid">
-                    Points{" "}
-                    <span className="points-grid-red">{user.points}</span>
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="uti-btn">
-              <div className="flex-div-users-prev">
-                {userIndex > 0 && (
-                  <button
-                    type="button"
-                    className="button-red grid-btn-users-prev"
-                    onClick={() => {
-                      prevUsersSlide();
-                      prevCurrentSlide();
-                    }}
-                  >
-                    Précédent
+                  {activeComponent === "captures" && <CaptureAdmin />}
+                  {activeComponent === "newWork" && <NewArtAdmin />}
+                  {activeComponent === "reported" && <ReportedArtAdmin />}
+                </section>
+                <section ref={artistsRef}>
+                  <h2 className="admin-h2" id="artists">
+                    Ajouter un artiste
+                  </h2>
+                  <img
+                    src={download}
+                    alt="download"
+                    className="download-art-img"
+                  />
+                  <p>Télécharger une photo</p>
+                  <form className="add-art-form-grid">
+                    <div className="name-art-grid">
+                      <p>
+                        Nom de l'artiste{" "}
+                        <span className="name-red-span">*</span>
+                      </p>
+                      <input />
+                    </div>
+                    <div className="about-art-grid">
+                      <p>A propos de l'artiste</p>
+                      <input className="about-art-pad" />
+                    </div>
+                  </form>
+                  <button type="button" className="button-red">
+                    Ajouter
                   </button>
-                )}
-              </div>
-              <p className="grid-p-users">
-                Pages : {currentSlide} / {Math.round(userSlideResult / 6)}
-              </p>
-              <div className="flex-div-users-next">
-                {userIndex < users.length - 4 && (
-                  <button
-                    type="button"
-                    className="button-red grid-btn-users-next"
-                    onClick={() => {
-                      nextUsersSlide();
-                      nextCurrentSlide();
-                    }}
-                  >
-                    Suivant
-                  </button>
-                )}
-              </div>
-            </div>
+                </section>
+              </>
+            ) : (
+              <h3 className="admin-mobile-h2">
+                Cette page est indisponible sur mobile, veuillez accéder à la
+                page administrateur depuis un ordinateur
+              </h3>
+            )}
           </section>
-          <section ref={streetArtRef}>
-            <h2 className="admin-h2" id="streetArt">
-              Street Art
-            </h2>
-            <NavBarSa
-              activeComponent={activeComponent}
-              handleActive={handleActive}
-            />
-            {activeComponent === "captures" && <CaptureAdmin />}
-            {activeComponent === "newWork" && <NewArtAdmin />}
-            {activeComponent === "reported" && <ReportedArtAdmin />}
-          </section>
-          <section ref={artistsRef}>
-            <h2 className="admin-h2" id="artists">
-              Ajouter un artiste
-            </h2>
-            <img src={download} alt="download" className="download-art-img" />
-            <p>Télécharger une photo</p>
-            <form className="add-art-form-grid">
-              <div className="name-art-grid">
-                <p>
-                  Nom de l'artiste <span className="name-red-span">*</span>
-                </p>
-                <input />
-              </div>
-              <div className="about-art-grid">
-                <p>A propos de l'artiste</p>
-                <input className="about-art-pad" />
-              </div>
-            </form>
-            <button type="button" className="button-red">
-              Ajouter
-            </button>
-          </section>
-        </>
-      ) : (
-        <h3 className="admin-mobile-h2">
-          Cette page est indisponible sur mobile, veuillez accéder à la page
-          administrateur depuis un ordinateur
-        </h3>
-      )}
-    </section>
-  );
+        );
+      }
+      default:
+        return (
+          <div className="access-denied">
+            <p>Vous n'avez pas accès à cette page</p>
+            <Link to="/connexion">
+              <button type="button" className="button-yellow">
+                Se connecter
+              </button>
+            </Link>
+          </div>
+        );
+    }
+  };
+  return <div>{handleReturn()}</div>;
 }
 
 export default admin;

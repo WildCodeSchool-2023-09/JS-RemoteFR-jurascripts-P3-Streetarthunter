@@ -1,5 +1,11 @@
 @import "../styles/commons.scss";
 
+.access-denied {
+  margin: 10vh auto;
+  p {
+    margin: 4vh auto;
+  }
+}
 .profile-container {
   display: flex;
   flex-direction: column;
