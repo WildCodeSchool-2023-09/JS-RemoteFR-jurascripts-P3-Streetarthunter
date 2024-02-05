@@ -14,7 +14,7 @@ function Logout() {
         <h2 className={userMode()}>
           Etes-vous sûr de vouloir vous déconnecter ?
         </h2>
-        <div className="footer-modal">
+        <div>
           <button
             type="button"
             className={userMode()}

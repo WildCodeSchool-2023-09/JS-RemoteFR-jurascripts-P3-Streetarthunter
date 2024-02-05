@@ -7,10 +7,10 @@ const userSchema = Joi.object({
   pseudo: Joi.string().max(80).required(),
   email: Joi.string().email().max(255).required(),
   password: Joi.string().max(255).required(),
-  avatar: Joi.string().max(255).required(),
-  bio: Joi.string().max(255).required(),
-  ranking: Joi.number().integer().required(),
-  points: Joi.number().integer().required(),
+  avatar: Joi.string().max(255),
+  bio: Joi.string().max(255),
+  ranking: Joi.number().integer(),
+  points: Joi.number().integer(),
   is_administrator: Joi.boolean().required(),
 });
 

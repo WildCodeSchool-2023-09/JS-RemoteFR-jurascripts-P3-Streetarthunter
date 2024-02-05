@@ -1,43 +1,67 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/modals.scss";
-import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function Register() {
   const [registerInfo, setRegisterInfo] = useState({
     firstname: "",
     lastname: "",
-    psuedo: "",
+    pseudo: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    is_administrator: false,
+    bio: "",
   });
+  const [errMessage, setErrMessage] = useState("");
+  const [acceptedRGPD, setAcceptedRGPD] = useState(false);
 
   const navigate = useNavigate();
 
   const handleChangeRegister = (event) => {
-    const { name, value } = event.target;
-    setRegisterInfo({ ...registerInfo, [name]: value });
+    const { name, value, type, checked } = event.target;
+    const newValue = type === "checkbox" ? checked : value;
+    setRegisterInfo({ ...registerInfo, [name]: newValue });
   };
+
+  const handleRGPDChange = (e) => {
+    setAcceptedRGPD(e.target.checked);
+  };
+
+  useEffect(() => {
+    setErrMessage("");
+  }, [registerInfo, acceptedRGPD]);
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    // créer les fonctions pour vérifier que tous les input sont remplis + regex
-    // const { firstname, password } = registerInfo;
+    // créer les fonctions pour vérifier regex
+    const { firstname, lastname, pseudo, password, email } = registerInfo;
+    console.info(registerInfo);
+    if (
+      firstname === "" ||
+      lastname === "" ||
+      pseudo === "" ||
+      password === "" ||
+      email === ""
+    ) {
+      setErrMessage("Merci de remplir tous les champs");
+      return;
+    }
 
-    // if (firstname === "" || password === "") {
-    //   return;
-    // }
+    if (!acceptedRGPD) {
+      setErrMessage("Merci d'accepter les conditions d'utilisation");
+      return;
+    }
 
+    setErrMessage("");
     try {
       const resregister = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/register`, // créer la route dans le back....
+        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
         registerInfo
       );
 
       if (resregister.status === 201) {
-        navigate("/login");
+        navigate("/connexion");
       }
     } catch (error) {
       console.error(error);
@@ -45,13 +69,13 @@ function Register() {
   };
 
   return (
-    <container className="backdrop">
-      <section className="modal">
+    <section className="backdrop">
+      <section className="modal-register">
         <header>
           <div>
-            <Link to="/" className="img-modal">
+            {/* <Link to="/" className="img-modal">
               <img src={CrossButton} alt="close-window" />
-            </Link>
+            </Link> */}
             <div>
               <h2>Inscription</h2>
             </div>
@@ -59,6 +83,9 @@ function Register() {
         </header>
         <main className="content">
           <form>
+            <label htmlFor="firstname">
+              Prénom <span className="yell">*</span>
+            </label>
             <input
               type="text"
               name="firstname"
@@ -66,6 +93,9 @@ function Register() {
               value={registerInfo.firstname}
               onChange={handleChangeRegister}
             />
+            <label htmlFor="lastname">
+              Nom <span className="yell">*</span>
+            </label>
             <input
               type="text"
               name="lastname"
@@ -73,6 +103,9 @@ function Register() {
               value={registerInfo.lastname}
               onChange={handleChangeRegister}
             />
+            <label htmlFor="pseudo">
+              Pseudo <span className="yell">*</span>
+            </label>
             <input
               type="text"
               name="pseudo"
@@ -80,6 +113,9 @@ function Register() {
               value={registerInfo.pseudo}
               onChange={handleChangeRegister}
             />
+            <label htmlFor="email">
+              Adresse email <span className="yell">*</span>
+            </label>
             <input
               type="text"
               name="email"
@@ -87,35 +123,54 @@ function Register() {
               value={registerInfo.email}
               onChange={handleChangeRegister}
             />
+            <label htmlFor="password">
+              Mot de passe <span className="yell">*</span>
+            </label>
             <input
               id="password"
-              type="text"
+              type="password"
               name="password"
               placeholder="Mot de passe"
               value={registerInfo.password}
               onChange={handleChangeRegister}
             />
-            <input
-              id="password-repeat"
+
+            <label htmlFor="bio">Biographie</label>
+            <textarea
+              id="bio"
               type="text"
-              name="password-repeat"
-              placeholder="Répète ton mot de passe"
+              name="bio"
+              placeholder="Décrivez-vous et dites-nous pourquoi vous serez un excellent chasseur"
               value={registerInfo.passwordRepeat}
               onChange={handleChangeRegister}
             />
           </form>
         </main>
         <footer className="footer-modal">
+          <p className="err-msg">{errMessage}</p>
           <p className="checkbox-RGPD">
-            <input type="checkbox" name="RGPD-check" value="" /> J'accepte les{" "}
+            <input
+              type="checkbox"
+              name="rgpdCheck"
+              checked={registerInfo.rgpdCheck}
+              id="rgpdCheck"
+              onChange={handleRGPDChange}
+            />{" "}
+            J'accepte les{" "}
             <Link to="/RGPD">conditions générales d'utilisation.</Link>
           </p>
           <button type="button" onClick={handleRegister}>
             S'inscrire
           </button>
+          <p>
+            J'ai déjà un compte :{" "}
+            <Link className="text-link" to="/connexion">
+              connexion
+            </Link>{" "}
+          </p>
         </footer>
       </section>
-    </container>
+    </section>
   );
 }
 export default Register;
