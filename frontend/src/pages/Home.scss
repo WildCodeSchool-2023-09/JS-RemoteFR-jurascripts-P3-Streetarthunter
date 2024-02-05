@@ -3,8 +3,26 @@
 .home-page {
   margin: 0vh 8vw 25vh 8vw;
   button {
+    @extend %buttons;
     margin-bottom: 10vh;
     text-decoration: none;
+    &:hover {
+      background-color: $yellow;
+    }
+    &.player-mode {
+      background-color: $light-cyan;
+      border-color: $cyan;
+      &:hover {
+        background-color: $cyan;
+      }
+    }
+    &.admin-mode {
+      background-color: $light-red;
+      border-color: $red;
+      &:hover {
+        background-color: $red;
+      }
+    }
   }
   p {
     text-align: left;

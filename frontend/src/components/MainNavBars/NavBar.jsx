@@ -6,17 +6,21 @@ import "./NavBar.scss";
 import "../../styles/commons.scss";
 import login from "../../assets/picto/white/connexion_white.svg";
 import register from "../../assets/picto/white/profil_white.svg";
-import profile from "../../assets/picto/yellow/profile_yell_full.png";
 
-function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
+function NavBar({
+  activePage,
+  handleChangePage,
+  handleProfile,
+  handleProfileLink,
+}) {
   const { userMode, user } = useContext(AuthContext);
 
   return (
     <section className="nav-container">
-      <h1 className={isAdminMode || isPlayerMode ? userMode() : ""}>
+      <h1 className={user.is_administrator === 3 ? "" : userMode()}>
         STREET ART HUNTER
       </h1>
-      <nav className="navbar">
+      <nav className={user.is_administrator === 3 ? "navbar" : userMode()}>
         <Link
           to="/"
           className={`img-nav-link ${activePage === "accueil" ? "active" : ""}`}
@@ -24,7 +28,7 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
             handleChangePage("accueil");
           }}
         >
-          <h3 className={isAdminMode || isPlayerMode ? userMode() : ""}>
+          <h3 className={user.is_administrator === 3 ? "" : userMode()}>
             ACCUEIL
           </h3>
         </Link>
@@ -35,7 +39,9 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
             handleChangePage("galerie");
           }}
         >
-          <h3 className={isPlayerMode ? "player-mode" : ""}>GALERIE</h3>
+          <h3 className={user.is_administrator === 3 ? "" : userMode()}>
+            GALERIE
+          </h3>
         </Link>
         <Link
           to="/carte"
@@ -44,31 +50,25 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
             handleChangePage("carte");
           }}
         >
-          <h3>CARTE</h3>
+          <h3 className={user.is_administrator === 3 ? "" : userMode()}>
+            CARTE
+          </h3>
         </Link>
         <Link
-          to={user.is_administrator === 3 ? "/inscription" : "/user/profil"}
+          to={handleProfileLink()}
           className="img-nav-link"
           onClick={() => {
             handleChangePage("user/profil");
           }}
         >
-          <img
-            src={activePage === "user/profil" ? profile : register}
-            alt=""
-            className={isPlayerMode ? "player-mode" : ""}
-          />
-          <p>{user.is_administrator === 3 ? "Inscription" : "Profil"}</p>
+          <img src={register} alt="" />
+          <p>{handleProfile()}</p>
         </Link>
         <Link
           to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
           className="img-nav-link"
         >
-          <img
-            src={login}
-            alt=""
-            className={isPlayerMode ? "player-mode" : ""}
-          />
+          <img src={login} alt="" />
           <p>{user.is_administrator === 3 ? "Connexion" : "Déconnexion"}</p>
         </Link>
       </nav>
@@ -79,8 +79,8 @@ function NavBar({ activePage, handleChangePage, isPlayerMode, isAdminMode }) {
 NavBar.propTypes = {
   activePage: PropTypes.oneOf(["accueil", "galerie", "carte"]).isRequired,
   handleChangePage: PropTypes.func.isRequired,
-  isPlayerMode: PropTypes.bool.isRequired,
-  isAdminMode: PropTypes.bool.isRequired,
+  handleProfile: PropTypes.func.isRequired,
+  handleProfileLink: PropTypes.func.isRequired,
 };
 
 export default NavBar;

@@ -10,11 +10,18 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
-
   &.player-mode {
     border-top: 3px solid $cyan;
   }
   &.admin-mode {
     border-top: 3px solid $red;
+  }
+  img.admin-mode {
+    filter: hue-rotate(286deg) saturate(950%);
+    max-width: 30vh;
+  }
+  img.player-mode {
+    filter: hue-rotate(82deg) contrast(150%);
+    max-width: 30vh;
   }
 }

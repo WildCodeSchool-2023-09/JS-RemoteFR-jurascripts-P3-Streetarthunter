@@ -1,231 +1,257 @@
 @import "../styles/commons.scss";
-
-.admin-h2 {
-  margin-top: 5rem;
-  padding-top: 4%;
-  border-top: 3px solid $red;
-}
-
-.border-none-h2 {
-  margin-top: 4rem;
-}
-
-.notif-h2-img {
-  display: flex;
-  justify-content: center;
-  margin-left: 4%;
-  gap: 0.5%;
-
-  img {
-    width: 4%;
-    margin-bottom: -3%;
+.admin-page {
+  .button-red {
+    grid-area: 1 / 3 / 1 / 4;
+    margin-bottom: 7px;
   }
-}
+  .admin-h2 {
+    margin-top: 5rem;
+    padding-top: 4%;
+    border-top: 3px solid $red;
+    color: $red;
+  }
 
-.notif-parent-div {
-  display: flex;
-  gap: 8rem;
-  .notif-grid-div {
-    border-radius: 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px 150px;
-    padding: 1rem 1rem 5rem 1rem;
-    p {
-      grid-area: 2 / 1 / 3 / 3;
-      margin: auto;
-    }
+  .border-none-h2 {
+    margin-top: 4rem;
+    color: $red;
+  }
+
+  .notif-h2-img {
+    display: flex;
+    justify-content: center;
+    margin-left: 4%;
+    gap: 0.5%;
 
     img {
-      grid-area: 1 / 2 / 2 / 3;
+      width: 4%;
+      margin-bottom: -3%;
     }
   }
 
-  .notif-child-div-yellow {
-    border: 3px solid $light-yellow;
+  .notif-parent-div {
+    display: flex;
+    gap: 8rem;
+    .notif-grid-div {
+      border-radius: 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 100px 150px;
+      padding: 1rem 1rem 5rem 1rem;
+      p {
+        grid-area: 2 / 1 / 3 / 3;
+        margin: auto;
+      }
 
-    img {
+      img {
+        grid-area: 1 / 2 / 2 / 3;
+      }
+    }
+
+    .notif-child-div-yellow {
+      border: 3px solid $light-yellow;
+
+      img {
+        width: 30%;
+        margin-left: 70%;
+      }
+    }
+    .notif-child-div-cyan {
+      border: 3px solid $light-cyan;
+
+      img {
+        width: 30%;
+        margin-left: 65%;
+      }
+    }
+  }
+
+  .uti-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .uti-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
       width: 30%;
-      margin-left: 70%;
+
+      .uti-research-input {
+        grid-area: 2 / 1 / 2 / 4;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        border: 1.5px solid $light-yellow;
+        border-radius: 0.3rem;
+        color: $light-yellow;
+        font-size: calc(2.5rem - 1.2vw);
+      }
     }
   }
-  .notif-child-div-cyan {
-    border: 3px solid $light-cyan;
 
-    img {
+  .profil-uti-parent {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3rem;
+
+    .profil-uti-child {
       width: 30%;
-      margin-left: 65%;
-    }
-  }
-}
-
-.uti-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .uti-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 30%;
-
-    .uti-filter-button {
-      grid-area: 1 / 3 / 1 / 4;
-      background-color: $light-red;
-      height: 30px;
-      width: 80%;
-      padding: 0.35rem 0.1rem;
-      border: 0px;
-      border-radius: 0.3rem;
-      color: $deep-purple;
-    }
-
-    .uti-research-input {
-      grid-area: 2 / 1 / 2 / 4;
-      padding: 0.5rem 1rem;
-      width: 100%;
+      padding: 1rem;
       border: 1.5px solid $light-yellow;
       border-radius: 0.3rem;
-      color: $light-yellow;
-      font-size: calc(2.5rem - 1.2vw);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+
+      .avatar-grid {
+        grid-area: 1 / 1 / 3 / 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        object-fit: cover;
+        width: 70%;
+        margin: auto;
+      }
+      .badge-grid {
+        grid-area: 3 / 1 / 3 / 2;
+        object-fit: cover;
+        width: 50%;
+        margin: auto;
+      }
+      .pseudo-grid {
+        grid-area: 1 / 2 / 2 / 3;
+        color: $red;
+        margin: auto;
+      }
+      .name-grid {
+        grid-area: 2 / 2 / 2 / 3;
+      }
+      .capture-grid {
+        grid-area: 4 / 2 / 3 / 3;
+
+        .capture-grid-red {
+          color: $red;
+        }
+      }
+      .ranking-grid {
+        grid-area: 2 / 3 / 3 / 3;
+        .ranking-grid-red {
+          color: $red;
+        }
+      }
+      .points-grid {
+        grid-area: 4 / 3 / 3 / 3;
+        .points-grid-red {
+          color: $red;
+        }
+      }
     }
   }
-}
 
-.profil-uti-parent {
-  margin-top: 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 3rem;
-
-  .profil-uti-child {
-    width: 30%;
-    padding: 1rem;
-    border: 1.5px solid $light-yellow;
-    border-radius: 0.3rem;
+  .uti-btn {
+    margin-top: 3%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 40% 20% 40%;
+    grid-template-rows: 1fr;
 
-    .avatar-grid {
-      grid-area: 1 / 1 / 3 / 2;
+    .flex-div-users-prev {
       display: flex;
-      justify-content: center;
+      justify-content: end;
       align-items: center;
-      width: 70%;
-      margin: auto;
+
+      .grid-btn-users-prev {
+        grid-area: 1 / 1 / 2 / 2;
+        width: 30%;
+      }
     }
-    .badge-grid {
-      grid-area: 3 / 1 / 3 / 2;
-      width: 50%;
-      margin: auto;
-    }
-    .pseudo-grid {
+
+    .grid-p-users {
       grid-area: 1 / 2 / 2 / 3;
-      color: $red;
       margin: auto;
     }
-    .name-grid {
-      grid-area: 2 / 2 / 2 / 3;
-    }
-    .capture-grid {
-      grid-area: 4 / 2 / 3 / 3;
 
-      .capture-grid-red {
-        color: $red;
-      }
-    }
-    .ranking-grid {
-      grid-area: 2 / 3 / 3 / 3;
-      .ranking-grid-red {
-        color: $red;
-      }
-    }
-    .points-grid {
-      grid-area: 4 / 3 / 3 / 3;
-      .points-grid-red {
-        color: $red;
+    .flex-div-users-next {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+
+      .grid-btn-users-next {
+        grid-area: 1 / 3 / 2 / 4;
+        width: 30%;
       }
     }
   }
-}
 
-.uti-btn {
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
-  gap: 8%;
-}
+  .download-art-img {
+    width: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding: 0.5rem;
+    transform: rotate(180deg);
+    background-color: $extra-light-yellow;
+    border-radius: 30%;
+  }
 
-.download-art-img {
-  width: 5%;
-  margin-top: 2%;
-  margin-bottom: 1%;
-  padding: 0.5rem;
-  transform: rotate(180deg);
-  background-color: $extra-light-yellow;
-  border-radius: 30%;
-}
+  .add-art-form-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 
-.add-art-form-grid {
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin: auto;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+      input {
+        font-style: oblique;
+        padding: 6px 100px;
+        border-radius: 2px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        background-color: $extra-light-yellow;
+        border-color: $extra-light-yellow;
+        border-radius: 0.3rem;
+        color: $deep-purple;
+      }
+    }
+
+    .name-art-grid {
+      grid-area: 1 / 1 / 2 / 2;
+      .name-red-span {
+        color: $red;
+      }
+    }
+
+    .about-art-grid {
+      grid-area: 1 / 2 / 3 / 3;
+
+      .about-art-pad {
+        padding: 0px 10px 0px 10px;
+        font-size: calc(2.5rem - 1.2vw);
+        width: 130%;
+        height: 150px;
+      }
+    }
+  }
+
+  .add-art-button {
+    background-color: $light-red;
+    border: $light-cyan;
+    border-radius: 0.3rem;
+    padding: 10px 60px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: $deep-purple;
+  }
+
+  .admin-mobile-h2 {
+    width: 80%;
+    height: 10vh;
     margin: auto;
-
-    input {
-      font-style: oblique;
-      padding: 6px 100px;
-      border-radius: 2px;
-      margin-top: 5px;
-      margin-bottom: 20px;
-      background-color: $extra-light-yellow;
-      border-color: $extra-light-yellow;
-      border-radius: 0.3rem;
-      color: $deep-purple;
-    }
+    margin-top: 30%;
+    color: $red;
   }
-
-  .name-art-grid {
-    grid-area: 1 / 1 / 2 / 2;
-    .name-red-span {
-      color: $red;
-    }
-  }
-
-  .about-art-grid {
-    grid-area: 1 / 2 / 3 / 3;
-
-    .about-art-pad {
-      padding: 0px 10px 0px 10px;
-      font-size: calc(2.5rem - 1.2vw);
-      width: 130%;
-      height: 150px;
-    }
-  }
-}
-
-.add-art-button {
-  background-color: $light-red;
-  border: $light-cyan;
-  border-radius: 0.3rem;
-  padding: 10px 60px;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  color: $deep-purple;
-}
-
-.admin-mobile-h2 {
-  width: 80%;
-  height: 10vh;
-  margin: auto;
-  margin-top: 30%;
 }

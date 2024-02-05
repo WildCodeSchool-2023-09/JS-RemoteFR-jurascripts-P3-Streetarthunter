@@ -1,0 +1,102 @@
+@import "../styles/commons.scss";
+
+.sa-flex-newart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 5%;
+  width: 100%;
+
+  .sa-element-left {
+    width: 50%;
+
+    .img-grid {
+      object-fit: cover;
+      width: 50%;
+      margin-bottom: 2%;
+      border-radius: 0.5rem;
+    }
+
+    .posted-grid {
+      border: 1.5px solid $light-yellow;
+      border-radius: 0.3rem;
+      padding: 0.5rem;
+      width: 50%;
+      margin: auto;
+
+      .posted-grid-red {
+        color: $red;
+      }
+    }
+  }
+
+  .sa-element-right {
+    width: 50%;
+
+    .sa-btn-div {
+      margin-left: -6.5%;
+      margin-top: 10%;
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: end;
+
+      .validate-grid {
+        background-color: $light-cyan;
+        border: 0px;
+        border-radius: 0.5rem;
+        color: $deep-purple;
+        width: 20%;
+        height: 30px;
+        margin: auto;
+      }
+
+      .modif-grid {
+        background-color: $light-cyan;
+        border: 0px;
+        border-radius: 0.5rem;
+        color: $deep-purple;
+        width: 20%;
+        height: 30px;
+        margin: auto;
+      }
+
+      .refuse-grid {
+        background-color: $light-red;
+        border: 0px;
+        border-radius: 0.5rem;
+        color: $deep-purple;
+        width: 20%;
+        height: 30px;
+        margin-left: 20.5%;
+        margin: auto;
+      }
+    }
+
+    .grid-namework-h3 {
+      text-align: start;
+    }
+    .grid-titleart-p {
+      text-align: start;
+    }
+    .grid-artist-h3 {
+      text-align: start;
+    }
+    .grid-nameart-p {
+      text-align: start;
+    }
+    .grid-desc-h3 {
+      text-align: start;
+    }
+    .grid-descart-p {
+      text-align: start;
+    }
+    .grid-aboutart-h3 {
+      text-align: start;
+    }
+    .grid-bioart-p {
+      text-align: start;
+    }
+  }
+}

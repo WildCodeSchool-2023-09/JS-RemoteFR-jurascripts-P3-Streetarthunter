@@ -17,13 +17,13 @@ import mapY from "../../assets/picto/yellow/map_yell_full.png";
 import profile from "../../assets/picto/yellow/profile_yell_full.png";
 import deconnect from "../../assets/picto/yellow/connexion_yell_full.png";
 
-function NavBarM({ isPlayerMode, isAdminMode }) {
+function NavBarM({ isPlayerMode, isAdminMode, handleProfileLink }) {
   const { userMode, user } = useContext(AuthContext);
   const [activePage, setActivePage] = useState("accueil");
   const handleChangePage = (page) => {
     setActivePage(page);
   };
-  console.info(user);
+
   return (
     <nav className="navbar-mobile">
       <Link
@@ -63,7 +63,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
         />
       </Link>
       <Link
-        to={user.is_administrator === 3 ? "/connexion" : "/user/profil"}
+        to={handleProfileLink()}
         onClick={() => {
           handleChangePage("profil");
         }}
@@ -93,6 +93,7 @@ function NavBarM({ isPlayerMode, isAdminMode }) {
 NavBarM.propTypes = {
   isPlayerMode: PropTypes.bool.isRequired,
   isAdminMode: PropTypes.bool.isRequired,
+  handleProfileLink: PropTypes.func.isRequired,
 };
 
 export default NavBarM;

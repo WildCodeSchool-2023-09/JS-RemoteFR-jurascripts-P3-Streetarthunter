@@ -39,12 +39,6 @@ $light-red: #ff8bb5;
 h1 {
   @extend %h1;
   color: $yellow;
-  &.player-mode {
-    color: $cyan;
-  }
-  &.admin-mode {
-    color: $red;
-  }
 }
 %h2 {
   font-size: calc(2rem - 0.8vw);
@@ -70,7 +64,6 @@ h2 {
 }
 h3 {
   @extend %h3;
-  color: $yellow;
 }
 %p {
   font-size: calc(1rem - 0.6vw);
@@ -106,21 +99,8 @@ p {
   &:hover {
     background-color: $yellow;
   }
-  &.player-mode {
-    background-color: $light-cyan;
-    border-color: $cyan;
-    &:hover {
-      background-color: $cyan;
-    }
-  }
-  &.admin-mode {
-    background-color: $light-red;
-    border-color: $red;
-    &:hover {
-      background-color: $red;
-    }
-  }
 }
+
 .button-red {
   @extend %buttons;
   background-color: $light-red;
@@ -176,6 +156,7 @@ body {
   background-color: $deep-purple;
   color: $extra-light-yellow;
   width: 100%;
+  overflow-x: hidden;
   @include flex-center;
 }
 

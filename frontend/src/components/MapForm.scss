@@ -1,0 +1,128 @@
+@import "../styles/commons.scss";
+
+.form-container {
+  margin-bottom: 15vh;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .artist-list {
+      margin: 0vh 15% 5vh 15%;
+      font-size: large;
+    }
+    h3 {
+      margin: 4vh 8vw;
+      color: $extra-light-yellow;
+    }
+    .artwork-select {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .artworks-img {
+      width: 80%;
+      object-fit: cover;
+      margin: 2vh 10vw;
+      border-radius: 10px;
+    }
+  }
+}
+.register-button {
+  margin: 5vh 0vw;
+}
+.dropZone {
+  width: 95%;
+  margin-bottom: 2rem;
+  .confirmation-popup {
+    margin-top: 0.3rem;
+  }
+}
+
+.parent-div {
+  .align-div {
+    input {
+      font-style: oblique;
+      padding: 0.5rem 5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 20px;
+      background-color: $extra-light-yellow;
+      border-color: $extra-light-yellow;
+      border-radius: 5px;
+      color: $deep-purple;
+      text-align: center;
+    }
+
+    .desc-inp {
+      padding: 2rem 5rem;
+    }
+
+    .about-inp {
+      padding: 1rem 5rem;
+    }
+    p {
+      .red-span {
+        color: $light-red;
+      }
+    }
+  }
+}
+.sub-button {
+  background-color: $light-cyan;
+  border: $light-cyan;
+  border-radius: 0.3rem;
+  padding: 10px 60px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  color: $deep-purple;
+}
+
+@media screen and (min-width: 650px) {
+  .dropZone {
+    width: 45%;
+    margin-bottom: 3rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .parent-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .align-div {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+      input {
+        font-style: oblique;
+        padding: 0.6rem 7rem;
+        margin-top: 0.5rem;
+        text-align: start;
+      }
+
+      .desc-inp {
+        padding: 3.7rem 7rem;
+      }
+
+      .about-inp {
+        padding: 3rem 7rem;
+      }
+      p {
+        .cyan-span {
+          color: $light-cyan;
+        }
+      }
+    }
+  }
+  .sub-button {
+    margin-top: 4rem;
+  }
+}
