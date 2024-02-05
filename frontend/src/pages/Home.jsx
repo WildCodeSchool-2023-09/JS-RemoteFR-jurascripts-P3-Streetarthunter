@@ -30,13 +30,8 @@ function Home() {
                 décennies.
               </p>
               <Link to="/galerie" className="link">
-                <button
-                  type="button"
-                  className={
-                    user.is_administrator === 3 ? "button-yellow" : userMode()
-                  }
-                >
-                  Découvrir des artistes...
+                <button type="button" className={userMode()}>
+                  Découvrir la galerie...
                 </button>
               </Link>
             </div>
@@ -50,14 +45,10 @@ function Home() {
         </div>
       </section>
       <section>
-        <h2 className={user.is_administrator === 3 ? "" : userMode()}>
-          Comment jouer à notre jeu ?
-        </h2>
+        <h2 className={userMode()}>Comment jouer à notre jeu ?</h2>
         <div className="instructions">
           <div className="instruc">
-            <h3 className={user.is_administrator === 3 ? "" : userMode()}>
-              Suivez le guide !
-            </h3>
+            <h3 className={userMode()}>Suivez le guide !</h3>
             <p>
               Parcourez votre ville, trouvez les oeuvres que d'autres joueurs
               ont déjà repérées, capturez-les et gagnez des points !
@@ -70,20 +61,13 @@ function Home() {
               Progressez, obtenez des badges et devenez vous-même contributeur !
             </p>
             <Link to="/inscription" className="link">
-              <button
-                type="button"
-                className={
-                  user.is_administrator === 3 ? "button-yellow" : userMode()
-                }
-              >
+              <button type="button" className={userMode()}>
                 S'inscrire
               </button>
             </Link>
           </div>
           <div className="ranking">
-            <h3 className={user.is_administrator === 3 ? "" : userMode()}>
-              Classement
-            </h3>
+            <h3 className={userMode()}>Classement</h3>
             <div className="grid-ranking">
               <p className="rank-one">1. Jean</p>
               <p className="rank-two">2. Paul </p>

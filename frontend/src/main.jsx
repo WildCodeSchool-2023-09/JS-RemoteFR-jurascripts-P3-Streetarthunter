@@ -12,7 +12,7 @@ import Login from "./components/Login";
 import Admin from "./pages/Admin";
 import Profile from "./pages/Profile";
 import Layout from "./components/Layouts/Layout";
-import UserLayout from "./components/Layouts/UserLayout";
+
 import Logout from "./components/Logout";
 // import AdminLayout from "./components/Layouts/AdminLayout";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -52,22 +52,16 @@ const router = createBrowserRouter([
         element: <Gallery />,
       },
       {
-        path: "user",
-        element: <UserLayout />,
-        children: [
-          {
-            path: "/user/profil",
-            element: <Profile />,
-          },
-          {
-            path: "/user/admin",
-            element: <Admin />,
-          },
-          {
-            path: "/user/logout",
-            element: <Logout />,
-          },
-        ],
+        path: "/user/profil",
+        element: <Profile />,
+      },
+      {
+        path: "/user/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/user/logout",
+        element: <Logout />,
       },
     ],
   },

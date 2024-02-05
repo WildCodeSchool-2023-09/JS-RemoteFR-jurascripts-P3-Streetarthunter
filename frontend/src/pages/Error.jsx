@@ -8,9 +8,7 @@ function Error() {
       <img src={logo} alt="logo" />
       <h2>Désolé, il n'y a rien ici !</h2>
       <Link to="/">
-        <button type="button" className="button-yellow">
-          Retour à l'accueil
-        </button>
+        <button type="button">Retour à l'accueil</button>
       </Link>
     </section>
   );

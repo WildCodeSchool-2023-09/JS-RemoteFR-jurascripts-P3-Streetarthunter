@@ -7,7 +7,7 @@ function CaptureAdmin() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artworks`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
         params: {
           general_gallery: true,
         },
@@ -23,19 +23,28 @@ function CaptureAdmin() {
       });
   }, []);
 
+  const getCaptureURL = (artwork) => {
+    const capturePath = artwork.capture.replace("public/", "");
+    return `${import.meta.env.VITE_BACKEND_URL}/${capturePath}`;
+  };
+
   return (
     <>
       {artCapture.map((artwork) => (
-        <div className="sa-grid-captures">
-          <img alt="Street Art" className="img-grid" src={artwork.picture} />
+        <div className="sa-grid-captures" key={artwork.id}>
+          <img
+            alt="Street Art"
+            className="img-grid"
+            src={getCaptureURL(artwork)}
+          />
           <p className="posted-grid">
             Posté par{" "}
             <span className="posted-grid-red">{artwork.user_pseudo}</span>
           </p>
-          <button type="button" className="button-cyan">
+          <button type="button" className="player-mode">
             Valider
           </button>
-          <button type="button" className="button-red">
+          <button type="button" className="admin-mode">
             Refuser
           </button>
           <img

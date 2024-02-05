@@ -102,11 +102,11 @@ function Login() {
             />
           </form>
         </main>
-        <footer className="footer-modal">
-          <button className="button-yellow" type="button" onClick={handleLogin}>
+        <div className="footer-modal">
+          <button type="button" onClick={handleLogin}>
             Se connecter
           </button>
-        </footer>
+        </div>
       </section>
     </section>
   );
