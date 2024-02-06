@@ -1,0 +1,61 @@
+@import "../styles/commons.scss";
+
+.ValidateCapturePoints {
+  position: fixed;
+  top: 25%;
+  left: 30.5%;
+  margin: auto;
+  z-index: 15;
+  width: 40%;
+  height: 62vh;
+  background-color: $deep-purple;
+  border: 1px solid $red;
+  border-radius: 3%;
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+
+    button {
+      margin-top: 4%;
+      margin-right: 4%;
+      width: 6%;
+      height: 0;
+      border: none;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  h2 {
+    color: $red;
+  }
+
+  ul {
+    margin-top: 10%;
+
+    li {
+      display: flex;
+      justify-content: start;
+      margin-top: 3%;
+      margin-left: 5%;
+      list-style-type: none;
+
+      input {
+        margin-right: 7%;
+        width: 4%;
+      }
+
+      p {
+      }
+    }
+  }
+
+  button {
+    margin-top: 10%;
+  }
+}
