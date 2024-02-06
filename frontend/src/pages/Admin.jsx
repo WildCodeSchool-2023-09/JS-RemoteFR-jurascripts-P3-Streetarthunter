@@ -305,7 +305,11 @@ function admin() {
             {activeComponent === "reported" && (
               <ReportedArtAdmin setToggleModalCapture={setToggleModalCapture} />
             )}
-            {toggleModalCapture === true && <ValidateCaptureAdmin />}
+            {toggleModalCapture === true && (
+              <ValidateCaptureAdmin
+                setToggleModalCapture={setToggleModalCapture}
+              />
+            )}
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
