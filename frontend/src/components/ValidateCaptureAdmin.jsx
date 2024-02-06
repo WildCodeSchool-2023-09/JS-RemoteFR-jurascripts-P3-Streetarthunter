@@ -1,17 +1,20 @@
 import PropTypes from "prop-types";
+import "./ValidateCaptureAdmin.scss";
 import CrossButton from "../assets/picto/yellow/cross_yell.svg";
 
 function ValidateCaptureAdmin({ setToggleModalCapture }) {
   return (
-    <section>
-      <button
-        type="button"
-        onClick={() => {
-          setToggleModalCapture(false);
-        }}
-      >
-        <img src={CrossButton} alt="Fermeture du filtre" />
-      </button>
+    <section className="ValidateCapturePoints">
+      <div>
+        <button
+          type="button"
+          onClick={() => {
+            setToggleModalCapture(false);
+          }}
+        >
+          <img src={CrossButton} alt="Fermeture du filtre" />
+        </button>
+      </div>
       <h2>Valider</h2>
       <ul>
         <li>
@@ -31,7 +34,9 @@ function ValidateCaptureAdmin({ setToggleModalCapture }) {
           <p>Ajouter cette oeuvre à la galerie générale</p>
         </li>
       </ul>
-      <button type="button">Valider l'oeuvre</button>
+      <button type="button" className="button-red">
+        Valider l'oeuvre
+      </button>
     </section>
   );
 }
