@@ -14,6 +14,7 @@ import CaptureAdmin from "../components/CaptureAdmin";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
 import ReportedArtAdmin from "../components/ReportedArtAdmin";
+import ValidateCaptureAdmin from "../components/ValidateCaptureAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -27,6 +28,7 @@ function admin() {
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [toggleModalCapture, setToggleModalCapture] = useState(false);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -294,9 +296,16 @@ function admin() {
               activeComponent={activeComponent}
               handleActive={handleActive}
             />
-            {activeComponent === "captures" && <CaptureAdmin />}
-            {activeComponent === "newWork" && <NewArtAdmin />}
-            {activeComponent === "reported" && <ReportedArtAdmin />}
+            {activeComponent === "captures" && (
+              <CaptureAdmin setToggleModalCapture={setToggleModalCapture} />
+            )}
+            {activeComponent === "newWork" && (
+              <NewArtAdmin setToggleModalCapture={setToggleModalCapture} />
+            )}
+            {activeComponent === "reported" && (
+              <ReportedArtAdmin setToggleModalCapture={setToggleModalCapture} />
+            )}
+            {toggleModalCapture === true && <ValidateCaptureAdmin />}
           </section>
           <section ref={artistsRef}>
             <h2 className="admin-h2" id="artists">
