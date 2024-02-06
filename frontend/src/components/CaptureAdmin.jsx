@@ -50,7 +50,7 @@ function CaptureAdmin() {
           <img
             alt="Street Art"
             className="original-img-grid"
-            src={artwork.picture}
+            src={artwork.artwork_url}
           />
           <p className="original-work-grid">Oeuvre Originale</p>
         </div>
