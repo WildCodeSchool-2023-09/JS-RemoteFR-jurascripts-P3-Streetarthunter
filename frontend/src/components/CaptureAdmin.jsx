@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import "./CaptureAdmin.scss";
 
-function CaptureAdmin() {
+function CaptureAdmin({ setToggleModalCapture, userId }) {
   const [artCapture, setArtCapture] = useState([]);
 
   useEffect(() => {
@@ -41,7 +42,14 @@ function CaptureAdmin() {
             Posté par{" "}
             <span className="posted-grid-red">{artwork.user_pseudo}</span>
           </p>
-          <button type="button" className="player-mode">
+          <button
+            type="button"
+            className="player-mode"
+            onClick={() => {
+              setToggleModalCapture(true);
+              userId(artwork.user_id);
+            }}
+          >
             Valider
           </button>
           <button type="button" className="admin-mode">
@@ -58,5 +66,10 @@ function CaptureAdmin() {
     </>
   );
 }
+
+CaptureAdmin.propTypes = {
+  setToggleModalCapture: PropTypes.func.isRequired,
+  userId: PropTypes.func.isRequired,
+};
 
 export default CaptureAdmin;
