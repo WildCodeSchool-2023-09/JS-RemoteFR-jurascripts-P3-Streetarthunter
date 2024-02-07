@@ -79,6 +79,21 @@
 }
 
 @media screen and (min-width: 650px) {
+  .form-container .content .artist-list {
+    margin: auto;
+    width: 40vw;
+  }
+  .form-container .content .artworks-img {
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
+    max-width: 60vw;
+  }
+  .checkbox-img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 1rem;
+  }
   .dropZone {
     width: 45%;
     margin-bottom: 3rem;
