@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
@@ -9,10 +9,10 @@ function Profile() {
 
   useEffect(() => {
     handleAuth();
-  }, []);
+  }, [handleAuth]);
 
   const handleReturn = () => {
-    switch (user.is_administrator0) {
+    switch (user.is_administrator) {
       case 0: {
         return (
           <div className="profile-container">
@@ -52,6 +52,7 @@ function Profile() {
         );
     }
   };
+
   return <div>{handleReturn()}</div>;
 }
 
