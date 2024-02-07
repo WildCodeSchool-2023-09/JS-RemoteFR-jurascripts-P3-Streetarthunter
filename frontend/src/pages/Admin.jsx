@@ -18,6 +18,7 @@ import CaptureAdmin from "../components/CaptureAdmin";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
 import ReportedArtAdmin from "../components/ReportedArtAdmin";
+import ValidateCaptureAdmin from "../components/ValidateCaptureAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -31,6 +32,13 @@ function admin() {
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [toggleModalCapture, setToggleModalCapture] = useState(false);
+  const [points, setPoints] = useState(0);
+  const [isNewArtwork, setIsNewArtwork] = useState(false);
+  const [isHardToFind, setIsHardToFind] = useState(false);
+  const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
+  const [pointsUserId, setPointsUserId] = useState([]);
+
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -179,6 +187,49 @@ function admin() {
     };
   }, [initialOffset]);
 
+  const handleNewArtworkCheck = () => {
+    setIsNewArtwork(!isNewArtwork);
+    setPoints((prevPoints) =>
+      isNewArtwork ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleHardToFindCheck = () => {
+    setIsHardToFind(!isHardToFind);
+    setPoints((prevPoints) =>
+      isHardToFind ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleAllFieldsFilledCheck = () => {
+    setIsAllFieldsFilled(!isAllFieldsFilled);
+    setPoints((prevPoints) =>
+      isAllFieldsFilled ? prevPoints - 20 : prevPoints + 20
+    );
+  };
+
+  const userId = (id) => {
+    setPointsUserId(id);
+  };
+
+  const handleValidateButtonClick = () => {
+    setPoints((prevPoints) => prevPoints + 100);
+    const totalPoints =
+      points + players.find((player) => player.id === pointsUserId).points;
+
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/${pointsUserId}`, {
+        points: totalPoints,
+      })
+      .then((response) => {
+        setToggleModalCapture(false);
+        console.info("Points ajoutés avec succès !", response);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'envoi des points:", error);
+      });
+  };
+
   const handleReturn = () => {
     switch (user.is_administrator) {
       case 1: {
@@ -311,9 +362,27 @@ function admin() {
                     activeComponent={activeComponent}
                     handleActive={handleActive}
                   />
-                  {activeComponent === "captures" && <CaptureAdmin />}
+                  {activeComponent === "captures" && (
+                    <CaptureAdmin
+                      setToggleModalCapture={setToggleModalCapture}
+                      userId={userId}
+                    />
+                  )}
                   {activeComponent === "newWork" && <NewArtAdmin />}
                   {activeComponent === "reported" && <ReportedArtAdmin />}
+                  {toggleModalCapture === true && (
+                    <ValidateCaptureAdmin
+                      setToggleModalCapture={setToggleModalCapture}
+                      handleNewArtworkCheck={handleNewArtworkCheck}
+                      handleHardToFindCheck={handleHardToFindCheck}
+                      handleAllFieldsFilledCheck={handleAllFieldsFilledCheck}
+                      handleValidateButtonClick={handleValidateButtonClick}
+                      isNewArtwork={isNewArtwork}
+                      isHardToFind={isHardToFind}
+                      isAllFieldsFilled={isAllFieldsFilled}
+                      pointsUserId={pointsUserId}
+                    />
+                  )}
                 </section>
                 <section ref={artistsRef}>
                   <h2 className="admin-h2" id="artists">
