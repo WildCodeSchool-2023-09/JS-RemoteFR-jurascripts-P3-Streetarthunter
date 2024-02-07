@@ -43,13 +43,14 @@
     flex-direction: column;
     justify-content: center;
 
-    button {
+    .filter-button {
       background-color: $light-red;
       border-color: $red;
       border: 3px solid $red;
       border-left: none;
       border-right: none;
       padding: 3%;
+      margin-bottom: 0;
       cursor: pointer;
 
       &:hover {
