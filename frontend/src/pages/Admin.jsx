@@ -29,6 +29,11 @@ function admin() {
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
   const [toggleModalCapture, setToggleModalCapture] = useState(false);
+  const [points, setPoints] = useState(0);
+  const [isNewArtwork, setIsNewArtwork] = useState(false);
+  const [isHardToFind, setIsHardToFind] = useState(false);
+  const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
+  const [pointsUserId, setPointsUserId] = useState([]);
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
@@ -171,6 +176,49 @@ function admin() {
     };
   }, [initialOffset]);
 
+  const handleNewArtworkCheck = () => {
+    setIsNewArtwork(!isNewArtwork);
+    setPoints((prevPoints) =>
+      isNewArtwork ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleHardToFindCheck = () => {
+    setIsHardToFind(!isHardToFind);
+    setPoints((prevPoints) =>
+      isHardToFind ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleAllFieldsFilledCheck = () => {
+    setIsAllFieldsFilled(!isAllFieldsFilled);
+    setPoints((prevPoints) =>
+      isAllFieldsFilled ? prevPoints - 20 : prevPoints + 20
+    );
+  };
+
+  const userId = (id) => {
+    setPointsUserId(id);
+  };
+
+  const handleValidateButtonClick = () => {
+    setPoints((prevPoints) => prevPoints + 100);
+    const totalPoints =
+      points + users.find((user) => user.id === pointsUserId).points;
+
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/${pointsUserId}`, {
+        points: totalPoints,
+      })
+      .then((response) => {
+        setToggleModalCapture(false);
+        console.info("Points ajoutés avec succès !", response);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'envoie des points:", error);
+      });
+  };
+
   return (
     <section className="admin-page">
       {isMobile ? (
@@ -297,7 +345,10 @@ function admin() {
               handleActive={handleActive}
             />
             {activeComponent === "captures" && (
-              <CaptureAdmin setToggleModalCapture={setToggleModalCapture} />
+              <CaptureAdmin
+                setToggleModalCapture={setToggleModalCapture}
+                userId={userId}
+              />
             )}
             {activeComponent === "newWork" && (
               <NewArtAdmin setToggleModalCapture={setToggleModalCapture} />
@@ -308,6 +359,14 @@ function admin() {
             {toggleModalCapture === true && (
               <ValidateCaptureAdmin
                 setToggleModalCapture={setToggleModalCapture}
+                handleNewArtworkCheck={handleNewArtworkCheck}
+                handleHardToFindCheck={handleHardToFindCheck}
+                handleAllFieldsFilledCheck={handleAllFieldsFilledCheck}
+                handleValidateButtonClick={handleValidateButtonClick}
+                isNewArtwork={isNewArtwork}
+                isHardToFind={isHardToFind}
+                isAllFieldsFilled={isAllFieldsFilled}
+                pointsUserId={pointsUserId}
               />
             )}
           </section>

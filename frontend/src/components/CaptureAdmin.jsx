@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import "./CaptureAdmin.scss";
 
-function CaptureAdmin({ setToggleModalCapture }) {
+function CaptureAdmin({ setToggleModalCapture, userId }) {
   const [artCapture, setArtCapture] = useState([]);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ function CaptureAdmin({ setToggleModalCapture }) {
             className="button-cyan"
             onClick={() => {
               setToggleModalCapture(true);
+              userId(artwork.user_id);
             }}
           >
             Valider
@@ -59,6 +60,7 @@ function CaptureAdmin({ setToggleModalCapture }) {
 
 CaptureAdmin.propTypes = {
   setToggleModalCapture: PropTypes.func.isRequired,
+  userId: PropTypes.func.isRequired,
 };
 
 export default CaptureAdmin;
