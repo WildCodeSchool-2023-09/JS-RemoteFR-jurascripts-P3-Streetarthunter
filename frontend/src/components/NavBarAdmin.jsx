@@ -52,7 +52,7 @@ function NavBarAdmin({ activeSection }) {
               href="#streetArt"
               className={activeSection === "streetArt" ? "active" : ""}
             >
-              Street Art Hunter
+              Street Art
             </a>
           </h3>
         </li>
