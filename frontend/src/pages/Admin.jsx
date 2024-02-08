@@ -276,16 +276,23 @@ function admin() {
                     <h2 className="border-none-h2">Notifications</h2>
                     <img alt="ampoule" src={light} />
                   </div>
-                  <div className="notif-parent-div">
-                    <div className="notif-grid-div notif-child-div-yellow">
-                      <p>
-                        {notifCaptureCount} Street Art en attente de validation
-                      </p>
-                      <img alt="Sablier" src={Hourglass} />
+                  <div className="notif-prev-parent-div">
+                    <div className="notif-parent-div">
+                      {notifCaptureCount > 0 && (
+                        <div className="notif-grid-div notif-child-div-yellow">
+                          <p>
+                            {notifCaptureCount} Street Art en attente de
+                            validation
+                          </p>
+                          <img alt="Sablier" src={Hourglass} />
+                        </div>
+                      )}
                     </div>
-                    <div className="notif-grid-div notif-child-div-cyan">
-                      <p>3 Street Art sont portés disparus</p>
-                      <img alt="Carte" src={MapAndFlag} />
+                    <div className="notif-parent-div">
+                      <div className="notif-grid-div notif-child-div-cyan">
+                        <p>3 Street Art sont portés disparus</p>
+                        <img alt="Carte" src={MapAndFlag} />
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -398,12 +405,20 @@ function admin() {
                     handleActive={handleActive}
                   />
                   {activeComponent === "captures" && (
-                    <CaptureAdmin
-                      artCapture={artCapture}
-                      setToggleModalCapture={setToggleModalCapture}
-                      userId={userId}
-                      captureId={captureId}
-                    />
+                    <div>
+                      {artCapture.length === 0 ? (
+                        <p className="street-art-p">
+                          Aucune capture à valider.
+                        </p>
+                      ) : (
+                        <CaptureAdmin
+                          artCapture={artCapture}
+                          setToggleModalCapture={setToggleModalCapture}
+                          userId={userId}
+                          captureId={captureId}
+                        />
+                      )}
+                    </div>
                   )}
                   {activeComponent === "newWork" && <NewArtAdmin />}
                   {activeComponent === "reported" && <ReportedArtAdmin />}
