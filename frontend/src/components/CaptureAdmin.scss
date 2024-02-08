@@ -50,9 +50,11 @@
 
   .original-img-grid {
     grid-area: 1 / 3 / 2 / 4;
-    width: 50%;
+    width: 40%;
+    height: 29vh;
+    object-fit: cover;
     margin: auto;
-    margin-left: 0;
+    margin-left: 2%;
     margin-bottom: 0;
     border-radius: 0.5rem;
   }
