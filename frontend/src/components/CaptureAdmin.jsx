@@ -14,24 +14,24 @@ function CaptureAdmin({
 
   return (
     <>
-      {artCapture.map((artwork) => (
-        <div className="sa-grid-captures" key={artwork.id}>
+      {artCapture.map((capture) => (
+        <div className="sa-grid-captures" key={capture.id}>
           <img
             alt="Street Art"
             className="img-grid"
-            src={getCaptureURL(artwork)}
+            src={getCaptureURL(capture)}
           />
           <p className="posted-grid">
             Posté par{" "}
-            <span className="posted-grid-red">{artwork.user_pseudo}</span>
+            <span className="posted-grid-red">{capture.user_pseudo}</span>
           </p>
           <button
             type="button"
             className="player-mode"
             onClick={() => {
               setToggleModalCapture(true);
-              userId(artwork.user_id);
-              captureId(artwork.id);
+              userId(capture.user_id);
+              captureId(capture.id);
             }}
           >
             Valider
@@ -42,7 +42,7 @@ function CaptureAdmin({
           <img
             alt="Street Art"
             className="original-img-grid"
-            src={artwork.artwork_url}
+            src={capture.artwork_url}
           />
           <p className="original-work-grid">Oeuvre Originale</p>
         </div>
