@@ -25,7 +25,7 @@ class CaptureManager extends AbstractManager {
 
   async readAll() {
     const [rows] = await this.database.query(`
-    SELECT c.id, c.user_id, c.artwork_id, c.capture, a.picture AS artwork_url
+    SELECT c.id, c.user_id, c.artwork_id, c.capture, a.picture AS artwork_url, a.reported
     FROM ${this.table} c
     LEFT JOIN artworks a ON c.artwork_id = a.id
   `);

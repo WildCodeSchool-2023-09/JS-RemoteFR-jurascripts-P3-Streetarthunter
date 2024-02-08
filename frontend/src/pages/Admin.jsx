@@ -31,12 +31,14 @@ function admin() {
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [artCapture, setArtCapture] = useState([]);
   const [toggleModalCapture, setToggleModalCapture] = useState(false);
   const [points, setPoints] = useState(0);
   const [isNewArtwork, setIsNewArtwork] = useState(false);
   const [isHardToFind, setIsHardToFind] = useState(false);
   const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
   const [pointsUserId, setPointsUserId] = useState([]);
+  const [notifCaptureCount, setNotifCaptureCount] = useState(0);
 
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
@@ -180,6 +182,25 @@ function admin() {
     };
   }, [initialOffset]);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
+        params: {
+          general_gallery: true,
+        },
+      })
+      .then((response) => {
+        const filteredCaptures = response.data.filter(
+          (capture) => capture.artwork?.reported !== true
+        );
+        setArtCapture(filteredCaptures);
+        setNotifCaptureCount(filteredCaptures.length);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des captures:", error);
+      });
+  }, []);
+
   const handleNewArtworkCheck = () => {
     setIsNewArtwork(!isNewArtwork);
     setPoints((prevPoints) =>
@@ -238,7 +259,9 @@ function admin() {
                   </div>
                   <div className="notif-parent-div">
                     <div className="notif-grid-div notif-child-div-yellow">
-                      <p>12 Street Art en attente de validation</p>
+                      <p>
+                        {notifCaptureCount} Street Art en attente de validation
+                      </p>
                       <img alt="Sablier" src={Hourglass} />
                     </div>
                     <div className="notif-grid-div notif-child-div-cyan">
@@ -357,6 +380,7 @@ function admin() {
                   />
                   {activeComponent === "captures" && (
                     <CaptureAdmin
+                      artCapture={artCapture}
                       setToggleModalCapture={setToggleModalCapture}
                       userId={userId}
                     />
