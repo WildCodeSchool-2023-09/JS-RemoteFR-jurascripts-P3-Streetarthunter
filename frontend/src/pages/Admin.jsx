@@ -18,6 +18,7 @@ import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
 import ReportedArtAdmin from "../components/ReportedArtAdmin";
 import ValidateCaptureAdmin from "../components/ValidateCaptureAdmin";
+import RefuseCaptureAdmin from "../components/RefuseCaptureAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -33,6 +34,7 @@ function admin() {
   const [sortOrder, setSortOrder] = useState(null);
   const [artCapture, setArtCapture] = useState([]);
   const [toggleModalCapture, setToggleModalCapture] = useState(false);
+  const [refuseModalCapture, setRefuseModalCapture] = useState(false);
   const [points, setPoints] = useState(0);
   const [isNewArtwork, setIsNewArtwork] = useState(false);
   const [isHardToFind, setIsHardToFind] = useState(false);
@@ -244,6 +246,23 @@ function admin() {
       });
   };
 
+  const handleRefuseButtonClick = () => {
+    axios
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/captures/${deleteCaptureId}`
+      )
+      .then((response) => {
+        setRefuseModalCapture(false);
+        console.info(
+          "Suppression de l'œuvre effectuée avec succès !",
+          response
+        );
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de l'œuvre:", error);
+      });
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
@@ -414,6 +433,7 @@ function admin() {
                         <CaptureAdmin
                           artCapture={artCapture}
                           setToggleModalCapture={setToggleModalCapture}
+                          setRefuseModalCapture={setRefuseModalCapture}
                           userId={userId}
                           captureId={captureId}
                         />
@@ -434,6 +454,13 @@ function admin() {
                       isAllFieldsFilled={isAllFieldsFilled}
                       pointsUserId={pointsUserId}
                       deleteCaptureId={deleteCaptureId}
+                    />
+                  )}
+                  {refuseModalCapture === true && (
+                    <RefuseCaptureAdmin
+                      handleRefuseButtonClick={handleRefuseButtonClick}
+                      deleteCaptureId={deleteCaptureId}
+                      setRefuseModalCapture={setRefuseModalCapture}
                     />
                   )}
                 </section>

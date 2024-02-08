@@ -4,6 +4,7 @@ import "./CaptureAdmin.scss";
 function CaptureAdmin({
   artCapture,
   setToggleModalCapture,
+  setRefuseModalCapture,
   userId,
   captureId,
 }) {
@@ -36,7 +37,14 @@ function CaptureAdmin({
           >
             Valider
           </button>
-          <button type="button" className="admin-mode">
+          <button
+            type="button"
+            className="admin-mode"
+            onClick={() => {
+              setRefuseModalCapture(true);
+              captureId(capture.id);
+            }}
+          >
             Refuser
           </button>
           <img
@@ -62,6 +70,7 @@ CaptureAdmin.propTypes = {
     })
   ).isRequired,
   setToggleModalCapture: PropTypes.func.isRequired,
+  setRefuseModalCapture: PropTypes.func.isRequired,
   userId: PropTypes.func.isRequired,
   captureId: PropTypes.func.isRequired,
 };
