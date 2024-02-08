@@ -52,7 +52,9 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
       <h2>Filtrer</h2>
       <div className="fliter-users-div">
         <button
-          className={`border-none ${sortOrder === "ascPseudo" ? "active" : ""}`}
+          className={`border-none filter-button ${
+            sortOrder === "ascPseudo" ? "active" : ""
+          }`}
           type="button"
           onClick={() => {
             handleSortAscPseudo();
@@ -61,7 +63,7 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Pseudo croissant</p>
         </button>
         <button
-          className={`border-none ${
+          className={`border-none filter-button ${
             sortOrder === "descPseudo" ? "active" : ""
           }`}
           type="button"
@@ -72,7 +74,9 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Pseudo décroissant</p>
         </button>
         <button
-          className={`border-none ${sortOrder === "ascPoints" ? "active" : ""}`}
+          className={`border-none filter-button ${
+            sortOrder === "ascPoints" ? "active" : ""
+          }`}
           type="button"
           onClick={() => {
             handleSortAscPoints();
@@ -81,7 +85,7 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Points croissant</p>
         </button>
         <button
-          className={`border-none ${
+          className={`border-none filter-button ${
             sortOrder === "descPoints" ? "active" : ""
           }`}
           type="button"
@@ -92,7 +96,9 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Points décroissant</p>
         </button>
         <button
-          className={`border-none ${sortOrder === "ascRank" ? "active" : ""}`}
+          className={`border-none filter-button ${
+            sortOrder === "ascRank" ? "active" : ""
+          }`}
           type="button"
           onClick={() => {
             handleSortAscRank();
@@ -101,7 +107,9 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Classements croissant</p>
         </button>
         <button
-          className={`border-none ${sortOrder === "descRank" ? "active" : ""}`}
+          className={`border-none filter-button ${
+            sortOrder === "descRank" ? "active" : ""
+          }`}
           type="button"
           onClick={() => {
             handleSortDescRank();
@@ -110,6 +118,7 @@ function FilterUsersAdmin({ sortOrder, setSortOrder, setToggleUserFilter }) {
           <p>Classements décroissant</p>
         </button>
         <button
+          className="filter-button"
           type="button"
           onClick={() => {
             handleSortNull();

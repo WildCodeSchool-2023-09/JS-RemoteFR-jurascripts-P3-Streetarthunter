@@ -187,14 +187,14 @@ function MapForm() {
                 onChange={(event) => setArtistSelect(event.target.value)}
                 className="artist-list"
               >
-                <option value="" disabled selected hidden>
+                <option value="" disabled defaultValue hidden>
                   Artistes
                 </option>
-                {artists.length > 0 &&
-                  typeof artists[0].name !== "undefined" &&
-                  artists.map(({ name, id }) => (
-                    <option value={name} key={id}>
-                      {name}
+                {Array.from(new Set(artists.map(({ name }) => name)))
+                  .sort((a, b) => a.localeCompare(b))
+                  .map((uniqueName) => (
+                    <option value={uniqueName} key={uniqueName}>
+                      {uniqueName}
                     </option>
                   ))}
               </select>
@@ -212,7 +212,7 @@ function MapForm() {
                         type="checkbox"
                         checked={selectedArtworkId === artwork.id}
                         onChange={() => setSelectedArtworkId(artwork.id)}
-                        className="checkbox"
+                        className="checkbox-img"
                       />
                     </div>
                   ))}

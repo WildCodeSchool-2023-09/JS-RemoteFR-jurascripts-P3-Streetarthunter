@@ -56,7 +56,9 @@ function NavBar({
         </Link>
         <Link
           to={handleProfileLink()}
-          className="img-nav-link"
+          className={`img-nav-link ${
+            activePage === "user/profil" ? "active" : ""
+          }`}
           onClick={() => {
             handleChangePage("user/profil");
           }}
@@ -66,7 +68,12 @@ function NavBar({
         </Link>
         <Link
           to={user.is_administrator === 3 ? "/connexion" : "/user/logout"}
-          className="img-nav-link"
+          className={`img-nav-link ${
+            activePage === "connexionOuDéconnexion" ? "active" : ""
+          }`}
+          onClick={() => {
+            handleChangePage("connexionOuDéconnexion");
+          }}
         >
           <img src={login} alt="" />
           <p>{user.is_administrator === 3 ? "Connexion" : "Déconnexion"}</p>

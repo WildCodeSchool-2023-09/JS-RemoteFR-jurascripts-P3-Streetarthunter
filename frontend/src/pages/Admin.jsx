@@ -13,11 +13,11 @@ import Avatar from "../assets/panel-admin/avatar-svgrepo-com.svg";
 import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg";
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
-import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import CaptureAdmin from "../components/CaptureAdmin";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
 import ReportedArtAdmin from "../components/ReportedArtAdmin";
+import ValidateCaptureAdmin from "../components/ValidateCaptureAdmin";
 
 function admin() {
   const isMobile = useMediaQuery("only screen and (min-width: 600px)");
@@ -31,10 +31,19 @@ function admin() {
   const [toggleUserFilter, setToggleUserFilter] = useState(false);
   const [initialOffset, setInitialOffset] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [artCapture, setArtCapture] = useState([]);
+  const [toggleModalCapture, setToggleModalCapture] = useState(false);
+  const [points, setPoints] = useState(0);
+  const [isNewArtwork, setIsNewArtwork] = useState(false);
+  const [isHardToFind, setIsHardToFind] = useState(false);
+  const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
+  const [pointsUserId, setPointsUserId] = useState([]);
+  const [deleteCaptureId, setDeleteCaptureId] = useState([]);
+  const [notifCaptureCount, setNotifCaptureCount] = useState(0);
+
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
-  const artistsRef = useRef(null);
 
   const { user, handleAuth, userMode } = useContext(AuthContext);
 
@@ -56,13 +65,8 @@ function admin() {
         offset < streetArtRef.current.offsetTop
       ) {
         setActiveSection("users");
-      } else if (
-        offset >= streetArtRef.current.offsetTop &&
-        offset < artistsRef.current.offsetTop
-      ) {
+      } else if (offset >= streetArtRef.current.offsetTop) {
         setActiveSection("streetArt");
-      } else if (offset >= artistsRef.current.offsetTop) {
-        setActiveSection("artists");
       }
     };
 
@@ -179,6 +183,86 @@ function admin() {
     };
   }, [initialOffset]);
 
+  const handleNewArtworkCheck = () => {
+    setIsNewArtwork(!isNewArtwork);
+    setPoints((prevPoints) =>
+      isNewArtwork ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleHardToFindCheck = () => {
+    setIsHardToFind(!isHardToFind);
+    setPoints((prevPoints) =>
+      isHardToFind ? prevPoints - 40 : prevPoints + 40
+    );
+  };
+
+  const handleAllFieldsFilledCheck = () => {
+    setIsAllFieldsFilled(!isAllFieldsFilled);
+    setPoints((prevPoints) =>
+      isAllFieldsFilled ? prevPoints - 20 : prevPoints + 20
+    );
+  };
+
+  const userId = (id) => {
+    setPointsUserId(id);
+  };
+
+  const captureId = (id) => {
+    setDeleteCaptureId(id);
+  };
+
+  const handleValidateButtonClick = () => {
+    setPoints((prevPoints) => prevPoints + 100);
+    const totalPoints =
+      points + players.find((player) => player.id === pointsUserId).points;
+
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/${pointsUserId}`, {
+        points: totalPoints,
+      })
+      .then((response) => {
+        setToggleModalCapture(false);
+        console.info("Points ajoutés avec succès !", response);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'envoi des points:", error);
+      });
+
+    axios
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/captures/${deleteCaptureId}`
+      )
+      .then((response) => {
+        console.info(
+          "Suppression de l'œuvre effectuée avec succès !",
+          response
+        );
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de l'œuvre:", error);
+      });
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
+        params: {
+          general_gallery: true,
+        },
+      })
+      .then((response) => {
+        const filteredCaptures = response.data.filter(
+          (capture) => capture.artwork?.reported !== true
+        );
+        setArtCapture(filteredCaptures);
+        setNotifCaptureCount(filteredCaptures.length);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des captures:", error);
+      });
+  }, [handleValidateButtonClick]);
+
   const handleReturn = () => {
     switch (user.is_administrator) {
       case 1: {
@@ -192,14 +276,23 @@ function admin() {
                     <h2 className="border-none-h2">Notifications</h2>
                     <img alt="ampoule" src={light} />
                   </div>
-                  <div className="notif-parent-div">
-                    <div className="notif-grid-div notif-child-div-yellow">
-                      <p>12 Street Art en attente de validation</p>
-                      <img alt="Sablier" src={Hourglass} />
+                  <div className="notif-prev-parent-div">
+                    <div className="notif-parent-div">
+                      {notifCaptureCount > 0 && (
+                        <div className="notif-grid-div notif-child-div-yellow">
+                          <p>
+                            {notifCaptureCount} Street Art en attente de
+                            validation
+                          </p>
+                          <img alt="Sablier" src={Hourglass} />
+                        </div>
+                      )}
                     </div>
-                    <div className="notif-grid-div notif-child-div-cyan">
-                      <p>3 Street Art sont portés disparus</p>
-                      <img alt="Carte" src={MapAndFlag} />
+                    <div className="notif-parent-div">
+                      <div className="notif-grid-div notif-child-div-cyan">
+                        <p>3 Street Art sont portés disparus</p>
+                        <img alt="Carte" src={MapAndFlag} />
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -311,36 +404,38 @@ function admin() {
                     activeComponent={activeComponent}
                     handleActive={handleActive}
                   />
-                  {activeComponent === "captures" && <CaptureAdmin />}
+                  {activeComponent === "captures" && (
+                    <div>
+                      {artCapture.length === 0 ? (
+                        <p className="street-art-p">
+                          Aucune capture à valider.
+                        </p>
+                      ) : (
+                        <CaptureAdmin
+                          artCapture={artCapture}
+                          setToggleModalCapture={setToggleModalCapture}
+                          userId={userId}
+                          captureId={captureId}
+                        />
+                      )}
+                    </div>
+                  )}
                   {activeComponent === "newWork" && <NewArtAdmin />}
                   {activeComponent === "reported" && <ReportedArtAdmin />}
-                </section>
-                <section ref={artistsRef}>
-                  <h2 className="admin-h2" id="artists">
-                    Ajouter un artiste
-                  </h2>
-                  <img
-                    src={download}
-                    alt="download"
-                    className="download-art-img"
-                  />
-                  <p>Télécharger une photo</p>
-                  <form className="add-art-form-grid">
-                    <div className="name-art-grid">
-                      <p>
-                        Nom de l'artiste{" "}
-                        <span className="name-red-span">*</span>
-                      </p>
-                      <input />
-                    </div>
-                    <div className="about-art-grid">
-                      <p>A propos de l'artiste</p>
-                      <input className="about-art-pad" />
-                    </div>
-                  </form>
-                  <button type="button" className={userMode()}>
-                    Ajouter
-                  </button>
+                  {toggleModalCapture === true && (
+                    <ValidateCaptureAdmin
+                      setToggleModalCapture={setToggleModalCapture}
+                      handleNewArtworkCheck={handleNewArtworkCheck}
+                      handleHardToFindCheck={handleHardToFindCheck}
+                      handleAllFieldsFilledCheck={handleAllFieldsFilledCheck}
+                      handleValidateButtonClick={handleValidateButtonClick}
+                      isNewArtwork={isNewArtwork}
+                      isHardToFind={isHardToFind}
+                      isAllFieldsFilled={isAllFieldsFilled}
+                      pointsUserId={pointsUserId}
+                      deleteCaptureId={deleteCaptureId}
+                    />
+                  )}
                 </section>
               </>
             ) : (
