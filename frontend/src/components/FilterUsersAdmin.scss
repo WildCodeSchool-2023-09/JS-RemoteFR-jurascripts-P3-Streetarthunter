@@ -1,5 +1,14 @@
 @import "../styles/commons.scss";
 
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .fliter-users-section {
   position: fixed;
   z-index: 2;
@@ -8,6 +17,8 @@
   background-color: $deep-purple;
   height: 100vh;
   width: 25%;
+  animation: slideIn 0.7s ease-in-out forwards;
+  transform: translateX(-100%);
 
   hr {
     margin-top: 24.4%;
