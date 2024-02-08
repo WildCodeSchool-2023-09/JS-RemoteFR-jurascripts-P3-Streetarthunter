@@ -56,16 +56,6 @@ function NavBarAdmin({ activeSection }) {
             </a>
           </h3>
         </li>
-        <li>
-          <h3>
-            <a
-              href="#artists"
-              className={activeSection === "artists" ? "active" : ""}
-            >
-              Artistes
-            </a>
-          </h3>
-        </li>
       </ul>
     </nav>
   );
