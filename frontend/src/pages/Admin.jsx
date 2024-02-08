@@ -13,7 +13,6 @@ import Avatar from "../assets/panel-admin/avatar-svgrepo-com.svg";
 import Hourglass from "../assets/panel-admin/hourglass-not-done-svgrepo-com.svg";
 import badge from "../assets/panel-admin/badge-award-svgrepo-com.svg";
 import light from "../assets/panel-admin/light-bulb-idea-svgrepo-com.svg";
-import download from "../assets/panel-admin/download-svgrepo-com.svg";
 import CaptureAdmin from "../components/CaptureAdmin";
 import FilterUsersAdmin from "../components/FilterUsersAdmin";
 import NewArtAdmin from "../components/NewArtAdmin";
@@ -42,7 +41,6 @@ function admin() {
   const dashboardRef = useRef(null);
   const usersRef = useRef(null);
   const streetArtRef = useRef(null);
-  const artistsRef = useRef(null);
 
   const { user, handleAuth, userMode } = useContext(AuthContext);
 
@@ -64,13 +62,8 @@ function admin() {
         offset < streetArtRef.current.offsetTop
       ) {
         setActiveSection("users");
-      } else if (
-        offset >= streetArtRef.current.offsetTop &&
-        offset < artistsRef.current.offsetTop
-      ) {
+      } else if (offset >= streetArtRef.current.offsetTop) {
         setActiveSection("streetArt");
-      } else if (offset >= artistsRef.current.offsetTop) {
-        setActiveSection("artists");
       }
     };
 
@@ -383,33 +376,6 @@ function admin() {
                       pointsUserId={pointsUserId}
                     />
                   )}
-                </section>
-                <section ref={artistsRef}>
-                  <h2 className="admin-h2" id="artists">
-                    Ajouter un artiste
-                  </h2>
-                  <img
-                    src={download}
-                    alt="download"
-                    className="download-art-img"
-                  />
-                  <p>Télécharger une photo</p>
-                  <form className="add-art-form-grid">
-                    <div className="name-art-grid">
-                      <p>
-                        Nom de l'artiste{" "}
-                        <span className="name-red-span">*</span>
-                      </p>
-                      <input />
-                    </div>
-                    <div className="about-art-grid">
-                      <p>A propos de l'artiste</p>
-                      <input className="about-art-pad" />
-                    </div>
-                  </form>
-                  <button type="button" className={userMode()}>
-                    Ajouter
-                  </button>
                 </section>
               </>
             ) : (
