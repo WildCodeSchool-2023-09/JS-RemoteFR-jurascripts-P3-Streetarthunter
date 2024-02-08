@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 import "./CaptureAdmin.scss";
 
-function CaptureAdmin({ artCapture, setToggleModalCapture, userId }) {
+function CaptureAdmin({
+  artCapture,
+  setToggleModalCapture,
+  userId,
+  captureId,
+}) {
   const getCaptureURL = (artwork) => {
     const capturePath = artwork.capture.replace("public/", "");
     return `${import.meta.env.VITE_BACKEND_URL}/${capturePath}`;
@@ -26,6 +31,7 @@ function CaptureAdmin({ artCapture, setToggleModalCapture, userId }) {
             onClick={() => {
               setToggleModalCapture(true);
               userId(artwork.user_id);
+              captureId(artwork.id);
             }}
           >
             Valider
@@ -57,6 +63,7 @@ CaptureAdmin.propTypes = {
   ).isRequired,
   setToggleModalCapture: PropTypes.func.isRequired,
   userId: PropTypes.func.isRequired,
+  captureId: PropTypes.func.isRequired,
 };
 
 export default CaptureAdmin;

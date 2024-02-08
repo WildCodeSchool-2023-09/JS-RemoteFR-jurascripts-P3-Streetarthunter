@@ -12,6 +12,7 @@ function ValidateCaptureAdmin({
   isHardToFind,
   isAllFieldsFilled,
   pointsUserId,
+  deleteCaptureId,
 }) {
   return (
     <section className="ValidateCapturePoints">
@@ -60,7 +61,7 @@ function ValidateCaptureAdmin({
         type="button"
         className="button-red"
         onClick={() => {
-          handleValidateButtonClick(pointsUserId);
+          handleValidateButtonClick(pointsUserId, deleteCaptureId);
         }}
       >
         Valider l'oeuvre
@@ -75,10 +76,11 @@ ValidateCaptureAdmin.propTypes = {
   handleHardToFindCheck: PropTypes.func.isRequired,
   handleAllFieldsFilledCheck: PropTypes.func.isRequired,
   handleValidateButtonClick: PropTypes.func.isRequired,
-  isNewArtwork: PropTypes.func.isRequired,
-  isHardToFind: PropTypes.func.isRequired,
-  isAllFieldsFilled: PropTypes.func.isRequired,
-  pointsUserId: PropTypes.func.isRequired,
+  isNewArtwork: PropTypes.bool.isRequired,
+  isHardToFind: PropTypes.bool.isRequired,
+  isAllFieldsFilled: PropTypes.bool.isRequired,
+  pointsUserId: PropTypes.number.isRequired,
+  deleteCaptureId: PropTypes.number.isRequired,
 };
 
 export default ValidateCaptureAdmin;

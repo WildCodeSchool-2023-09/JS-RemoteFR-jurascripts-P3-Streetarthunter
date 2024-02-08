@@ -38,6 +38,7 @@ function admin() {
   const [isHardToFind, setIsHardToFind] = useState(false);
   const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
   const [pointsUserId, setPointsUserId] = useState([]);
+  const [deleteCaptureId, setDeleteCaptureId] = useState([]);
   const [notifCaptureCount, setNotifCaptureCount] = useState(0);
 
   const dashboardRef = useRef(null);
@@ -182,25 +183,6 @@ function admin() {
     };
   }, [initialOffset]);
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
-        params: {
-          general_gallery: true,
-        },
-      })
-      .then((response) => {
-        const filteredCaptures = response.data.filter(
-          (capture) => capture.artwork?.reported !== true
-        );
-        setArtCapture(filteredCaptures);
-        setNotifCaptureCount(filteredCaptures.length);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des captures:", error);
-      });
-  }, []);
-
   const handleNewArtworkCheck = () => {
     setIsNewArtwork(!isNewArtwork);
     setPoints((prevPoints) =>
@@ -226,6 +208,10 @@ function admin() {
     setPointsUserId(id);
   };
 
+  const captureId = (id) => {
+    setDeleteCaptureId(id);
+  };
+
   const handleValidateButtonClick = () => {
     setPoints((prevPoints) => prevPoints + 100);
     const totalPoints =
@@ -242,7 +228,40 @@ function admin() {
       .catch((error) => {
         console.error("Erreur lors de l'envoi des points:", error);
       });
+
+    axios
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/captures/${deleteCaptureId}`
+      )
+      .then((response) => {
+        console.info(
+          "Suppression de l'œuvre effectuée avec succès !",
+          response
+        );
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de l'œuvre:", error);
+      });
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/captures`, {
+        params: {
+          general_gallery: true,
+        },
+      })
+      .then((response) => {
+        const filteredCaptures = response.data.filter(
+          (capture) => capture.artwork?.reported !== true
+        );
+        setArtCapture(filteredCaptures);
+        setNotifCaptureCount(filteredCaptures.length);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des captures:", error);
+      });
+  }, [handleValidateButtonClick]);
 
   const handleReturn = () => {
     switch (user.is_administrator) {
@@ -383,6 +402,7 @@ function admin() {
                       artCapture={artCapture}
                       setToggleModalCapture={setToggleModalCapture}
                       userId={userId}
+                      captureId={captureId}
                     />
                   )}
                   {activeComponent === "newWork" && <NewArtAdmin />}
@@ -398,6 +418,7 @@ function admin() {
                       isHardToFind={isHardToFind}
                       isAllFieldsFilled={isAllFieldsFilled}
                       pointsUserId={pointsUserId}
+                      deleteCaptureId={deleteCaptureId}
                     />
                   )}
                 </section>
