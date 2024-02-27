@@ -27,43 +27,68 @@ Street Art Hunter est une plateforme interactive conçue pour les amateurs d'art
 
 ![Capture d'écran de Street Art Hunter](https://i.postimg.cc/B6Nhrktq/temp-Image3f-Nl-En.jpg)
 
-## Installation
+**Initialisation du projet**
 
-1. **Clonez ce dépôt sur votre machine locale.**
-    ```bash
-    git clone https://github.com/votre-utilisateur/street-art-hunter.git
-    ```
+- Dans VSCode, installez les plugins **Prettier - Code formatter** et **ESLint** et configurez-les
+- Clonez ce dépôt, entrez dedans
+- Exécutez la commande `npm install`
+- Créez des fichiers d'environnement (`.env`) dans les dossiers `backend` et `frontend` : vous pouvez copier les fichiers `.env.sample` comme point de départ (**ne les supprimez pas**)
 
-2. **Accédez au répertoire du projet.**
-    ```bash
-    cd street-art-hunter
-    ```
+**Commandes disponibles**
 
-3. **Installez les dépendances du serveur.**
-    ```bash
-    npm install
-    ```
+- `db:migrate` : Exécute le script de migration de la base de données
+- `db:seed` : Exécute le script d'initialisation de la base de données
+- `dev` : Lance les deux serveurs (frontend + backend) dans un seul terminal
+- `dev-front` : Lance le serveur frontend React
+- `dev-back` : Lance le serveur backend Express
+- `lint` : Exécute les outils de validation (sera exécuté à chaque *commit*, et refusera un code non propre)
 
-4. **Accédez au répertoire client (frontend).**
-    ```bash
-    cd client
-    ```
+**FAQ**
 
-5. **Installez les dépendances du client.**
-    ```bash
-    npm install
-    ```
+**Outils**
 
-6. **Revenez au répertoire principal.**
-    ```bash
-    cd ..
-    ```
+- *Concurrently* : Permet l'exécution simultanée de plusieurs commandes dans la même interface en ligne de commande (CLI)
+- *Husky* : Permet d'exécuter des commandes spécifiques déclenchées par des événements *git*
+- *Vite* : Alternative à *Create-React-App*, regroupant moins d'outils pour une expérience plus fluide
+- *ESLint* : Outil de "Qualité du code", assure l'application des règles choisies
+- *Prettier* : Outil de "Qualité du code" également, axé sur le guide de style
+- _ Airbnb Standard_ : L'un des "standards" les plus connus, même s'il n'est pas officiellement lié à ES/JS
 
-7. **Lancez le serveur.**
-    ```bash
-    npm start
-    ```
-8. **Ouvrez votre navigateur et accédez à `http://localhost:3000` pour utiliser Street Art Hunter.**
+**Déploiement avec Traefik**
+
+> ⚠️ Prérequis : Vous devez avoir installé et configuré Traefik sur votre VPS au préalable. https://github.com/WildCodeSchool/vps-traefik-starter-kit/
+> 
+
+Pour le déploiement, vous devez vous rendre dans `secrets` → l'application `actions` sur le dépôt GitHub pour insérer via `Nouveau secret de dépôt` :
+
+- SSH_HOST : Adresse IP de votre VPS
+- SSH_USER : Nom d'utilisateur SSH pour votre VPS
+- SSH_PASSWORD : Mot de passe de connexion SSH pour votre VPS
+
+Et une variable publique depuis l'onglet `/paramètres/variables/actions` :
+
+- PROJECT_NAME : le nom du projet utilisé pour créer le sous-domaine.
+
+> ⚠️ Attention : les tirets bas ne sont pas autorisés. Ils peuvent causer des problèmes avec le certificat Let's Encrypt.
+> 
+
+Utilisez cet onglet pour ajouter d'autres variables d'environnement requises pour le projet, le cas échéant.
+
+Seul le backend sera accessible. Le chemin racine `"/"` redirigera vers le dossier dist sur votre frontend. Pour permettre cela, veuillez décommenter la ligne comme expliqué dans `backend/src/app.js` (Ligne 102). Comme le backend servira le frontend, la variable globale VITE_BACKEND_URL sera définie avec une chaîne vide.
+
+Votre URL sera `https://${PROJECT-NAME}.${sous-domaine}.wilders.dev/`.
+
+**À propos de la base de données**
+
+La base de données est déployée automatiquement avec le nom de votre dépôt. Pendant la construction du projet (`docker-entry.sh`), la commande `node migrate.js` est exécutée dans le backend. Si vous souhaitez initialiser automatiquement votre base de données à l'aide du script `seed.js`, remplacez la commande *build* dans votre `backend/package.json` par `node migrate.js && node seed.js`.
+
+**À propos des ressources publiques (images, polices, etc.)**
+
+N'utilisez aucun dossier public sur votre frontend. Ce dossier ne sera pas accessible en ligne. Vous pouvez déplacer vos ressources publiques dans le dossier `backend/public`. Privilégiez les [ressources statiques](https://vitejs.dev/guide/assets) lorsque cela est possible.
+
+**À propos des journaux (Logs)**
+
+Si vous souhaitez accéder aux journaux de votre projet en ligne (pour suivre le déploiement ou surveiller les erreurs), connectez-vous à votre VPS (`ssh user@host`). Ensuite, accédez à votre projet spécifique et exécutez `docker compose logs -t -f`.
 
 ## Utilisation
 
@@ -86,5 +111,3 @@ Nous accueillons les contributions de la communauté ! Pour contribuer, veuillez
 Ce projet est sous licence [MIT](LICENSE).
 
 ---
-
-**Street Art Hunter** - Explorez, découvrez, partagez l'art urbain autour de vous !
