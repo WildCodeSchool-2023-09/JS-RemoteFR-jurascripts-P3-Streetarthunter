@@ -27,6 +27,8 @@ Street Art Hunter est une plateforme interactive conçue pour les amateurs d'art
 
 ![Capture d'écran de Street Art Hunter](https://i.postimg.cc/B6Nhrktq/temp-Image3f-Nl-En.jpg)
 
+## Installation
+
 **Initialisation du projet**
 
 - Dans VSCode, installez les plugins **Prettier - Code formatter** et **ESLint** et configurez-les
